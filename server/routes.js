@@ -51,6 +51,7 @@ function routes (self) {
   self.app.get('/scripts/*', nothingFoundHandler('nothing found in scripts'))
   self.app.get('/styles/*', nothingFoundHandler('nothing found in styles'))
   self.app.get('/uploads/*', nothingFoundHandler('nothing found in uploads'))
+  self.app.get('/dist/*', nothingFoundHandler('nothing found in dist'))
   self.app.get('/*', function (req, res) {
     seo(self, req, function (seoSettings) {
       ejs.renderFile(path.join(__dirname, './layout/index.html'), {

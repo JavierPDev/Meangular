@@ -16,10 +16,10 @@ function Register (self, done) {
   // Start Build Process
   // getFolderContents > Used to dynamically get all of the contents of all module folders.
   this.getFolderContents(self)
-  // setupFrontendDirectories > Used to set up all directories need & to remove the previously compiled files.
-  this.setupFrontendDirectories(self)
-  // compileFrontendStylesScripts > Used to compile all of the info needed for styles & scripts to render later.
-  this.compileFrontendStylesScripts(self)
+  // // setupFrontendDirectories > Used to set up all directories need & to remove the previously compiled files.
+  // this.setupFrontendDirectories(self)
+  // // compileFrontendStylesScripts > Used to compile all of the info needed for styles & scripts to render later.
+  // this.compileFrontendStylesScripts(self)
   // compileBackendScripts > Used to compile all of the info need for all of the backend modules.
   this.compileBackendScripts(self)
   // transformBabel > Used to transform files to es6 - commented out till the next release.
@@ -28,10 +28,10 @@ function Register (self, done) {
   this.setupServerModels(self)
   // setupServerRoutes > Used to set up the module routes.
   this.setupServerRoutes(self)
-  // renderFrontendFiles > Used to render all of the frontend files based on all the information from above.
-  this.renderFrontendFiles(self)
-  // updateFrontendCdn > Used to update the files based of if your using a cdn. We Support MAXCDN.
-  this.updateFrontendCdn(self)
+  // // renderFrontendFiles > Used to render all of the frontend files based on all the information from above.
+  // this.renderFrontendFiles(self)
+  // // updateFrontendCdn > Used to update the files based of if your using a cdn. We Support MAXCDN.
+  // this.updateFrontendCdn(self)
   // frontendFiles > Returns the files to send to the frontend
   return self.frontendFiles
 }

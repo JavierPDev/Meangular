@@ -84,6 +84,11 @@ client/scripts/compiled
 server/dist/
 
 # --------------------
+# Webpack Compiled files
+# --------------------
+client/dist/
+
+# --------------------
 # Tool Reports reports
 # --------------------
 tools/*/reports
