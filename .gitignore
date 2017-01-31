@@ -1,0 +1,98 @@
+# --------------------
+# OSX Files
+# --------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# --------------------
+# Eclipse or Nodeclipse "Enide Studio" Files
+# --------------------
+# recommended to add to Git SCM
+# or generate with `nodeclipse -p` command
+.project
+.settings/
+.*.md.html
+
+
+# --------------------
+# IntelliJ Files
+# --------------------
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# --------------------
+# Netbeans Files
+# --------------------
+nbproject/private/
+build/
+nbbuild/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# --------------------
+# Node Files
+# --------------------
+npm-debug.log
+node_modules/
+
+# --------------------
+# SASS Files
+# --------------------
+.sass-cache/
+client/styles/global-configs.styles.scss
+
+
+# --------------------
+# Bower Files
+# --------------------
+.bower-*/
+bower_components
+
+# --------------------
+# App Files
+# --------------------
+client/uploads
+
+
+# --------------------
+# vim Files
+# --------------------
+*.swp
+
+# --------------------
+# Files
+# --------------------
+files/
+
+# --------------------
+# Global Compiled files
+# --------------------
+client/styles/compiled
+client/scripts/compiled
+
+# --------------------
+# Babel Compiled files
+# --------------------
+server/dist/
+
+# --------------------
+# Tool Reports reports
+# --------------------
+tools/*/reports
+tools/nightwatch/reports/index.html
+
+
+# --------------------
+# Mean Stack Folders
+# --------------------
+database/
+downloads/
+backups/

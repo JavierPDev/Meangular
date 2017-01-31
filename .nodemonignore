@@ -1,0 +1,12 @@
+.DS_Store
+/.git/*
+/node_modules/*
+npm-debug.log
+/tests/*
+/commands/*
+/reports/*
+/client/*
+/documentation/*
+/database/*
+/scripts/*
+/tools/*

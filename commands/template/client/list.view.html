@@ -1,0 +1,33 @@
+<div class="container" ng-init="vm.list()">
+  <div class="row">
+      <div class="col-sm-12 <%= name %>-header text-center">
+        <h1 class="<%= name %>-title">MeanStackJS <%= Name %>s</h1>
+        <p class="lead <%= name %>-description">Using the official example template of creating a <%= name %> module with Bootstrap.</p>
+      </div>
+  </div> 
+  <div class="row">
+    <div class="center-block <%= name %>-main ">
+      <div ng-show="vm.<%= name %>s.length == 0">
+        <h3>No <%= Name %> Data Points</h3>
+        <a class="btn btn-primary" href="/<%= name %>/create">Create One Now</a>
+      </div>
+      
+      <div class="<%= name %>-post" ng-repeat="(key, value) in vm.<%= name %>s | orderBy:'-date'">
+        <a href="/<%= name %>/view/{{value._id}}"><h2 class="<%= name %>-post-title">{{value.title}}</h2></a>
+        <span ng-show="vm.UserFactory.loggedin">
+          <a href="/<%= name %>/edit/{{value._id}}"><i class="fa fa-pencil-square-o"></i></a>
+          <a ng-click="vm.delete(value._id)"><i class="fa fa-trash"></i></a>
+        </span>
+        
+        <p class="<%= name %>-post-meta">
+          on {{value.created |date:'medium'}}
+        </p>
+        
+        <p>{{value.content}}</p>
+      </div><!-- /.<%= name %>-post -->
+
+    </div><!-- /.<%= name %>-main -->
+
+  </div>
+    
+</div>
