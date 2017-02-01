@@ -8,7 +8,7 @@
 			<li *ngIf="!auth.loggedIn"><a [routerLink]="['login']">Sign In</a></li>
 			<li *ngIf="!auth.loggedIn"><a [routerLink]="['signup']">Sign Up</a></li>
 			<li *ngIf="auth.loggedIn"><a [routerLink]="['profile']">Profile</a></li>
-			<li *ngIf="auth.loggedIn"><span (click)="logout()">Logout</span></li>
+			<li *ngIf="auth.loggedIn"><a class="pointer" (click)="logout()">Logout</a></li>
 		</ul>
 	</div>
 </nav>
