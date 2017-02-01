@@ -4,13 +4,13 @@
 			<h2>Enter your credentials.</h2>
 			<form (ngSubmit)="login()">
 				<div class="form-group">
-          <label for="email">E-mail address</label>
-          <input type="text" [(ngModel)]="email" id="email" name="email">
+					<label for="email">E-mail address</label>
+					<input type="text" [(ngModel)]="email" id="email" name="email" class="form-control">
 				</div>
 				<div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" [(ngModel)]="password" id="password"
-            name="password">
+					<label for="password">Password</label>
+					<input type="password" [(ngModel)]="password" id="password"
+						name="password" class="form-control">
 				</div>
 				<button type="submit" class="btn btn-primary">Log In!</button>
 			</form>
