@@ -4,11 +4,11 @@ var chalksay = require('chalksay')
 var concat = require('serial-concat-files')
 var debug = require('debug')('meanstackjs:register')
 var fs = require('fs')
-var less = require('less')
+// var less = require('less')
 var mongoose = require('mongoose')
-var uglify = require('uglify-js')
-var uglifycss = require('uglifycss')
-var sass = require('node-sass')
+// var uglify = require('uglify-js')
+// var uglifycss = require('uglifycss')
+// var sass = require('node-sass')
 var path = require('path')
 var pathExists = require('is-there')
 var dir = __dirname
@@ -33,7 +33,8 @@ function Register (self, done) {
   // // updateFrontendCdn > Used to update the files based of if your using a cdn. We Support MAXCDN.
   // this.updateFrontendCdn(self)
   // frontendFiles > Returns the files to send to the frontend
-  return self.frontendFiles
+  // return self.frontendFiles
+  return
 }
 
 Register.prototype.getFolderContents = function (self) {
@@ -88,7 +89,7 @@ Register.prototype.getFolderContents = function (self) {
   //   return !_.startsWith(n, '.')
   // })
 
-  var mainFrontendFile = ''
+  // var mainFrontendFile = ''
   // frontendConfigs = expandModules.bind(self)(_.filter(frontendConfigs, function (n) {
   //   if (path.extname(n) !== '') mainFrontendFile = n
   //   return path.extname(n) === ''
@@ -96,7 +97,7 @@ Register.prototype.getFolderContents = function (self) {
 
   self.backendFolders = backendConfigs
   // self.frontendFolders = frontendConfigs
-  self.mainFrontendFile = mainFrontendFile
+  // self.mainFrontendFile = mainFrontendFile
   debug('end Info')
 }
 
