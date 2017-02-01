@@ -68,5 +68,9 @@ module.exports = {
         address: mongodbUri
       }
     }
+  },
+  google: {
+    clientID: '',
+    clientSecret: ''
   }
 }

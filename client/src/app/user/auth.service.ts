@@ -64,25 +64,25 @@ export class AuthService {
       .toPromise()
       .then((res) => {
         if (res && res.user && res.token) {
-          this._setAuthenticatedUser(res);
+          this.setAuthenticatedUser(res);
           return true;
         }
 
         return false;
       });
   }
-
-  private _onAuthenticated(res: any): void {
-    this._setAuthenticatedUser(res);
-    this._router.navigate(['/profile']);
-  }
   
-  private _setAuthenticatedUser(res: any) {
+  public setAuthenticatedUser(res: any) {
     this._user = res.user;
     this.isAdmin = this._user.roles.indexOf('admin') > -1;
     this.loggedIn = true;
 
     localStorage['id_token'] = res.token;
+  }
+
+  private _onAuthenticated(res: any): void {
+    this.setAuthenticatedUser(res);
+    this._router.navigate(['/profile']);
   }
 
   private _setUnauthenticatedUser() {

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login.component';
 import { SignupComponent } from './user/signup.component';
 import { ProfileComponent } from './user/profile.component';
+import { GoogleRedirectComponent } from "./user/google-redirect.component";
 import { AuthService } from './user/auth.service';
 import { AuthenticatedGuard } from './user/authenticated.guard';
 import { Routes } from './app.routes';
@@ -24,7 +25,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppComponent,
     LoginComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    GoogleRedirectComponent
   ],
   imports: [
     BrowserModule,

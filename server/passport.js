@@ -1,6 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy
+var GoogleStrategy = require('passport-google-oauth20').Strategy
 var mongoose = require('mongoose')
 var debug = require('debug')('meanstackjs:passport')
+var env = require('../configs/settings.js').get()
 // Passport serialize user function.
 exports.serializeUser = function (user, done) {
   process.nextTick(function () {
@@ -45,5 +47,36 @@ exports.passportStrategy = new LocalStrategy({ usernameField: 'email' }, functio
         return done(null, false, { message: 'Invalid email or password.' })
       }
     })
+  })
+})
+// Sign in using google oauth2
+exports.googleStrategy = new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID || env.google.clientID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET || env.google.clientSecret,
+  callbackURL: '/auth/google/callback'
+}, function (accessToken, refreshToken, profile, cb) {
+  var User = mongoose.model('users')
+  var email = profile.emails[0].value
+
+  User.findOne({
+    email: email
+  }, function (err, user) {
+    if (err) {
+      debug('passport: Error ' + err)
+      return cb(err)
+    }
+    if (!user) {
+      User.create({
+        email: email,
+        password: accessToken,
+        profile: {
+          name: profile.displayName
+        }
+      }, function (err, user) {
+        return cb(err, user)
+      })
+    } else {
+      return cb(err, user)
+    }
   })
 })

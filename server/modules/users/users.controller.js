@@ -3,7 +3,6 @@ var auto = require('run-auto')
 var crypto = require('crypto')
 var passport = require('passport')
 var mongoose = require('mongoose')
-var User = mongoose.model('users')
 var fs = require('fs')
 var path = require('path')
 var settings = require('../../../configs/settings.js').get()
@@ -501,4 +500,30 @@ exports.postPhoto = function (req, res, next) {
     debug('end postPhoto')
     return res.status(400).send()
   }
+}
+
+exports.googleCallback = function (req, res, next) {
+  return res.redirect('/google-redirect')
+}
+
+exports.googleToken = function (req, res, next) {
+  var user = req.user
+  delete user['password']
+  var token = jwt.sign({
+    _id: user._id
+  }, settings.jwt.secret, settings.jwt.options) // good for two hours
+  res.cookie('token', token)
+  debug('end postSignup')
+  res.json({
+    success: true,
+    authenticated: true,
+    user: {
+      profile: user.profile,
+      roles: user.roles,
+      gravatar: user.gravatar,
+      email: user.email,
+      _id: user._id
+    },
+    token: 'JWT ' + token
+  })
 }

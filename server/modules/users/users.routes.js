@@ -1,6 +1,7 @@
 var user = require('./users.controller.js')
 var multer = require('multer')
 var upload = multer({ dest: 'client/uploads/' })
+var passport = require('passport')
 
 module.exports = function (app, auth, mail, settings, models) {
   app.post('/api/photos/upload', upload.single('file'), user.postPhoto)
@@ -15,4 +16,8 @@ module.exports = function (app, auth, mail, settings, models) {
   app.put('/api/account/profile', auth.isAuthenticated, user.putUpdateProfile)
   app.put('/api/account/password', auth.isAuthenticated, user.putUpdatePassword)
   app.delete('/api/account/delete', auth.isAuthenticated, user.deleteDeleteAccount)
+
+  app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}))
+  app.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/login'}), user.googleCallback)
+  app.get('/auth/google/token', user.googleToken)
 }
