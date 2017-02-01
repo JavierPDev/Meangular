@@ -12,7 +12,10 @@
 					<input type="password" [(ngModel)]="password" id="password"
 						name="password" class="form-control">
 				</div>
-				<button type="submit" class="btn btn-primary">Log In!</button>
+        <div *ngIf="authService.error" class="alert alert-danger">
+          {{authService.error}}
+        </div>
+				<button type="submit" class="btn btn-primary">Log In</button>
 			</form>
 		</div>
 	</div>

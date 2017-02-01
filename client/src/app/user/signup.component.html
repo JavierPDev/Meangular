@@ -19,6 +19,9 @@
           <label for="confirmPassword">Confirm Password</label>
           <input type="password" [(ngModel)]="user.confirmPassword" id="confirmPassword" name="confirmPassword" class="form-control">
         </div>
+        <div *ngIf="authService.error" class="alert alert-danger">
+          {{authService.error}}
+        </div>
         <button type="submit" class="btn btn-primary">Sign Up!</button>
       </form>
     </div>

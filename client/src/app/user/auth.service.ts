@@ -9,6 +9,7 @@ import { User } from './user';
 
 @Injectable()
 export class AuthService {
+  public error: string;
   public isAdmin: boolean = false;
   public loggedIn: boolean = false;
   private _jwtHelper: JwtHelper = new JwtHelper();
@@ -25,7 +26,8 @@ export class AuthService {
   public login(email: string, password: string) {
     return this._http.post('/api/login', { email, password })
       .map(res => res.json())
-      .subscribe((res) => this._onAuthenticated.call(this, res));
+      .subscribe(res => this._onAuthenticated.call(this, res),
+                err => this.error = JSON.parse(err._body).msg);
   }
 
   public logout() {
@@ -41,7 +43,8 @@ export class AuthService {
   public signup(user: User) {
     return this._http.post('/api/signup', user)
       .map(res => res.json())
-      .subscribe(res => this._onAuthenticated.call(this, res));
+      .subscribe(res => this._onAuthenticated.call(this, res),
+                err => this.error = JSON.parse(err._body).msg);
   }
 
   public user(): User {

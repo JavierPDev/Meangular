@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { AuthService } from './auth.service';
 import { User } from './user';
@@ -7,12 +7,16 @@ import { User } from './user';
   selector: 'app-signup',
   templateUrl: './signup.component.html'
 })
-export class SignupComponent {
+export class SignupComponent implements OnDestroy {
   public user: User = new User();
 
-  constructor(private _authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   public signup(): void {
-    this._authService.signup(this.user);
+    this.authService.signup(this.user);
+  }
+
+  ngOnDestroy() {
+    this.authService.error = null;
   }
 }
