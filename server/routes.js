@@ -46,10 +46,7 @@ function routes (self) {
     })
   })
   self.app.get('/api/*', nothingFoundHandler('nothing found in api'))
-  self.app.get('/bower_components/*', nothingFoundHandler('nothing found in bower_components'))
   self.app.get('/images/*', nothingFoundHandler('nothing found in images'))
-  self.app.get('/scripts/*', nothingFoundHandler('nothing found in scripts'))
-  self.app.get('/styles/*', nothingFoundHandler('nothing found in styles'))
   self.app.get('/uploads/*', nothingFoundHandler('nothing found in uploads'))
   self.app.get('/dist/*', nothingFoundHandler('nothing found in dist'))
   self.app.get('/*', function (req, res) {
