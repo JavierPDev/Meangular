@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { AuthHttp } from 'angular2-jwt';
+import { AuthHttp, JwtHelper } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -11,6 +11,7 @@ import { User } from './user';
 export class AuthService {
   public isAdmin: boolean = false;
   public loggedIn: boolean = false;
+  private _jwtHelper: JwtHelper = new JwtHelper();
   private _user: User;
 
   constructor(
@@ -48,18 +49,23 @@ export class AuthService {
   }
 
   public getAuthenticatedState() {
-    if (!localStorage['id_token'])
+    const token = localStorage['id_token'];
+    const tokenIsPresentAndExpired = token
+      && this._jwtHelper.isTokenExpired(token);
+
+    if (!token || tokenIsPresentAndExpired)
       return Promise.resolve({authenticated: false});
 
-    if (localStorage['id_token'])
     return this._authHttp.get('/api/authenticate')
       .map(res => res.json())
       .toPromise()
       .then((res) => {
         if (res && res.user && res.token) {
           this._setAuthenticatedUser(res);
+          return true;
         }
-        return res;
+
+        return false;
       });
   }
 

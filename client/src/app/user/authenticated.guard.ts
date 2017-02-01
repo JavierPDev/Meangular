@@ -14,13 +14,10 @@ export class AuthenticatedGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
       return this._authService.getAuthenticatedState()
-        .then(res => {
-          if (!res.authenticated) {
-            this._router.navigate(['/login']);
-            return false;
-          } else {
-            return true;
-          }
+        .then(isAuthenticated => {
+          if (!isAuthenticated) this._router.navigate(['/login']);
+
+          return isAuthenticated;
         });
     }
 }
