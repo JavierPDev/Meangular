@@ -3,6 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login.component';
@@ -32,8 +33,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BrowserModule,
     FormsModule,
     HttpModule,
+    SlimLoadingBarModule.forRoot(),
 
     Routes
+  ],
+  exports: [
+    SlimLoadingBarModule
   ],
   providers: [
     // Needed for angular2-jwt to work properly. See:
