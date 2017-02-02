@@ -5,7 +5,7 @@ var _ = require('lodash')
 var environment = require('./environment.js').get()
 var baseLine = {
   app: {
-    name: 'MeanStackJS'
+    name: 'Meangular'
   },
   minify: 'default',
   render: {
@@ -42,7 +42,7 @@ var baseLine = {
   },
   // Plato
   plato: {
-    title: 'mean stack',
+    title: 'meangular',
     eslint: {
       lastsemic: true,
       asi: true
@@ -51,13 +51,13 @@ var baseLine = {
   // JWT Object https://github.com/auth0/node-jsonwebtoken
   jwt: {
     // is used to compute a JWT SIGN
-    secret: 'MEANSTACKJS',
+    secret: 'meangular',
     options: {
       expiresIn: 60 * 120 // 60 seconds * 120  = 2 hours
     }
   },
   // is used to compute a session hash
-  sessionSecret: 'MEANSTACKJS',
+  sessionSecret: 'meangular',
   // The name of the MongoDB collection to store sessions in
   sessionCollection: 'sessions',
   // The session cookie settings
@@ -83,58 +83,31 @@ var baseLine = {
   // SEO - Default html setup
   googleAnalytics: 'UA-71654331-1',
   html: {
-    title: 'Mean Stack JS Demo',
-    keywords: 'MEAN, MEANSTACKJS, mongodb, expressjs, angularjs,nodejs, javascript',
-    description: 'Mean Stack JS was built for ease of use with javascript at its core. MeanStackJS is a full stack javascript framework that will give you the power to develop web applications',
-    ogUrl: 'https://meanstackjs.herokuapp.com/',
+    title: 'Meangular',
+    keywords: 'Meangular',
+    description: 'Meangular',
+    ogUrl: 'https://meangular.herokuapp.com/',
     ogType: 'website',
-    ogTitle: 'Mean Stack JS Demo',
-    ogDescription: 'Mean Stack JS was built for ease of use with javascript at its core. MeanStackJS is a full stack javascript framework that will give you the power to develop web applications',
-    ogImage: 'http://meanstackjs.com/images/logo/header.png',
-    fbAppId: '1610630462580116',
-    twitterCreator: '@greenpioneerdev',
-    twitterCard: 'summary_large_image',
-    twitterTitle: 'Mean Stack JS Demo',
-    twitterDescription: 'Mean Stack JS was built for ease of use with javascript at its core. MeanStackJS is a full stack javascript framework that will give you the power to develop web applications',
-    twitterUrl: 'https://meanstackjs.herokuapp.com/',
-    twitterImage: 'http://meanstackjs.com/images/logo/header.png',
-    twitterSite: '@meanstackjs',
-    canonical: 'https://meanstackjs.herokuapp.com/',
-    author: 'Green Pioneer Solutions'
+    ogTitle: 'Meangular',
+    ogDescription: 'Meangular',
+    ogImage: '',
+    fbAppId: '',
+    twitterCreator: '',
+    twitterCard: '',
+    twitterTitle: 'Meangular',
+    twitterDescription: 'Meangular',
+    twitterUrl: 'https://meangular.herokuapp.com/',
+    twitterImage: '',
+    twitterSite: '',
+    canonical: 'https://meangular.herokuapp.com/',
+    author: ''
   },
   seo: require('./seo.js'),
-  // AGGREGATION
-  // bower_components -  Needs to be manually added below
-  // modules - aggregated automatically
-  // images - manually called in files
-  // styles - manually called  & automatically compiles the global style scss in COMPILED Folder
-  // uploads - Automatic uploads to be manually called in the files
-  // USE EXTERNAL FILES - 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js',
-  // OR USE INTERNAL FILES - '/bower_components/jquery/dist/jquery.js'
+  // Assets disabled, will not be rendered to index page
   assets: {
     js: [
-      '/bower_components/angular-jwt/dist/angular-jwt.js',
-      '/bower_components/socket.io-client/socket.io.js',
-      '/bower_components/ng-file-upload/ng-file-upload-all.js',
-      '/bower_components/angular-mocks/angular-mocks.js',
-      '/bower_components/angular-cookies/angular-cookies.js',
-      '/bower_components/angular-sanitize/angular-sanitize.js',
-      '/bower_components/angular-animate/angular-animate.js',
-      '/bower_components/angular-resource/angular-resource.js',
-      '/bower_components/angular-ui-router/release/angular-ui-router.js',
-      '/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      '/bower_components/angular-moment/angular-moment.js',
-      '/bower_components/moment/moment.js',
-      '/bower_components/lodash/lodash.js',
-      '/bower_components/toastr/toastr.js',
-      '/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-      '/bower_components/angular/angular.js',
-      '/bower_components/jquery/dist/jquery.js'
     ],
     css: [
-      '/styles/compiled/global.style.css',
-      '/bower_components/toastr/toastr.css'
-    // '/bower_components/font-awesome/css/font-awesome.min.css'
     ]
   },
   bodyparser: {
@@ -247,24 +220,24 @@ var baseLine = {
   email: {
     templates: {
       welcome: {
-        subject: 'Welcome to Mean Stack JS',
+        subject: 'Welcome to Meangular',
         text: function (username) {
           return 'Hi ' + username + ',\n\n' +
-          'Thanks for signing up for Mean Stack JS.\n\n' +
+          'Thanks for signing up for Meangular.\n\n' +
           'If you have any questions about the site, you can reply to this ' +
           'email.\n\n' +
-          '— Mean Stack JS'
+          '— Meangular'
         }
       },
       reset: {
-        subject: 'Reset your password on MEANSTACKJS ',
+        subject: 'Reset your password on Meangular ',
         text: function (email) {
           return 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + email + ' has just been changed.\n'
         }
       },
       forgot: {
-        subject: 'Welcome to Mean Stack JS',
+        subject: 'Welcome to Meangular',
         text: function (host, token) {
           return 'You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -273,14 +246,14 @@ var baseLine = {
         }
       }
     },
-    from: 'MEANSTACKJS@localhost.com',
-    error: 'MEANSTACKJS@localhost.com',
+    from: 'meangular@localhost.com',
+    error: 'meangular@localhost.com',
     connect: {
       host: 'smtp.mandrillapp.com', // Gmail, SMTP
       port: '587',
       auth: {
-        user: 'hackathonstarterdemo',
-        pass: 'E1K950_ydLR4mHw12a0ldA'
+        user: '',
+        pass: ''
       }
     }
   }

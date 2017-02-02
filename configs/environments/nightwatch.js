@@ -2,7 +2,7 @@ var mongodbUri = process.env.DB_PORT_27017_TCP_ADDR || process.env.MONGODB || pr
 module.exports = {
   minify: process.env.MINIFY || 'default', // 'concat' all files or 'minify' concat and minfy  or 'default' leave as is - Added process env for testing
   html: {
-    title: 'Nightwatch E2E MEANSTACKJS'
+    title: 'Nightwatch E2E Meangular'
   },
   logger: false,
   cdn: process.env.CDN || false,
