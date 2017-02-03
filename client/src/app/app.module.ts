@@ -1,17 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule  } from '@angular/common';
+import { FormsModule  } from '@angular/forms';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
+import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './user/login.component';
-import { SignupComponent } from './user/signup.component';
-import { ProfileComponent } from './user/profile.component';
 import { GoogleRedirectComponent } from "./user/google-redirect.component";
-import { AuthService } from './user/auth.service';
-import { AuthenticatedGuard } from './user/authenticated.guard';
 import { Routes } from './app.routes';
 import { GlobalErrorHandler } from './common/global-error-handler';
 
@@ -24,17 +21,15 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
-    ProfileComponent,
-    GoogleRedirectComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     HttpModule,
     SlimLoadingBarModule.forRoot(),
 
+    UserModule,
     Routes
   ],
   exports: [
@@ -53,8 +48,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 		// 	provide: ErrorHandler,
 		// 	useClass: GlobalErrorHandler
     // },
-    AuthService,
-    AuthenticatedGuard
   ],
   bootstrap: [AppComponent]
 })

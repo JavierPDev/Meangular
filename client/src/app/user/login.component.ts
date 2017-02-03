@@ -14,7 +14,6 @@ export class LoginComponent implements OnDestroy {
   constructor(public authService: AuthService) {}
 
   public login(ev): void {
-    console.log('this authService', this.authService);
     this.authService.login(this.email, this.password);
   }
 
