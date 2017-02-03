@@ -12,6 +12,8 @@ var session = require('express-session')
 var MongoStore = require('connect-mongo')(session)
 var statusMonitor = require('express-status-monitor')
 var queryParameters = require('express-query-parameters')()
+var env = require('../configs/settings.js').get()
+var googleOauth2Enabled = env.google.clientId && env.google.clientSecret
 function config (self) {
   self.app = express()
   self.app.enable('trust proxy')
@@ -43,7 +45,12 @@ function config (self) {
   passport.serializeUser(auth.serializeUser)
   passport.deserializeUser(auth.deserializeUser)
   passport.use(auth.passportStrategy)
-  passport.use(auth.googleStrategy)
+  if (googleOauth2Enabled) {
+    console.log('Using google oauth2');
+    passport.use(auth.googleStrategy)
+  } else {
+    console.log('No google client id or secret. Running without google oauth2');
+  }
   queryParameters.config({
     settings: {
       schema: ['_id', 'id', '__v', 'created', 'title', 'content', 'user', 'email', 'roles'], // the names people can search

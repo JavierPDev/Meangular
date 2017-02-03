@@ -70,7 +70,7 @@ module.exports = {
     }
   },
   google: {
-    clientId: '',
-    clientSecret: ''
+    clientId: process.env.GOOGLE_CLIENT_ID || '',
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
   }
 }
