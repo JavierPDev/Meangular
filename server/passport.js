@@ -56,7 +56,7 @@ if (googleOauth2Enabled) {
   exports.googleStrategy = new GoogleStrategy({
     clientID: env.google.clientId,
     clientSecret: env.google.clientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: env.google.redirectUrl
   }, function (accessToken, refreshToken, profile, cb) {
     var User = mongoose.model('users')
     var email = profile.emails[0].value

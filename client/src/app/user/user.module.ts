@@ -5,7 +5,7 @@ import { FormsModule  } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { SignupComponent } from './signup.component';
 import { ProfileComponent } from './profile.component';
-import { GoogleRedirectComponent } from "./google-redirect.component";
+import { OauthComponent } from "./oauth.component";
 import { AuthService } from './auth.service';
 import { AuthenticatedGuard } from './authenticated.guard';
 
@@ -14,7 +14,7 @@ import { AuthenticatedGuard } from './authenticated.guard';
     LoginComponent,
     SignupComponent,
     ProfileComponent,
-    GoogleRedirectComponent,
+    OauthComponent,
   ],
   imports: [
     CommonModule,

@@ -6,16 +6,17 @@ import 'rxjs/add/operator/map';
 import { AuthService } from './auth.service';
 
 @Component({
-  selector: 'app-google-redirect',
+  selector: 'app-oauth',
   template: ``
 })
-export class GoogleRedirectComponent implements OnInit {
+export class OauthComponent implements OnInit {
   constructor(public authService: AuthService,
               private _router: Router,
               private _http: Http) {}
 
   ngOnInit() {
-    this._http.get('/auth/google/token')
+    // Get and set jwt and user after redirect from oauth authentication 
+    this._http.get('/auth/oauth/token')
       .map(res => res.json())
       .subscribe(res => {
         this.authService.setAuthenticatedUser(res);

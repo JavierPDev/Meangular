@@ -504,10 +504,12 @@ exports.postPhoto = function (req, res, next) {
 }
 
 exports.googleCallback = function (req, res, next) {
-  return res.redirect('/google-redirect')
+  // Redirect to client side rendered component that will send ajax request
+  // and save new token and user
+  return res.redirect('/oauth')
 }
 
-exports.googleToken = function (req, res, next) {
+exports.oauthToken = function (req, res, next) {
   var user = req.user
   delete user['password']
   var token = jwt.sign({

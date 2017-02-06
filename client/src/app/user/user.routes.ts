@@ -1,7 +1,7 @@
 import { LoginComponent } from "./login.component";
 import { SignupComponent } from "./signup.component";
 import { ProfileComponent } from "./profile.component";
-import { GoogleRedirectComponent } from "./google-redirect.component";
+import { OauthComponent } from "./oauth.component";
 import { AuthenticatedGuard } from "./authenticated.guard";
 
 export const USER_ROUTES = [
@@ -14,8 +14,8 @@ export const USER_ROUTES = [
     component: SignupComponent
   },
 	{
-    path: 'google-redirect',
-    component: GoogleRedirectComponent
+    path: 'oauth',
+    component: OauthComponent
   },
 	{
     path: 'profile',
