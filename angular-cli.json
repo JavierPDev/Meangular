@@ -1,7 +1,7 @@
 {
   "project": {
     "version": "1.0.0-beta.26",
-    "name": "ngcliproject"
+    "name": "meangular"
   },
   "apps": [
     {
