@@ -6,9 +6,9 @@ import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
-import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
-import { GoogleRedirectComponent } from "./user/google-redirect.component";
+import { CoreModule } from './core/core.module';
+import { UserModule } from './user/user.module';
 import { Routes } from './app.routes';
 import { GlobalErrorHandler } from './common/global-error-handler';
 
@@ -30,6 +30,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     SlimLoadingBarModule.forRoot(),
 
     UserModule,
+    CoreModule,
     Routes
   ],
   exports: [

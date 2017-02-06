@@ -1,15 +1,30 @@
 <ng2-slim-loading-bar [color]="'steelblue'"></ng2-slim-loading-bar>
 <nav class="navbar navbar-default">
 	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<a class="navbar-brand" [routerLink]="['']"></a>
+			<a class="navbar-brand" [routerLink]="['']">Home</a>
 		</div>
 		<ul class="nav navbar-nav pull-right">
-			<li *ngIf="!auth.loggedIn"><a [routerLink]="['login']">Sign In</a></li>
-			<li *ngIf="!auth.loggedIn"><a [routerLink]="['signup']">Sign Up</a></li>
-			<li *ngIf="auth.loggedIn"><a [routerLink]="['profile']">Profile</a></li>
-			<li *ngIf="auth.loggedIn"><a class="pointer" (click)="logout()">Logout</a></li>
+			<li *ngIf="!auth.loggedIn">
+        <a [routerLink]="['login']" [routerLinkActive]="['active']">
+          Log In
+        </a>
+      </li>
+			<li *ngIf="!auth.loggedIn">
+        <a [routerLink]="['signup']" [routerLinkActive]="['active']">
+          Sign Up
+        </a>
+      </li>
+			<li *ngIf="auth.loggedIn">
+        <a [routerLink]="['profile']" [routerLinkActive]="['active']">
+          Profile
+        </a>
+      </li>
+			<li *ngIf="auth.loggedIn">
+        <a class="pointer" (click)="logout()">
+          Logout
+        </a>
+      </li>
 		</ul>
 	</div>
 </nav>
