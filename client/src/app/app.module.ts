@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule  } from '@angular/common';
-import { FormsModule  } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -25,7 +24,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   imports: [
     BrowserModule,
     CommonModule,
-    FormsModule,
     HttpModule,
     SlimLoadingBarModule.forRoot(),
 

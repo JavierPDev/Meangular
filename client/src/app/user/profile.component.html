@@ -1,4 +1,97 @@
-<h4>Profile</h4>
-<pre>
-  {{ user| json }}
-</pre>
+<div class="jumbotron col-sm-6 col-sm-offset-2">
+  <h4>Profile</h4>
+  <form novalidate [formGroup]="profileForm" (submit)="updateUser()">
+    <div class="form-group"
+      [class.has-error]="
+        !profileForm.controls['email'].valid
+          && profileForm.controls['email'].touched"
+    >
+      <label class="control-label" for="email">
+        Email
+      </label>
+      <input type="email"
+        id="email"
+        class="form-control" 
+        [formControl]="profileForm.controls['email']"
+      />
+      <span class="help-block" *ngIf="
+        profileForm.controls['email'].hasError('required')
+      ">
+        Email is required
+      </span>
+      <span class="help-block" *ngIf="
+        profileForm.controls['email'].hasError('pattern')
+      ">
+        Must be a proper email
+      </span>
+    </div>
+    <div class="form-group"
+      [class.has-error]="
+        !profileForm.controls['profile'].controls['name'].valid
+          && profileForm.controls['profile'].controls['name'].touched"
+    >
+      <label class="control-label" for="name">
+        Name
+      </label>
+      <input type="text"
+        id="name"
+        class="form-control" 
+        [formControl]="profileForm.controls['profile'].controls['name']"
+      />
+      <span class="help-block" *ngIf="
+        profileForm.controls['profile'].controls['name'].hasError('required')
+      ">
+        Name is required
+      </span>
+      <span class="help-block" *ngIf="
+        profileForm.controls['profile'].controls['name'].hasError('minlength')
+      ">
+        Name requires at least three characters
+      </span>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="gender">
+        Gender
+      </label>
+      <input type="text"
+        id="gender"
+        class="form-control" 
+        [formControl]="profileForm.controls['profile'].controls['gender']"
+      />
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="location">
+        Location
+      </label>
+      <input type="text"
+        id="location"
+        class="form-control" 
+        [formControl]="profileForm.controls['profile'].controls['location']"
+      />
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="website">
+        Web site
+      </label>
+      <input type="text"
+        id="website"
+        class="form-control" 
+        [formControl]="profileForm.controls['profile'].controls['website']"
+      />
+    </div>
+    <button class="btn btn-primary"
+      type="submit"
+      [disabled]="profileForm.invalid"
+    >
+      Update Profile
+    </button>
+    <br />
+    <br />
+    <div class="alert alert-success" *ngIf="message">
+      {{message}}
+    </div>
+    <div class="alert alert-danger" *ngIf="authService.error">
+      {{authService.error}}
+    </div>
+  </form>
+</div>
