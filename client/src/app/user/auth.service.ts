@@ -21,6 +21,12 @@ export class AuthService {
   ) {
     this.getAuthenticatedState();
   }
+  
+  public changePassword({password, confirmPassword}) {
+    return this._authHttp.put('/api/account/password',
+      {password, confirmPassword})
+      .map(res => res.json());
+  }
 
   public login(email: string, password: string) {
     return this._http.post('/api/login', { email, password })

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthHttp } from 'angular2-jwt';
 
@@ -8,23 +8,35 @@ import { AuthService } from './auth.service';
   selector: 'app-profile',
   templateUrl: './profile.component.html'
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
   public message: String = '';
+  public passwordForm: FormGroup;
   public profileForm: FormGroup;
   private _user = this.authService.user();
 
   constructor(public authService: AuthService,
               private _fb: FormBuilder) {}
 
+  public changePassword(): void {
+    this.authService.changePassword(this.passwordForm.value)
+      .subscribe(res => this._flashMessage('Password updated'),
+                 err => this._flashError(JSON.parse(err._body)[0].msg));
+  }
+
   public updateUser(): void {
     this.authService.updateUser(this.profileForm.value)
-      .subscribe(res => {
-        this.message = 'Profile successfully updated';
-        setTimeout(() => this.message = '', 3000);
-      }, err => {
-        console.log('err', err);
-        this.authService.error = 'Could not update profile';
-      });
+      .subscribe(res => this._flashMessage('Profile updated'),
+                 err => this._flashError('Could not update profile'));
+  }
+
+  private _flashError(errMessage): void {
+    this.authService.error = errMessage;
+    setTimeout(() => this.authService.error = null, 3000);
+  }
+
+  private _flashMessage(message): void {
+    this.message = message;
+    setTimeout(() => this.message = null, 3000);
   }
 
   ngOnInit() {
@@ -43,9 +55,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         'website': [this._user.profile.website],
       })
     });
-  }
-  
-  ngOnDestroy() {
-    this.authService.error = null;
+    this.passwordForm = this._fb.group({
+      'password': ['', Validators.minLength(4)],
+      'confirmPassword': ['', Validators.minLength(4)]
+    });
   }
 }

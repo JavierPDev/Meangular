@@ -294,7 +294,7 @@ exports.putUpdatePassword = function (req, res, next) {
   var errors = req.validationErrors()
 
   if (errors) {
-    return res.status(200).send(errors)
+    return res.status(400).send(errors)
   }
 
   User.findById(req.user.id, function (err, user) {
@@ -306,9 +306,9 @@ exports.putUpdatePassword = function (req, res, next) {
       if (err) {
         return next(err)
       }
-      req.flash('success', { msg: 'Password has been changed.' })
+      // req.flash('success', { msg: 'Password has been changed.' })
       debug('end putUpdatePassword')
-      res.status(200).send()
+      return res.status(200).send({user: req.user})
     })
   })
 }
