@@ -47,8 +47,8 @@
     "postinstall": "node scripts/postinstall.js",
     "ng:build:watch": "node_modules/angular-cli/bin/ng build --watch",
     "ng:build:prod": "node_modules/angular-cli/bin/ng build --prod --output-hashing none --aot true",
-    "start": "concurrently -k \"npm run ng:build:watch\" \"npm run start:server:watch\" \"npm run start:browsersync\" ",
-    "start:browsersync": "browser-sync start --proxy 'localhost:3000' --port 3001 --files 'client/dist' --no-open",
+    "start": "concurrently -k \"npm run ng:build:watch\" \"npm run start:server:watch\"",
+    "browser-sync": "browser-sync start --proxy 'localhost:3000' --port 3001 --files 'client/dist/inline.bundle.js' 'client/dist/styles.bundle.css' 'client/dist/main.bundle.js' --no-open",
     "start:debug": "node debug index.js",
     "start:inspect": "node --inspect  index.js",
     "start:server": "node index.js",
@@ -70,6 +70,7 @@
   },
   "homepage": "https://github.com/greenpioneersolutions/meanstackjs#readme",
   "keywords": [
+    "Meangular",
     "Mean",
     "Mean Stack",
     "Mean Stack JS",
@@ -85,11 +86,10 @@
     "Greenpioneersolutions",
     "Green Pioneer"
   ],
-  "author": "Green Pioneer <info@greenpioneersolutions.com>",
-  "contributors": "https://github.com/greenpioneersolutions/meanstackjs/graphs/contributors",
+  "author": "Javier <javier@javierdev.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/greenpioneersolutions/meanstackjs/issues"
+    "url": "https://github.com/JavierPDev/Meangular/issues"
   },
   "dependencies": {
     "@angular/common": "^2.3.1",
@@ -100,7 +100,7 @@
     "@angular/platform-browser": "^2.3.1",
     "@angular/platform-browser-dynamic": "^2.3.1",
     "@angular/router": "^3.3.1",
-    "angular-cli": "1.0.0-beta.26",
+    "angular-cli": "1.0.0-beta.28.3",
     "angular2-jwt": "^0.1.28",
     "auto-parse": "^1.2.0",
     "babel-core": "^6.7.6",
