@@ -26,7 +26,7 @@ npm run browser-sync
 
 # Build frontend files in production mode and then run server in production mode
 npm run server:prod
-                                                                                        ```
+```
 
 
 # Mean Stack JS Documentation
