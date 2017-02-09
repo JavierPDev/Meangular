@@ -19,8 +19,9 @@ export class OauthComponent implements OnInit {
     this._http.get('/auth/oauth/token')
       .map(res => res.json())
       .subscribe(res => {
+        const redirect = localStorage['redirect'] || '/';
         this.authService.setAuthenticatedUser(res);
-        this._router.navigate(['/profile']);
+        this._router.navigate([redirect]);
       },
         err => console.log);
   }
