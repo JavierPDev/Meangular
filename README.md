@@ -4,7 +4,7 @@ App based on Mean Stack JS (readme documentation included below) and Angular-cli
 
 Currently done:
 * Authentication and Authorization
-* Social login using Google Oauth2
+* Optional social login using Google Oauth2
 
 ## Demo
 [Try it live](http://meangular.herokuapp.com)
@@ -17,8 +17,6 @@ To use Google Oauth2 authentication flow for login/signup, set the client id, cl
 ```bash
 # Start in development mode and watch for changes on server and frontend
 # using nodemon and angular-cli. 
-# Note: If front-end doesn't update just save a file again so angular-cli
-# rebuilds. Sometimes it builds new changes with an old hash.
 npm start
 
 # Start browser-sync
@@ -27,6 +25,9 @@ npm run browser-sync
 # Build frontend files in production mode and then run server in production mode
 npm run start:production
 ```
+
+
+
 
 
 # Mean Stack JS Documentation
