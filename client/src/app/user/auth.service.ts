@@ -46,6 +46,17 @@ export class AuthService {
       {password, confirmPassword})
       .map(res => res.json());
   }
+
+  /**
+   * Send forgot request to server so user can reset password
+   * @param {String} email - User's email
+   * @return {Observable} Res
+   */
+  public forgot(email: string) {
+    return this._http.post('/api/forgot', {email})
+      .map(res => res.json());
+  }
+
   /**
    * Get whether user is authenticated or not
    * @return {Promise}
@@ -70,6 +81,7 @@ export class AuthService {
         return false;
       });
   }
+
   /**
    * Login user using email and password
    * @param  {String} email
@@ -83,6 +95,7 @@ export class AuthService {
       .subscribe(res => this._onAuthenticated.call(this, res),
                 err => this.error = JSON.parse(err._body).msg);
   }
+
   /**
    * Logout user and return to homepage.
    */
@@ -94,6 +107,17 @@ export class AuthService {
         this._setUnauthenticatedUser();
         this._router.navigate(['/']);
       });
+  }
+
+  /**
+   * Reset user password
+   * @param {String} password - Password
+   * @param {String} confirmPassword - Password confirmation
+   * @param {String} token - Password reset token
+   */
+  public resetPassword(password: string, confirmPassword: string, token: string) {
+    return this._http.post('/api/reset/'+token, {password, confirmPassword})
+      .map(res => res.json());
   }
   
   /**
@@ -108,6 +132,7 @@ export class AuthService {
 
     localStorage['id_token'] = res.token;
   }
+
   /**
    * Signup user.
    * @param  {Object} user - User info for signup
@@ -129,6 +154,7 @@ export class AuthService {
     return this._authHttp.put('/api/account/profile', user)
       .map(res => res.json());
   }
+
   /**
    * Retrieve user.
    */

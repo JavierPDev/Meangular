@@ -12,6 +12,10 @@
 					<input type="password" [(ngModel)]="password" id="password"
 						name="password" class="form-control">
 				</div>
+        <small>
+          <a [routerLink]="['/forgot-password']">Forgot your password?</a>
+        </small>
+        <br />
         <div *ngIf="authService.error" class="alert alert-danger">
           {{authService.error}}
         </div>
