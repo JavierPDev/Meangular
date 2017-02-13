@@ -8,8 +8,6 @@ import {
 } from '@angular/router';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
-import { AuthService } from './user/auth.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,19 +15,11 @@ import { AuthService } from './user/auth.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private _navigationChangeSub;
-  public auth;
 
   constructor(
-    private _authService: AuthService,
     private _router: Router,
     private _slimLoadingBarService: SlimLoadingBarService
-  ) {
-    this.auth = this._authService;
-  }
-
-  public logout(): void {
-    this._authService.logout();
-  }
+  ) {}
 
   ngOnInit() {
     this._setupSlimLoadingBar();
