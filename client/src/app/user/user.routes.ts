@@ -5,15 +5,18 @@ import { OauthComponent } from "./oauth.component";
 import { ForgotPasswordComponent } from "./forgot-password.component";
 import { ResetPasswordComponent } from "./reset-password.component";
 import { AuthenticatedGuard } from "./authenticated.guard";
+import { UnauthenticatedGuard } from "./unauthenticated.guard";
 
 export const USER_ROUTES = [
 	{
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [UnauthenticatedGuard]
   },
 	{
     path: 'signup',
-    component: SignupComponent
+    component: SignupComponent,
+    canActivate: [UnauthenticatedGuard]
   },
 	{
     path: 'oauth',
@@ -26,11 +29,13 @@ export const USER_ROUTES = [
   },
   {
     path: 'forgot-password',
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
+    canActivate: [UnauthenticatedGuard]
   },
   {
     path: 'reset/:token',
-    component: ResetPasswordComponent
+    component: ResetPasswordComponent,
+    canActivate: [UnauthenticatedGuard]
   }
 ];
 

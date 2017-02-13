@@ -11,6 +11,7 @@ import { ResetPasswordComponent } from './reset-password.component';
 import { OauthComponent } from "./oauth.component";
 import { AuthService } from './auth.service';
 import { AuthenticatedGuard } from './authenticated.guard';
+import { UnauthenticatedGuard } from './unauthenticated.guard';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthenticatedGuard } from './authenticated.guard';
   ],
   providers: [
     AuthService,
-    AuthenticatedGuard
+    AuthenticatedGuard,
+    UnauthenticatedGuard
   ]
 })
 export class UserModule { }

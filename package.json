@@ -1,6 +1,6 @@
 {
   "name": "meangular",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Meangular is built on Mean Stack JS and Angular-cli",
   "main": "index.js",
   "engines": {
