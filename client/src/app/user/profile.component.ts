@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthHttp } from 'angular2-jwt';
 
 import { AuthService } from './auth.service';
 
@@ -18,13 +17,15 @@ export class ProfileComponent implements OnInit {
               private _fb: FormBuilder) {}
 
   public changePassword(): void {
-    this.authService.changePassword(this.passwordForm.value)
+    const {password, confirmPassword} = this.passwordForm.value;
+    this.authService.changePassword(password, confirmPassword)
       .subscribe(res => this._flashMessage('Password updated'),
                  err => this._flashError(JSON.parse(err._body)[0].msg));
   }
 
   public updateUser(): void {
-    this.authService.updateUser(this.profileForm.value)
+    const user = this.profileForm.value;
+    this.authService.updateUser(user)
       .subscribe(res => this._flashMessage('Profile updated'),
                  err => this._flashError('Could not update profile'));
   }
