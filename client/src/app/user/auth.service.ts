@@ -8,9 +8,17 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService {
-  // Regex pattern used for form validation
+  /**
+   * Regex pattern used for form validation
+   */
   public emailPattern: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  /**
+   * Auth errors stored here for alerting to user
+   */
   public error: string;
+  /**
+   * Admin status gotten from user roles
+   */
   public isAdmin: boolean = false;
   public loggedIn: boolean = false;
   private _jwtHelper: JwtHelper = new JwtHelper();
@@ -28,12 +36,20 @@ export class AuthService {
     localStorage['redirect'] = '/';
   }
   
-  public changePassword({password, confirmPassword}) {
+  /**
+   * Change user's password
+   * @param {Object} password form value - Password form value
+   * @return {Observable} Res
+   */
+  public changePassword(password: string, confirmPassword: string) {
     return this._authHttp.put('/api/account/password',
       {password, confirmPassword})
       .map(res => res.json());
   }
-
+  /**
+   * Get whether user is authenticated or not
+   * @return {Promise}
+   */
   public getAuthenticatedState(): Promise<Boolean> {
     const token = localStorage['id_token'];
     const tokenIsPresentAndExpired = token
@@ -45,7 +61,7 @@ export class AuthService {
     return this._authHttp.get('/api/authenticate')
       .map(res => res.json())
       .toPromise()
-      .then((res) => {
+      .then(res => {
         if (res && res.user && res.token) {
           this.setAuthenticatedUser(res);
           return true;
@@ -54,7 +70,11 @@ export class AuthService {
         return false;
       });
   }
-
+  /**
+   * Login user using email and password
+   * @param  {String} email
+   * @param  {String} password
+   */
   public login(email: string, password: string) {
     const redirect = localStorage['redirect'];
 
@@ -63,7 +83,9 @@ export class AuthService {
       .subscribe(res => this._onAuthenticated.call(this, res),
                 err => this.error = JSON.parse(err._body).msg);
   }
-
+  /**
+   * Logout user and return to homepage.
+   */
   public logout() {
     if (!localStorage['id_token']) return;
 
@@ -74,6 +96,11 @@ export class AuthService {
       });
   }
   
+  /**
+   * Set user after authentication. Public for oauth.
+   * @param  {Object} res - Response object from server
+   * @return void
+   */
   public setAuthenticatedUser(res): void {
     this._user = res.user;
     this.isAdmin = this._user.roles.indexOf('admin') > -1;
@@ -81,7 +108,10 @@ export class AuthService {
 
     localStorage['id_token'] = res.token;
   }
-
+  /**
+   * Signup user.
+   * @param  {Object} user - User info for signup
+   */
   public signup(user) {
     user.redirect = localStorage['redirect'];
 
@@ -91,11 +121,17 @@ export class AuthService {
                 err => this.error = JSON.parse(err._body).msg);
   }
   
+  /**
+   * Update user.
+   * @param  {Object} user - User info to update
+   */
   public updateUser(user) {
     return this._authHttp.put('/api/account/profile', user)
       .map(res => res.json());
   }
-
+  /**
+   * Retrieve user.
+   */
   public user() {
     return this._user;
   }
