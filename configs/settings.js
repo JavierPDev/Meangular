@@ -81,7 +81,7 @@ var baseLine = {
     consumerSecret: process.env.MAXCDN_CONSUMER_SECRET || ''
   },
   // SEO - Default html setup
-  googleAnalytics: 'UA-71654331-1',
+  googleAnalytics: '',
   html: {
     title: 'Meangular',
     keywords: 'Meangular',
