@@ -1,150 +1,152 @@
-<div class="jumbotron col-sm-6 col-sm-offset-2">
-  <form novalidate [formGroup]="profileForm" (submit)="updateUser()">
-    <fieldset>
-      <legend>Profile</legend>
-      <div class="form-group"
-        [class.has-error]="
-          !profileForm.controls['email'].valid
-            && profileForm.controls['email'].touched"
-      >
-        <label class="control-label" for="email">
-          Email
-        </label>
-        <input type="email"
-          id="email"
-          class="form-control" 
-          [formControl]="profileForm.controls['email']"
-        />
-        <span class="help-block" *ngIf="
-          profileForm.controls['email'].hasError('required')
+<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+  <div class="jumbotron">
+    <form novalidate [formGroup]="profileForm" (submit)="updateUser()">
+      <fieldset>
+        <legend>Profile</legend>
+        <div class="form-group"
+          [class.has-error]="
+            !profileForm.controls['email'].valid
+              && profileForm.controls['email'].touched"
+        >
+          <label class="control-label" for="email">
+            Email
+          </label>
+          <input type="email"
+            id="email"
+            class="form-control" 
+            [formControl]="profileForm.controls['email']"
+          />
+          <span class="help-block" *ngIf="
+            profileForm.controls['email'].hasError('required')
+          ">
+            Email is required
+          </span>
+          <span class="help-block" *ngIf="
+            profileForm.controls['email'].hasError('pattern')
+          ">
+            Must be a proper email
+          </span>
+        </div>
+        <div class="form-group"
+          [class.has-error]="
+            !profileForm.controls['profile'].controls['name'].valid
+              && profileForm.controls['profile'].controls['name'].touched"
+        >
+          <label class="control-label" for="name">
+            Name
+          </label>
+          <input type="text"
+            id="name"
+            class="form-control" 
+            [formControl]="profileForm.controls['profile'].controls['name']"
+          />
+          <span class="help-block" *ngIf="
+            profileForm.controls['profile'].controls['name'].hasError('required')
+          ">
+            Name is required
+          </span>
+          <span class="help-block" *ngIf="
+            profileForm.controls['profile'].controls['name'].hasError('minlength')
+          ">
+            Name requires at least three characters
+          </span>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="gender">
+            Gender
+          </label>
+          <input type="text"
+            id="gender"
+            class="form-control" 
+            [formControl]="profileForm.controls['profile'].controls['gender']"
+          />
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="location">
+            Location
+          </label>
+          <input type="text"
+            id="location"
+            class="form-control" 
+            [formControl]="profileForm.controls['profile'].controls['location']"
+          />
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="website">
+            Web site
+          </label>
+          <input type="text"
+            id="website"
+            class="form-control" 
+            [formControl]="profileForm.controls['profile'].controls['website']"
+          />
+        </div>
+        <button class="btn btn-primary"
+          type="submit"
+          [disabled]="profileForm.invalid"
+        >
+          Update Profile
+        </button>
+      </fieldset>
+    </form>
+    <br />
+    <br />
+    <form novalidate [formGroup]="passwordForm" (submit)="changePassword()">
+      <fieldset>
+        <legend>Change Password</legend>
+        <div class="form-group"
+          [class.has-error]="
+            !passwordForm.controls['password'].valid
+              && passwordForm.controls['password'].touched
         ">
-          Email is required
-        </span>
-        <span class="help-block" *ngIf="
-          profileForm.controls['email'].hasError('pattern')
+          <label class="control-label" for="password">
+            Password
+          </label>
+          <input type="password"
+            id="password"
+            class="form-control" 
+            [formControl]="passwordForm.controls['password']"
+          />
+          <span class="help-block" *ngIf="
+            passwordForm.controls['password'].hasError('minlength')
+          ">
+            Password must contain at least 4 characters
+          </span>
+        </div>
+        <div class="form-group"
+          [class.has-error]="
+            !passwordForm.controls['confirmPassword'].valid
+              && passwordForm.controls['confirmPassword'].touched
         ">
-          Must be a proper email
-        </span>
-      </div>
-      <div class="form-group"
-        [class.has-error]="
-          !profileForm.controls['profile'].controls['name'].valid
-            && profileForm.controls['profile'].controls['name'].touched"
-      >
-        <label class="control-label" for="name">
-          Name
-        </label>
-        <input type="text"
-          id="name"
-          class="form-control" 
-          [formControl]="profileForm.controls['profile'].controls['name']"
-        />
-        <span class="help-block" *ngIf="
-          profileForm.controls['profile'].controls['name'].hasError('required')
-        ">
-          Name is required
-        </span>
-        <span class="help-block" *ngIf="
-          profileForm.controls['profile'].controls['name'].hasError('minlength')
-        ">
-          Name requires at least three characters
-        </span>
-      </div>
-      <div class="form-group">
-        <label class="control-label" for="gender">
-          Gender
-        </label>
-        <input type="text"
-          id="gender"
-          class="form-control" 
-          [formControl]="profileForm.controls['profile'].controls['gender']"
-        />
-      </div>
-      <div class="form-group">
-        <label class="control-label" for="location">
-          Location
-        </label>
-        <input type="text"
-          id="location"
-          class="form-control" 
-          [formControl]="profileForm.controls['profile'].controls['location']"
-        />
-      </div>
-      <div class="form-group">
-        <label class="control-label" for="website">
-          Web site
-        </label>
-        <input type="text"
-          id="website"
-          class="form-control" 
-          [formControl]="profileForm.controls['profile'].controls['website']"
-        />
-      </div>
-      <button class="btn btn-primary"
-        type="submit"
-        [disabled]="profileForm.invalid"
-      >
-        Update Profile
-      </button>
-    </fieldset>
-  </form>
-  <br />
-  <br />
-  <form novalidate [formGroup]="passwordForm" (submit)="changePassword()">
-    <fieldset>
-      <legend>Change Password</legend>
-      <div class="form-group"
-        [class.has-error]="
-          !passwordForm.controls['password'].valid
-            && passwordForm.controls['password'].touched
-      ">
-        <label class="control-label" for="password">
-          Password
-        </label>
-        <input type="password"
-          id="password"
-          class="form-control" 
-          [formControl]="passwordForm.controls['password']"
-        />
-        <span class="help-block" *ngIf="
-          passwordForm.controls['password'].hasError('minlength')
-        ">
-          Password must contain at least 4 characters
-        </span>
-      </div>
-      <div class="form-group"
-        [class.has-error]="
-          !passwordForm.controls['confirmPassword'].valid
-            && passwordForm.controls['confirmPassword'].touched
-      ">
-        <label class="control-label" for="confirmPassword">
-          Confirm Password
-        </label>
-        <input type="password"
-          id="confirmPassword"
-          class="form-control" 
-          [formControl]="passwordForm.controls['confirmPassword']"
-        />
-        <span class="help-block" *ngIf="
-          passwordForm.controls['confirmPassword'].hasError('minlength')
-        ">
-          Password must contain at least 4 characters
-        </span>
-      </div>
-      <button class="btn btn-primary"
-        type="submit"
-        [disabled]="passwordForm.invalid"
-      >
-        Change Password
-      </button>
-    </fieldset>
-  </form>
-  <br />
-  <br />
-  <div class="alert alert-success" *ngIf="message">
-    {{message}}
-  </div>
-  <div class="alert alert-danger" *ngIf="authService.error">
-    {{authService.error}}
+          <label class="control-label" for="confirmPassword">
+            Confirm Password
+          </label>
+          <input type="password"
+            id="confirmPassword"
+            class="form-control" 
+            [formControl]="passwordForm.controls['confirmPassword']"
+          />
+          <span class="help-block" *ngIf="
+            passwordForm.controls['confirmPassword'].hasError('minlength')
+          ">
+            Password must contain at least 4 characters
+          </span>
+        </div>
+        <button class="btn btn-primary"
+          type="submit"
+          [disabled]="passwordForm.invalid"
+        >
+          Change Password
+        </button>
+      </fieldset>
+    </form>
+    <br />
+    <br />
+    <div class="alert alert-success" *ngIf="message">
+      {{message}}
+    </div>
+    <div class="alert alert-danger" *ngIf="authService.error">
+      {{authService.error}}
+    </div>
   </div>
 </div>
