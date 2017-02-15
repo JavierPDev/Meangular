@@ -50,11 +50,11 @@ var userSchema = new mongoose.Schema({
       index: true,
       required: 'We need a name to create your account.',
       validate: [
-        validate({
-          validator: 'contains',
-          arguments: ' ',
-          message: 'Please use your full name.'
-        }),
+        // validate({
+        //   validator: 'contains',
+        //   arguments: ' ',
+        //   message: 'Please use your full name.'
+        // }),
         validate({
           validator: 'isLength',
           arguments: 3,
