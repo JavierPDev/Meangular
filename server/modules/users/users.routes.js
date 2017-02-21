@@ -21,7 +21,7 @@ module.exports = function (app, auth, mail, settings, models) {
 
   app.get('/auth/oauth/token', user.oauthToken)
   if (googleOauth2Enabled) {
-    app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}))
+    app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email'], prompt: 'select_account'}))
     app.get(env.google.redirectUrl, passport.authenticate('google', {failureRedirect: '/login'}), user.googleCallback)
   }
 }
