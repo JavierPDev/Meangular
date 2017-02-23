@@ -1,0 +1,26 @@
+<h1>Blog List</h1>
+
+<a class="btn btn-primary"
+  *ngIf="auth.loggedIn" [routerLink]="['/blog/create']"
+>
+  <i class="fa fa-plus"></i>
+  New Blog Entry
+</a>
+
+<div *ngIf="!blogEntries" class="alert alert-info">
+  No blog entries at this time.
+</div>
+
+<div *ngIf="blogEntries">
+  <ul class="list-unstyled">
+    <li *ngFor="let blogEntry of blogEntries trackBy _id">
+      <h2><a [routerLink]="[blogEntry.slug]">{{blogEntry.title}}</a></h2>
+      <small>
+        Posted on {{blogEntry.created}} by {{blogEntry.user.profile.name}}
+      </small>
+      <div>
+        {{blogEntry.content.slice(0, 100)}}
+      </div>
+    </li>
+  </ul>
+</div>
