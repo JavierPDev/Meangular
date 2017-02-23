@@ -3,6 +3,13 @@
 		<div class="navbar-header">
 			<a class="navbar-brand" [routerLink]="['']">Home</a>
 		</div>
+		<ul class="nav navbar-nav pull-left">
+      <li>
+        <a [routerLink]="['blog']" [routerLinkActive]="['active']">
+          Blog
+        </a>
+      </li>
+		</ul>
 		<ul class="nav navbar-nav pull-right">
 			<li *ngIf="!auth.loggedIn">
         <a [routerLink]="['login']" [routerLinkActive]="['active']">

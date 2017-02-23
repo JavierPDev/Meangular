@@ -8,6 +8,7 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
+import { BlogModule } from './blog/blog.module';
 import { Routes } from './app.routes';
 import { GlobalErrorHandler } from './common/global-error-handler';
 
@@ -29,6 +30,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
     UserModule,
     CoreModule,
+    BlogModule,
     Routes
   ],
   exports: [

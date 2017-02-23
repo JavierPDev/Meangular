@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var urlSlugs = require('mongoose-url-slugs')
 
 var blogSchema = mongoose.Schema({
   created: {
@@ -21,5 +22,7 @@ var blogSchema = mongoose.Schema({
     required: true
   }
 })
+
+blogSchema.plugin(urlSlugs('title'))
 
 module.exports = blogSchema

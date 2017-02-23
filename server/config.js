@@ -53,7 +53,7 @@ function config (self) {
   }
   queryParameters.config({
     settings: {
-      schema: ['_id', 'id', '__v', 'created', 'title', 'content', 'user', 'email', 'roles'], // the names people can search
+      schema: ['_id', 'id', '__v', 'created', 'title', 'content', 'user', 'email', 'roles', 'slug'], // the names people can search
       adapter: 'mongoose' // <object|string:supported adapter(MONGOOSE)>
     }
   })
