@@ -1,16 +1,17 @@
-# Meanguler
+# Meangular
 
 App based on Mean Stack JS (readme documentation included below) and Angular-cli.
 
-Currently done:
+Out-of-the-box frontend features:
 * Authentication and Authorization
 * Optional social login using Google Oauth2
+* Blog functionality
 
 ## Demo
 [Try it live](http://meangular.herokuapp.com)
 
 ## Notes
-Angular 2+ files found in `/client/src`.
+Angular (2+) files found in `/client/src`.
 
 To use Google Oauth2 authentication flow for login/signup, set the client id, client secret, and redirect url in the `/configs/environments/*.js` file(s) you will be using or set them as environment variables on `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REDIRECT_URL` before running the app. If this information is not present, the Google login/signup links will result in a 404. If login through google is not being used these links can be deleted. 
 
@@ -24,6 +25,9 @@ npm run browser-sync
 
 # Build frontend files in production mode and then run server in production mode
 npm run start:production
+
+# Run frontend tests
+./node_modules/bin/ng test
 ```
 
 
