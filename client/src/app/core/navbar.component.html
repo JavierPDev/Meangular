@@ -1,28 +1,30 @@
 <nav class="navbar navbar-default">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" [routerLink]="['']">Home</a>
+			<a class="navbar-brand" routerLink="/">Home</a>
 		</div>
 		<ul class="nav navbar-nav pull-left">
       <li>
-        <a [routerLink]="['blog']" [routerLinkActive]="['active']">
+        <a routerLink="/blog" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
           Blog
         </a>
       </li>
 		</ul>
 		<ul class="nav navbar-nav pull-right">
 			<li *ngIf="!auth.loggedIn">
-        <a [routerLink]="['login']" [routerLinkActive]="['active']">
+        <a routerLink="/login" routerLinkActive="active">
           Log In
         </a>
       </li>
 			<li *ngIf="!auth.loggedIn">
-        <a [routerLink]="['signup']" [routerLinkActive]="['active']">
+        <a routerLink="/signup" routerLinkActive="active">
           Sign Up
         </a>
       </li>
 			<li *ngIf="auth.loggedIn">
-        <a [routerLink]="['profile']" [routerLinkActive]="['active']">
+        <a routerLink="/profile" routerLinkActive="active">
           Profile
         </a>
       </li>
