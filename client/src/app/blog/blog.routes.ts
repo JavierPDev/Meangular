@@ -13,7 +13,7 @@ export const BLOG_ROUTES = [
     canActivate: [AuthenticatedGuard]
   },
 	{
-    path: 'blog',
+    path: 'blog/list',
     component: BlogListComponent,
     resolve: {
       blogList: BlogListResolver

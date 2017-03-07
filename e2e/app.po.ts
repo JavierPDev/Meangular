@@ -1,11 +1,11 @@
 import { browser, element, by } from 'protractor';
 
-export class NgcliprojectPage {
+export class AppPage {
   navigateTo() {
     return browser.get('/');
   }
 
-  getParagraphText() {
+  getH1Text() {
     return element(by.css('app-root h1')).getText();
   }
 }

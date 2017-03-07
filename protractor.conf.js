@@ -1,8 +1,11 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
-/*global jasmine */
-var SpecReporter = require('jasmine-spec-reporter');
+/* global jasmine */
+var SpecReporter = require('jasmine-spec-reporter')
+process.env.NODE_ENV = 'nightwatch'
+var Mean = require('./server.mean.js')
+var run = require('./run.js')
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -18,15 +21,18 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function() {}
+    print: function () {}
   },
   useAllAngular2AppRoots: true,
-  beforeLaunch: function() {
+  beforeLaunch: function () {
     require('ts-node').register({
       project: 'e2e'
-    });
+    })
+    run(Mean, function () {
+      require('./tests/seed.js')
+    })
   },
-  onPrepare: function() {
-    jasmine.getEnv().addReporter(new SpecReporter());
+  onPrepare: function () {
+    jasmine.getEnv().addReporter(new SpecReporter())
   }
-};
+}

@@ -35,7 +35,7 @@ export class BlogService {
     this._authHttp.delete('/api/blog/'+entry._id)
       .map(res => res.json())
       .subscribe(() => {
-        this._router.navigate(['/blog']);
+        this._router.navigate(['/blog/list']);
       }, err => console.log);
   }
 

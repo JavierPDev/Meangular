@@ -1,14 +1,14 @@
-import { NgcliprojectPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('ngcliproject App', function() {
-  let page: NgcliprojectPage;
+describe('App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new NgcliprojectPage();
+    page = new AppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display correct heading', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getH1Text()).toEqual('Meangular');
   });
 });

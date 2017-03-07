@@ -46,10 +46,10 @@ function config (self) {
   passport.deserializeUser(auth.deserializeUser)
   passport.use(auth.passportStrategy)
   if (googleOauth2Enabled) {
-    console.log('Using google oauth2');
+    console.log('Using google oauth2')
     passport.use(auth.googleStrategy)
   } else {
-    console.log('No google client id or secret. Running without google oauth2');
+    console.log('No google client id or secret. Running without google oauth2')
   }
   queryParameters.config({
     settings: {

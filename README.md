@@ -1,11 +1,11 @@
 # Meangular
 
-App based on Mean Stack JS (readme documentation included below) and Angular-cli.
+Full-stack solution based on Mean Stack JS (readme documentation included below) and Angular-cli.
 
-Out-of-the-box frontend features:
+Out-of-the-box features:
 * Authentication and Authorization
-* Optional social login using Google Oauth2
 * Blog functionality
+* Optional social login using Google Oauth2
 
 ## Demo
 [Try it live](http://meangular.herokuapp.com)
@@ -23,11 +23,20 @@ npm start
 # Start browser-sync
 npm run browser-sync
 
-# Build frontend files in production mode and then run server in production mode
-npm run start:production
+# Run frontend and backend unit tests, e2e tests, and linting
+npm test
+
+# Build production frontend files and run e2e tests
+npm run e2e
+
+# Run e2e dev mode (assumes frontend files built and in /client/dist)
+npm run e2e:dev
 
 # Run frontend tests
 ./node_modules/bin/ng test
+
+# Build frontend files in production mode and then run server in production mode
+npm run start:production
 ```
 
 

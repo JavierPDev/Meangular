@@ -18,7 +18,7 @@ module.exports = function (config) {
       './client/src/test.ts': ['angular-cli']
     },
     mime: {
-      'text/x-typescript': ['ts','tsx']
+      'text/x-typescript': ['ts', 'tsx']
     },
     remapIstanbulReporter: {
       reports: {
@@ -39,5 +39,5 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false
-  });
-};
+  })
+}
