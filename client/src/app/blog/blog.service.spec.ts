@@ -151,7 +151,7 @@ describe('BlogService', () => {
       });
       service.deleteBlogEntry(blogEntryStub);
       tick();
-      expect(router.navigate).toHaveBeenCalledWith(['/blog']);
+      expect(router.navigate).toHaveBeenCalledWith(['/blog/list']);
     }));
   });
 
