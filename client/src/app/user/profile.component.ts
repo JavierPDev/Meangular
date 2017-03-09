@@ -21,6 +21,10 @@ export class ProfileComponent implements OnInit {
     this.authService.changePassword(password, confirmPassword)
       .subscribe(res => this._flashMessage('Password updated'),
                  err => this._flashError(JSON.parse(err._body)[0].msg));
+    this.passwordForm.patchValue({
+      password: '',
+      confirmPassword: ''
+    });
   }
 
   public updateUser(): void {

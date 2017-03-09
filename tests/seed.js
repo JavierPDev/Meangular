@@ -33,6 +33,13 @@ function seed (cb) {
           name: 'jason greenpioneer'
         }
       }, {
+        email: 'javier@javierdev.com',
+        password: 'Ajq4NZ19$l',
+        roles: ['admin'],
+        profile: {
+          name: 'frontend developer'
+        }
+      }, {
         email: 'accounting@greenpioneersolutions.com',
         password: 'truetrue1!',
         profile: {
@@ -128,6 +135,6 @@ function seed (cb) {
     }]
   }, function (err, results) {
     if (err) throw err
-    cb(results)
+    if (cb) cb(results)
   })
 }

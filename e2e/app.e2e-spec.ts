@@ -1,14 +1,15 @@
+import { browser } from 'protractor';
 import { AppPage } from './app.po';
 
 describe('App', () => {
-  let page: AppPage;
+  let appPage: AppPage;
 
-  beforeEach(() => {
-    page = new AppPage();
+  beforeAll(() => {
+    appPage = new AppPage();
+    browser.get('/');
   });
 
-  it('should display correct heading', () => {
-    page.navigateTo();
-    expect(page.getH1Text()).toEqual('Meangular');
+  it('displays correct heading', () => {
+    expect(appPage.getH1Text()).toEqual('Meangular');
   });
 });
