@@ -59,7 +59,7 @@ function routes (self) {
         environment: self.environment,
         user: req.user ? req.user : {}
       }, {
-        cache: true
+        cache: false
       }, function (err, str) {
         if (err)console.log(err)
         res.send(str)
