@@ -14,7 +14,7 @@
 <div *ngIf="blogEntries">
   <ul class="list-unstyled">
     <li *ngFor="let blogEntry of blogEntries trackBy _id">
-      <h2><a [routerLink]="[blogEntry.slug]">{{blogEntry.title}}</a></h2>
+      <h2><a [routerLink]="['/blog', blogEntry.slug]">{{blogEntry.title}}</a></h2>
       <small>
         Posted on {{blogEntry.created}} by {{blogEntry.user.profile.name}}
       </small>
