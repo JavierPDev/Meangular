@@ -57,8 +57,8 @@ export class ProfileComponent implements OnInit {
       })
     });
     this.passwordForm = this._fb.group({
-      'password': ['', Validators.minLength(4)],
-      'confirmPassword': ['', Validators.minLength(4)]
+      'password': ['', Validators.minLength(6)],
+      'confirmPassword': ['', Validators.minLength(6)]
     });
   }
 }
