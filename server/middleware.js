@@ -32,6 +32,7 @@ exports.isAuthorized = function (name, extra) {
   return function (req, res, next) {
     var user
     var reqName = req[name]
+    var isAdmin = req.user.roles.includes('admin')
     if (extra) {
       var reqExtra = reqName[extra]
       reqExtra && reqExtra.user && (user = reqExtra.user)
@@ -40,7 +41,7 @@ exports.isAuthorized = function (name, extra) {
     }
 
     if (user && req.isAuthenticated()) {
-      if (user._id.toString() !== req.user._id.toString()) {
+      if (user._id.toString() !== req.user._id.toString() && !isAdmin) {
         debug('middleware: is Not Authorized')
         return next({
           status: 401,
