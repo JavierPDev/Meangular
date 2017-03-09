@@ -1,4 +1,6 @@
-<div *ngIf="auth.loggedIn && auth.user()._id === blogEntry.user._id">
+<div *ngIf="auth.loggedIn
+  && (auth.user()._id === blogEntry.user._id || auth.isAdmin)"
+>
   <div class="pull-right">
     <a class="btn btn-primary" [routerLink]="['edit']">
       <i class="fa fa-edit"></i>
@@ -13,7 +15,9 @@
 
 <h1>{{blogEntry.title}}</h1>
 
-<small>Posted on {{blogEntry.created}} by {{blogEntry.user.profile.name}}</small>
+<small>
+  Posted on {{blogEntry.created}} by {{blogEntry.user.profile.name}}
+</small>
 <div>
   {{blogEntry.content}}
 </div>
