@@ -66,9 +66,10 @@ describe('BlogViewComponent', () => {
   });
 
   it('calls BlogService deleteBlogEntry method for component method', () => {
+    const blogService = TestBed.get(BlogService);
     component.ngOnInit();
-    spyOn(component._blogService, 'deleteBlogEntry');
+    spyOn(blogService, 'deleteBlogEntry');
     component.deleteBlogEntry();
-    expect(component._blogService.deleteBlogEntry).toHaveBeenCalledWith(blogEntry);
+    expect(blogService.deleteBlogEntry).toHaveBeenCalledWith(blogEntry);
   });
 });

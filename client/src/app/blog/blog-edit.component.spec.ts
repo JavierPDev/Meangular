@@ -78,10 +78,11 @@ describe('BlogEditComponent', () => {
   });
 
   it('calls BlogService editBlogEntry method for component method', () => {
+    const blogService = TestBed.get(BlogService);
     component.ngOnInit();
-    spyOn(component._blogService, 'updateBlogEntry');
+    spyOn(blogService, 'updateBlogEntry');
     component.editBlogEntry();
-    expect(component._blogService.updateBlogEntry)
+    expect(blogService.updateBlogEntry)
       .toHaveBeenCalledWith({
         title: blogEntryStub.title,
         content: blogEntryStub.content,

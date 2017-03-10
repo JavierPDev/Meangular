@@ -113,6 +113,22 @@ describe('BlogService', () => {
       tick();
       expect(router.navigate).toHaveBeenCalledWith(['/blog', responseStub.slug]);
     }));
+
+    it('failed creation should cause error field to be filled with msg',
+       fakeAsync(() => {
+      const failResponse = {
+        msg: 'Creation failed'
+      };
+      mockBackend.connections.subscribe(c => {
+        const response = new ResponseOptions({
+          body: JSON.stringify(failResponse)
+        });
+        c.mockError(new Response(response));
+      });
+      service.createBlogEntry(blogEntryStub);
+      expect(service.error).toBe(failResponse.msg);
+      tick();
+    }));
   });
 
   describe('deleteBlogEntry()', () => {
@@ -152,6 +168,22 @@ describe('BlogService', () => {
       service.deleteBlogEntry(blogEntryStub);
       tick();
       expect(router.navigate).toHaveBeenCalledWith(['/blog/list']);
+    }));
+
+    it('failed deletion should cause error field to be filled with msg',
+       fakeAsync(() => {
+      const failResponse = {
+        msg: 'Deletion failed'
+      };
+      mockBackend.connections.subscribe(c => {
+        const response = new ResponseOptions({
+          body: JSON.stringify(failResponse)
+        });
+        c.mockError(new Response(response));
+      });
+      service.deleteBlogEntry(blogEntryStub);
+      expect(service.error).toBe(failResponse.msg);
+      tick();
     }));
   });
 
@@ -279,6 +311,22 @@ describe('BlogService', () => {
       service.updateBlogEntry(editedBlogEntry);
       tick();
       expect(router.navigate).toHaveBeenCalledWith(['/blog', responseStub.slug]);
+    }));
+
+    it('failed update should cause error field to be filled with msg',
+       fakeAsync(() => {
+      const failResponse = {
+        msg: 'Update failed'
+      };
+      mockBackend.connections.subscribe(c => {
+        const response = new ResponseOptions({
+          body: JSON.stringify(failResponse)
+        });
+        c.mockError(new Response(response));
+      });
+      service.updateBlogEntry(editedBlogEntry);
+      expect(service.error).toBe(failResponse.msg);
+      tick();
     }));
   });
 });

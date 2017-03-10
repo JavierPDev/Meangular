@@ -50,11 +50,12 @@ describe('BlogCreateComponent', () => {
       title: 'test title',
       content: 'test content'
     };
+    const blogService = TestBed.get(BlogService);
     component.ngOnInit();
-    spyOn(component._blogService, 'createBlogEntry');
+    spyOn(blogService, 'createBlogEntry');
     component.blogCreateForm.patchValue(newFormValues);
     component.createBlogEntry();
-    expect(component._blogService.createBlogEntry)
+    expect(blogService.createBlogEntry)
       .toHaveBeenCalledWith(newFormValues);
   });
 });
