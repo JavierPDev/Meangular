@@ -39,12 +39,15 @@
       Content is required
     </span>
   </div>
+  <div class="alert alert-danger" *ngIf="blogService.error">
+    {{blogService.error}}
+  </div>
   <div class="pull-right">
     <button type="submit" class="btn btn-primary"
       [disabled]="blogCreateForm.invalid"
     >
       Submit
     </button>
-    <a class="btn btn-default" [routerLink]="['/blog']">Cancel</a>
+    <a class="btn btn-default" [routerLink]="['/blog/list']">Cancel</a>
   </div>
 </form>

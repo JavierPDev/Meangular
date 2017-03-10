@@ -9,6 +9,11 @@ import { BlogEntry } from './blog-entry';
 
 @Injectable()
 export class BlogService {
+  /**
+   * Blog errors stored here for alerting to user
+   */
+  public error: string;
+
   constructor(
     private _authHttp: AuthHttp,
     private _http: Http,
@@ -24,7 +29,7 @@ export class BlogService {
       .map(res => res.json())
       .subscribe(blogEntry => {
         this._router.navigate(['/blog', blogEntry.slug]);
-      }, err => console.log);
+      }, err => this.error = JSON.parse(err._body).msg);
   }
 
   /**
@@ -36,7 +41,7 @@ export class BlogService {
       .map(res => res.json())
       .subscribe(() => {
         this._router.navigate(['/blog/list']);
-      }, err => console.log);
+      }, err => this.error = JSON.parse(err._body).msg);
   }
 
   /**
@@ -75,6 +80,6 @@ export class BlogService {
       .map(res => res.json())
       .subscribe(blogEntry => {
         this._router.navigate(['/blog', blogEntry.slug]);
-      }, err => console.log);
+      }, err => this.error = JSON.parse(err._body).msg);
   }
 }

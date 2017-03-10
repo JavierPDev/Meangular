@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BlogService } from './blog.service';
@@ -7,13 +7,16 @@ import { BlogService } from './blog.service';
   selector: 'app-blog-create',
   templateUrl: './blog-create.component.html'
 })
-export class BlogCreateComponent implements OnInit {
+export class BlogCreateComponent implements OnInit, OnDestroy {
   public blogCreateForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _blogService: BlogService) {}
+  constructor(
+    public blogService: BlogService,
+    private _fb: FormBuilder
+  ) {}
 
   public createBlogEntry(): void {
-    this._blogService.createBlogEntry(this.blogCreateForm.value);
+    this.blogService.createBlogEntry(this.blogCreateForm.value);
   }
 
   ngOnInit() {
@@ -21,5 +24,9 @@ export class BlogCreateComponent implements OnInit {
       'title': ['', Validators.required],
       'content': ['', Validators.required]
     });
+  }
+
+  ngOnDestroy() {
+    this.blogService.error = null;
   }
 }

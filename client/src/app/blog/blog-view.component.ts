@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { BlogService } from './blog.service';
@@ -9,21 +9,25 @@ import { AuthService } from '../user/auth.service';
   selector: 'app-blog-view',
   templateUrl: './blog-view.component.html'
 })
-export class BlogViewComponent implements OnInit {
+export class BlogViewComponent implements OnInit, OnDestroy {
   public blogEntry: BlogEntry;
 
   constructor(
     public auth: AuthService,
-    private _activateRoute: ActivatedRoute,
-    private _blogService: BlogService
+    public blogService: BlogService,
+    private _activateRoute: ActivatedRoute
   ) {}
 
   public deleteBlogEntry(): void {
-    this._blogService.deleteBlogEntry(this.blogEntry);
+    this.blogService.deleteBlogEntry(this.blogEntry);
   }
 
   ngOnInit() {
     // Get blog entry data from route resolve 
     this.blogEntry = this._activateRoute.snapshot.data['blogEntry'];
+  }
+
+  ngOnDestroy() {
+    this.blogService.error = null;
   }
 }
