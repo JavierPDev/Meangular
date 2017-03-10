@@ -2,7 +2,7 @@
 
 import { TestBed, inject, fakeAsync, async, tick } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
-import { Http, BaseRequestOptions, RequestMethod,
+import { Http, BaseRequestOptions, RequestMethod, URLSearchParams,
   Response, ResponseOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -190,12 +190,25 @@ describe('BlogService', () => {
   });
 
   describe('getBlogList()', () => {
-    it('calls the correct api url', fakeAsync(() => {
-      const expectedUrl = `/api/blog?sort=-created`;
+    it('calls the correct api url without query parameters', fakeAsync(() => {
+      const expectedUrl = `/api/blog`;
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(expectedUrl);
       });
       service.getBlogList();
+      tick();
+    }));
+
+    it('calls the correct api url with query parameters', fakeAsync(() => {
+      const queryParams = new URLSearchParams();
+      queryParams.set('sort', '-created');
+      queryParams.set('where', 'created');
+      queryParams.set('gt', '2012-01-01');
+      const expectedUrl = `/api/blog?sort=-created&where=created&gt=2012-01-01`;
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.url).toBe(expectedUrl);
+      });
+      service.getBlogList(queryParams);
       tick();
     }));
 

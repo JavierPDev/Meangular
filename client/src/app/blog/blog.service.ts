@@ -56,12 +56,11 @@ export class BlogService {
 
   /**
    * Get blog list
+   * @param {URLSearchParams} queryParams - Params for filtering blog list
    * @return {Promise} blogList - Promise resolving to blogList or []
    */
-  public getBlogList(): Promise<[BlogEntry]> {
-    const search = new URLSearchParams();
-    search.set('sort', '-created');
-    return this._http.get('/api/blog', {search})
+  public getBlogList(queryParams: URLSearchParams): Promise<[BlogEntry]> {
+    return this._http.get('/api/blog', {search: queryParams})
       .map(res => res.json())
       .map(res => res.blogs)
       .toPromise();
