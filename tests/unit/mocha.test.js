@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'nightwatch'
+process.env.NODE_ENV = 'e2e'
 var Mean = require('../../server.mean.js')
 var run = require('../../run.js')
 describe('Meangular API Testing', function () {

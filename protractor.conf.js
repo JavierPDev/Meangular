@@ -3,7 +3,7 @@
 
 /* global jasmine */
 var SpecReporter = require('jasmine-spec-reporter')
-process.env.NODE_ENV = 'nightwatch'
+process.env.NODE_ENV = 'e2e'
 var Mean = require('./server.mean.js')
 var run = require('./run.js')
 var seed = require('./tests/seed.js')

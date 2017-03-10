@@ -262,8 +262,8 @@ if (environment === 'test') {
   baseLine = _.merge(baseLine, require('./environments/test.js'))
 } else if (environment === 'production') {
   baseLine = _.merge(baseLine, require('./environments/production.js'))
-} else if (environment === 'nightwatch') {
-  baseLine = _.merge(baseLine, require('./environments/nightwatch.js'))
+} else if (environment === 'e2e') {
+  baseLine = _.merge(baseLine, require('./environments/e2e.js'))
 } else {
   baseLine = _.merge(baseLine, require('./environments/development.js'))
 }

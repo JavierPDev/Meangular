@@ -92,7 +92,7 @@ client/dist/
 # Tool Reports reports
 # --------------------
 tools/*/reports
-tools/nightwatch/reports/index.html
+
 
 
 # --------------------
