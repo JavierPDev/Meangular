@@ -29,7 +29,7 @@ export class BlogService {
       .map(res => res.json())
       .subscribe(blogEntry => {
         this._router.navigate(['/blog', blogEntry.slug]);
-      }, err => this.error = JSON.parse(err._body).msg);
+      }, err => this.error = JSON.parse(err._body).msg || err.statusText);
   }
 
   /**
@@ -41,7 +41,7 @@ export class BlogService {
       .map(res => res.json())
       .subscribe(() => {
         this._router.navigate(['/blog/list']);
-      }, err => this.error = JSON.parse(err._body).msg);
+      }, err => this.error = JSON.parse(err._body).msg || err.statusText);
   }
 
   /**
@@ -80,6 +80,6 @@ export class BlogService {
       .map(res => res.json())
       .subscribe(blogEntry => {
         this._router.navigate(['/blog', blogEntry.slug]);
-      }, err => this.error = JSON.parse(err._body).msg);
+      }, err => this.error = JSON.parse(err._body).msg || err.statusText);
   }
 }
