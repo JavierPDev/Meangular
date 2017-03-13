@@ -175,7 +175,6 @@ describe('Profile component', () => {
 
   describe('update profile', () => {
     it('successfully updates profile', () => {
-      browser.sleep(500);
       const profileForm = element(by.id('profileForm'));
       profileForm.submit();
       expect(appPage.getSuccessText()).toBe('Profile updated');

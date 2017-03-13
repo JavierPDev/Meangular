@@ -127,7 +127,8 @@ function seed (cb) {
       }, {
         title: 'example',
         content: 'For example, when Green Pioneer Solutions writes code for a software, we consider the environmental impact of superfluous code which will in turn increase battery drain and require more energy to maintain.',
-        user: results.users[5]._id
+        user: results.users[5]._id,
+        created: new Date(new Date().valueOf() + 10000)
 
       }]).then(function (blogs) {
         callback(null, blogs)

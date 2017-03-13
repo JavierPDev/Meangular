@@ -1,6 +1,7 @@
 <h1>Blog List</h1>
 
 <a class="btn btn-primary"
+  id="createBlogEntryBtn"
   *ngIf="auth.loggedIn" [routerLink]="['/blog/create']"
 >
   <i class="fa fa-plus"></i>
@@ -19,7 +20,7 @@
         Posted on {{blogEntry.created}} by {{blogEntry.user.profile.name}}
       </small>
       <div>
-        {{blogEntry.content.slice(0, 100)}}
+        {{blogEntry.content.slice(0, 100)}}...
       </div>
     </li>
   </ul>
