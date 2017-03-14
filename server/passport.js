@@ -72,6 +72,7 @@ if (googleOauth2Enabled) {
         User.create({
           email: email,
           password: uuid.v4(),
+          oauth: 'google',
           profile: {
             name: profile.displayName
           }

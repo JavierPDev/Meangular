@@ -44,6 +44,9 @@ var userSchema = new mongoose.Schema({
     type: Array,
     default: []
   },
+  oauth: {
+    type: String
+  },
   profile: {
     name: {
       type: String,

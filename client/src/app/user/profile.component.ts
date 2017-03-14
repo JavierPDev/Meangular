@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   public message: String = '';
   public passwordForm: FormGroup;
   public profileForm: FormGroup;
-  private _user = this.authService.user();
+  public user = this.authService.user();
 
   constructor(public authService: AuthService,
               private _fb: FormBuilder) {}
@@ -46,18 +46,18 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileForm = this._fb.group({
-      'email': [this._user.email, [
+      'email': [this.user.email, [
         Validators.required,
         Validators.pattern(this.authService.emailPattern)
       ]],
       'profile': this._fb.group({
-        'name': [this._user.profile.name, [
+        'name': [this.user.profile.name, [
           Validators.required,
           Validators.minLength(3)
         ]],
-        'gender': [this._user.profile.gender],
-        'location': [this._user.profile.location],
-        'website': [this._user.profile.website],
+        'gender': [this.user.profile.gender],
+        'location': [this.user.profile.location],
+        'website': [this.user.profile.website],
       })
     });
     this.passwordForm = this._fb.group({

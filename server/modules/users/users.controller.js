@@ -59,6 +59,7 @@ exports.postAuthenticate = function (req, res, next) {
                 authenticated: true,
                 user: {
                   profile: user.profile,
+                  oauth: user.oauth,
                   roles: user.roles,
                   gravatar: user.gravatar,
                   email: user.email,
@@ -96,6 +97,7 @@ exports.getAuthenticate = function (req, res) {
     return res.status(200).send({
       user: {
         profile: req.user.profile,
+        oauth: req.user.oauth,
         roles: req.user.roles,
         gravatar: req.user.gravatar,
         email: req.user.email,
@@ -162,6 +164,7 @@ exports.postLogin = function (req, res, next) {
         authenticated: true,
         user: {
           profile: user.profile,
+          oauth: user.oauth,
           roles: user.roles,
           gravatar: user.gravatar,
           email: user.email,
@@ -242,6 +245,7 @@ exports.postSignup = function (req, res, next) {
               authenticated: true,
               user: {
                 profile: user.profile,
+                oauth: user.oauth,
                 roles: user.roles,
                 gravatar: user.gravatar,
                 email: user.email,

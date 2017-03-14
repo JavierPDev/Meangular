@@ -20,8 +20,10 @@
             id="email"
             name="email"
             class="form-control" 
+            *ngIf="!user.oauth"
             [formControl]="profileForm.controls['email']"
           />
+          <p *ngIf="user.oauth">{{user.email}}</p>
           <span class="help-block" *ngIf="
             profileForm.controls['email'].hasError('required')
           ">
@@ -104,6 +106,7 @@
     <form
       id="passwordForm"
       novalidate
+      *ngIf="!user.oauth"
       [formGroup]="passwordForm"
       (submit)="changePassword()"
     >
