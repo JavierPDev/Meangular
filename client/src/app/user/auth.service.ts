@@ -164,7 +164,7 @@ export class AuthService {
 
   private _onAuthenticated(res): void {
     this.setAuthenticatedUser(res);
-    this._router.navigate([localStorage['redirect'] || '/']);
+    this._router.navigateByUrl(localStorage['redirect'] || '/');
   }
 
   private _setUnauthenticatedUser() {

@@ -4,6 +4,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { PaginationModule  } from 'ng2-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -27,6 +28,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CommonModule,
     HttpModule,
     SlimLoadingBarModule.forRoot(),
+    PaginationModule.forRoot(),
 
     UserModule,
     CoreModule,

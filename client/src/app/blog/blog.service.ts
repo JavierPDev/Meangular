@@ -61,13 +61,28 @@ export class BlogService {
 
   /**
    * Get blog list
-   * @param {URLSearchParams} queryParams - Params for filtering blog list
+   * @param {Object} queryParams - Params for filtering blog list
    * @return {Promise} blogList - Promise resolving to blogList or []
    */
-  public getBlogList(queryParams: URLSearchParams): Promise<[BlogEntry]> {
+  public getBlogList(params): Promise<[BlogEntry]> {
+    const searchParams = Object.assign({}, params);
+    if (searchParams.page) {
+      searchParams.skip = searchParams.limit * (searchParams.page - 1);
+      delete searchParams.page;
+    }
+    if (!searchParams.sort) searchParams.sort = '-created';
+    const queryParams = new URLSearchParams();
+    for (const key in searchParams) {
+      queryParams.set(key, searchParams[key]);
+    }
+
     return this._http.get('/api/blog', {search: queryParams})
       .map(res => res.json())
-      .map(res => res.blogs)
+      .map(res => ({
+				blogEntries: res.blogs,
+				count: res.count,
+				skip: searchParams.skip
+			}))
       .toPromise();
   }
 

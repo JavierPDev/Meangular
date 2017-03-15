@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { URLSearchParams } from '@angular/http';
 
 import { BlogService } from './blog.service';
 
@@ -8,13 +7,10 @@ import { BlogService } from './blog.service';
 export class BlogListResolver implements Resolve<any> {
   constructor(private _router: Router, private _blogService: BlogService) {}
 
+  // Resolve is used just for the initial page load of /blog/list so
+  // user doesn't wait with an unfilled screen
   resolve(route: ActivatedRouteSnapshot) {
-    const routeParams = route.queryParams;
-    const queryParams = new URLSearchParams();
-    for (const key in routeParams) {
-      queryParams.set(key, routeParams[key]);
-    }
-    if (!queryParams['sort']) queryParams.set('sort', '-created');
+    const queryParams = route.queryParams;
 
     return this._blogService.getBlogList(queryParams)
       .then(blogList => {

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginationModule  } from 'ng2-bootstrap/pagination';
 
 import { UserModule } from '../user/user.module';
 import { BlogCreateComponent } from './blog-create.component';
@@ -22,7 +23,9 @@ import { BlogService } from './blog.service';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
+    PaginationModule,
 
     UserModule
   ],

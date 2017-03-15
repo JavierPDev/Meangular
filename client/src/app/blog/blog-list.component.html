@@ -13,9 +13,59 @@
 </div>
 
 <div *ngIf="blogEntries">
+  <div class="pull-right">
+    <div class="form-group">
+      <label for="sort">Sort</label>
+      <select
+        id="sort"
+        name="sort"
+        class="form-control"
+        [(ngModel)]="sort"
+        (change)="page = 0; changePage()"
+      >
+        <option value="created">Date Ascending</option>
+        <option value="-created">Date Descending</option>
+        <option value="title">Title Ascending</option>
+        <option value="-title">Title Descending</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="limit">Limit</label>
+      <select
+        id="limit"
+        name="limit"
+        class="form-control"
+        [(ngModel)]="limit"
+        (change)="page = 0; changePage()"
+      >
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </div>
+  </div>
+  <div>{{currentStart}} through {{currentEnd}} of {{count}}</div>
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="count"
+    [itemsPerPage]="limit"
+    [(ngModel)]="currentPage"
+    class="pagination-sm"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
+    (pageChanged)="changePage($event)"
+  >
+ </pagination> 
   <ul class="list-unstyled">
     <li *ngFor="let blogEntry of blogEntries trackBy _id">
-      <h2><a [routerLink]="['/blog', blogEntry.slug]">{{blogEntry.title}}</a></h2>
+      <h2>
+        <a [routerLink]="['/blog', blogEntry.slug]">{{blogEntry.title}}</a>
+      </h2>
       <small>
         Posted on {{blogEntry.created}} by {{blogEntry.user.profile.name}}
       </small>
@@ -24,4 +74,18 @@
       </div>
     </li>
   </ul>
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="count"
+    [itemsPerPage]="limit"
+    [(ngModel)]="currentPage"
+    class="pagination-sm"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
+    (pageChanged)="changePage($event)"
+  >
+ </pagination> 
+  <div>{{currentStart}} through {{currentEnd}} of {{count}}</div>
 </div>
