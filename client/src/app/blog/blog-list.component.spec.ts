@@ -2,10 +2,12 @@
 
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { BlogListComponent } from './blog-list.component';
 import { AuthService } from '../user/auth.service';
+import { BlogService } from './blog.service';
 
 const blogListStub = [{
   title: 'Test blog entry',
@@ -30,16 +32,26 @@ describe('BlogListComponent', () => {
       ],
       providers: [
         {
+          provide: Router,
+          useValue: {navigate: function() {}}
+        },
+        {
           provide: ActivatedRoute,
           useValue: {
+            queryParams: Observable.from([1])
             snapshot: {
-              data: {blogList: blogListStub}
+              data: {blogList: {blogEntries: blogListStub}},
+              queryParams: {limit: 10, sort: '-created', skip: 0}
             }
           }
         },
         {
           provide: AuthService, 
           useValue: {}
+        },
+        {
+          provide: BlogService,
+          useValue: {getBlogList: function() {}}
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]

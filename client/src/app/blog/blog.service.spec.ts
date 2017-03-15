@@ -2,7 +2,7 @@
 
 import { TestBed, inject, fakeAsync, async, tick } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
-import { Http, BaseRequestOptions, RequestMethod, URLSearchParams,
+import { Http, BaseRequestOptions, RequestMethod,
   Response, ResponseOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -47,7 +47,8 @@ describe('BlogService', () => {
         {
           provide: Router,
           useValue: {
-            navigate: () => true
+            navigate: () => true,
+            navigateByUrl: () => true
           }
         }
         BlogService,
@@ -223,7 +224,7 @@ describe('BlogService', () => {
 
   describe('getBlogList()', () => {
     it('calls the correct api url without query parameters', fakeAsync(() => {
-      const expectedUrl = `/api/blog`;
+      const expectedUrl = `/api/blog?sort=-created`;
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(expectedUrl);
       });
@@ -232,10 +233,11 @@ describe('BlogService', () => {
     }));
 
     it('calls the correct api url with query parameters', fakeAsync(() => {
-      const queryParams = new URLSearchParams();
-      queryParams.set('sort', '-created');
-      queryParams.set('where', 'created');
-      queryParams.set('gt', '2012-01-01');
+      const queryParams = {
+        sort: '-created',
+        where: 'created',
+        gt: '2012-01-01'
+      };
       const expectedUrl = `/api/blog?sort=-created&where=created&gt=2012-01-01`;
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(expectedUrl);
@@ -260,9 +262,10 @@ describe('BlogService', () => {
         c.mockRespond(new Response(response));
       });
       service.getBlogList()
-        .then(blogList => {
-          expect(blogList[0].title).toEqual(blogListStub[0].title);
-          expect(blogList[0].content).toEqual(blogListStub[0].content);
+        .then(blogListData => {
+          const blogEntries = blogListData.blogEntries;
+          expect(blogEntries[0].title).toEqual(blogListStub[0].title);
+          expect(blogEntries[0].content).toEqual(blogListStub[0].content);
         });
       tick();
     }));

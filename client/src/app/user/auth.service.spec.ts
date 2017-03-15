@@ -49,7 +49,8 @@ describe('AuthService', () => {
         {
           provide: Router,
           useValue: {
-            navigate: () => true
+            navigate: () => true,
+            navigateByUrl: () => true
           }
         },
         AuthService
@@ -220,7 +221,7 @@ describe('AuthService', () => {
       const redirectUrl = '/profile';
       localStorage.setItem('redirect', redirectUrl);
       const router = TestBed.get(Router);
-      spyOn(router, 'navigate');
+      spyOn(router, 'navigateByUrl');
       localStorage.setItem('id_token', jwt);
       mockBackend.connections.subscribe(c => {
         const response = new ResponseOptions({
@@ -229,14 +230,14 @@ describe('AuthService', () => {
         c.mockRespond(new Response(response));
       });
       service.login(email, password);
-      expect(router.navigate).toHaveBeenCalledWith([redirectUrl]);
+      expect(router.navigateByUrl).toHaveBeenCalledWith(redirectUrl);
       tick();
     }));
 
     it('successful login navigates to / if no set redirect ', fakeAsync(() => {
       localStorage.removeItem('redirect');
       const router = TestBed.get(Router);
-      spyOn(router, 'navigate');
+      spyOn(router, 'navigateByUrl');
       localStorage.setItem('id_token', jwt);
       mockBackend.connections.subscribe(c => {
         const response = new ResponseOptions({
@@ -245,7 +246,7 @@ describe('AuthService', () => {
         c.mockRespond(new Response(response));
       });
       service.login(email, password);
-      expect(router.navigate).toHaveBeenCalledWith(['/']);
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/');
       tick();
     }));
 
@@ -408,7 +409,7 @@ describe('AuthService', () => {
       const redirectUrl = '/profile';
       localStorage.setItem('redirect', redirectUrl);
       const router = TestBed.get(Router);
-      spyOn(router, 'navigate');
+      spyOn(router, 'navigateByUrl');
       localStorage.setItem('id_token', jwt);
       mockBackend.connections.subscribe(c => {
         const response = new ResponseOptions({
@@ -417,14 +418,14 @@ describe('AuthService', () => {
         c.mockRespond(new Response(response));
       });
       service.signup(newUser);
-      expect(router.navigate).toHaveBeenCalledWith([redirectUrl]);
+      expect(router.navigateByUrl).toHaveBeenCalledWith(redirectUrl);
       tick();
     }));
 
     it('successful signup navigates to / if no set redirect ', fakeAsync(() => {
       localStorage.removeItem('redirect');
       const router = TestBed.get(Router);
-      spyOn(router, 'navigate');
+      spyOn(router, 'navigateByUrl');
       localStorage.setItem('id_token', jwt);
       mockBackend.connections.subscribe(c => {
         const response = new ResponseOptions({
@@ -433,7 +434,7 @@ describe('AuthService', () => {
         c.mockRespond(new Response(response));
       });
       service.signup(newUser);
-      expect(router.navigate).toHaveBeenCalledWith(['/']);
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/');
       tick();
     }));
 
