@@ -62,9 +62,9 @@ export class BlogService {
   /**
    * Get blog list
    * @param {Object} queryParams - Params for filtering blog list
-   * @return {Promise} blogList - Promise resolving to blogList or []
+   * @return {Promise} blogList - Promise resolving to blogEntries, count, skip
    */
-  public getBlogList(params): Promise<[BlogEntry]> {
+  public getBlogList(params): Promise<any> {
     const searchParams = Object.assign({}, params);
     if (searchParams.page) {
       searchParams.skip = searchParams.limit * (searchParams.page - 1);

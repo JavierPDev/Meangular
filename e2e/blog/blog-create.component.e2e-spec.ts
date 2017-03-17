@@ -30,6 +30,7 @@ describe('BlogCreate component', () => {
       titleInput.sendKeys('new');
       contentInput.sendKeys('new');
       submitBtn.click();
+      browser.sleep(300);
       expect(element(by.id('blogEntryContent')).getText()).toBe('new');
     });
   });

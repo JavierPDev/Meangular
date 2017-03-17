@@ -2,7 +2,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 /* global jasmine */
-var SpecReporter = require('jasmine-spec-reporter')
+const { SpecReporter  } = require('jasmine-spec-reporter')
 process.env.NODE_ENV = 'e2e'
 var Mean = require('./server.mean.js')
 var run = require('./run.js')
@@ -24,7 +24,6 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function () {}
   },
-  useAllAngular2AppRoots: true,
   beforeLaunch: function () {
     require('ts-node').register({
       project: 'e2e'
@@ -32,6 +31,6 @@ exports.config = {
     run(Mean, seed)
   },
   onPrepare: function () {
-    jasmine.getEnv().addReporter(new SpecReporter())
+    jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}))
   }
 }
