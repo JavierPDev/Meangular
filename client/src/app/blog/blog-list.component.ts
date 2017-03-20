@@ -28,17 +28,17 @@ export class BlogListComponent implements OnInit {
   ) {}
 
   /**
-   * Change page. Used by pagination component and by order select boxes.
+   * Change page. Used by pagination component and by selects' (change) output.
    * @param {Object} evt - Optional event object from pagination output
    */
-  public changePage(evt?): void {
+  public changePage(evt?: any): void {
     const page = evt ? evt.page : 1;
     const newParams = { page, sort: this.sort, limit: this.limit };
     const queryParams = Object.assign({}, this._routeParams, newParams);
     this._router.navigate(['/blog/list'], {queryParams});
   }
 
-  private _setPageData(blogListData): void {
+  private _setPageData(blogListData: any): void {
     let {
       count,
       blogEntries,

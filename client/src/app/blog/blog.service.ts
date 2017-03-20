@@ -47,7 +47,7 @@ export class BlogService {
   /**
    * Get blog entry using slug
    * @param {String} slug - Slug made from blog title
-   * @return {Promise} blogEntry - Promise resolving to blogEntry or []
+   * @return {Promise<BlogEntry>} blogEntry - Promise resolving to blogEntry or []
    */
   public getBlogEntryBySlug(slug: string): Promise<BlogEntry> {
     const search = new URLSearchParams();
@@ -61,10 +61,10 @@ export class BlogService {
 
   /**
    * Get blog list
-   * @param {Object} queryParams - Params for filtering blog list
-   * @return {Promise} blogList - Promise resolving to blogEntries, count, skip
+   * @param {Object} params - Params for filtering blog list
+   * @return {Promise<any>} blogList - Promise resolving to blogEntries, count, skip
    */
-  public getBlogList(params): Promise<any> {
+  public getBlogList(params: any): Promise<any> {
     const searchParams = Object.assign({}, params);
     if (searchParams.page) {
       searchParams.skip = searchParams.limit * (searchParams.page - 1);
