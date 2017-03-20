@@ -24,7 +24,10 @@
 <h1>{{blogEntry.title}}</h1>
 
 <small>
-  Posted on {{blogEntry.created}} by {{blogEntry.user.profile.name}}
+  Posted on {{blogEntry.created}} by
+  <a [routerLink]="['/blog/list']" [queryParams]="{user: blogEntry.user._id}">
+    {{blogEntry.user.profile.name}}
+  </a>
 </small>
 
 <div id="blogEntryContent">
