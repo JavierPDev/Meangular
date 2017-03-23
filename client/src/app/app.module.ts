@@ -39,18 +39,18 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     SlimLoadingBarModule
   ],
   providers: [
-    // Needed for angular2-jwt to work properly. See:
-    // https://github.com/auth0/angular2-jwt/issues/258#issuecomment-272223420
-		{
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [ Http, RequestOptions ]
-    },
-
-    // { 
-		// 	provide: ErrorHandler,
-		// 	useClass: GlobalErrorHandler
-    // },
+  // Needed for angular2-jwt to work properly. See:
+  // https://github.com/auth0/angular2-jwt/issues/258#issuecomment-272223420
+  {
+    provide: AuthHttp,
+    useFactory: authHttpServiceFactory,
+    deps: [ Http, RequestOptions ]
+  },
+  
+  // { 
+  // 	provide: ErrorHandler,
+  // 	useClass: GlobalErrorHandler
+  // },
   ],
   bootstrap: [AppComponent]
 })

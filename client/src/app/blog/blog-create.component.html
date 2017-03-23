@@ -1,41 +1,41 @@
 <h1>Create a Blog Entry</h1>
 
 <form novalidate [formGroup]="blogCreateForm" (submit)="createBlogEntry()">
-  <div class="form-group"
-    [class.has-error]="
-      blogCreateForm.controls['title'].invalid
-        && blogCreateForm.controls['title'].touched"
-  >
+  <div
+    class="form-group"
+    [class.has-error]="blogCreateForm.controls['title'].invalid
+      && blogCreateForm.controls['title'].touched">
     <label for="title">Title</label>
-    <input class="form-control"
-      [formControl]="blogCreateForm.controls['title']"
-      type="text"
+    <input
+      class="form-control"
+      id="title"
       name="title"
-      id="title" />
-    <span class="help-block"
+      type="text"
+      [formControl]="blogCreateForm.controls['title']"/>
+    <span
+      class="help-block"
       *ngIf="blogCreateForm.controls['title'].hasError('required')
-        && blogCreateForm.controls['title'].touched"
-    >
+        && blogCreateForm.controls['title'].touched">
       Title is required
     </span>
   </div>
-  <div class="form-group"
-    [class.has-error]="
-      blogCreateForm.controls['content'].invalid
-        && blogCreateForm.controls['content'].touched"
-  >
+  <div
+    class="form-group"
+    [class.has-error]="blogCreateForm.controls['content'].invalid
+      && blogCreateForm.controls['content'].touched">
     <label for="content">Content</label>
-    <textarea class="form-control"
-      [formControl]="blogCreateForm.controls['content']"
+    <textarea
+      class="form-control"
+      id="content"
+      name="content"
       rows="30"
       type="text"
-      name="content"
-      id="content">
+      [formControl]="blogCreateForm.controls['content']">
     </textarea>
-    <span class="help-block" 
+    <span
+      class="help-block" 
       *ngIf="blogCreateForm.controls['content'].hasError('required')
-        && blogCreateForm.controls['content'].touched"
-    >
+        && blogCreateForm.controls['content'].touched">
       Content is required
     </span>
   </div>
@@ -43,9 +43,10 @@
     {{blogService.error}}
   </div>
   <div class="pull-right">
-    <button type="submit" class="btn btn-primary"
-      [disabled]="blogCreateForm.invalid"
-    >
+    <button
+       class="btn btn-primary"
+       type="submit"
+       [disabled]="blogCreateForm.invalid">
       Submit
     </button>
     <a class="btn btn-default" [routerLink]="['/blog/list']">Cancel</a>

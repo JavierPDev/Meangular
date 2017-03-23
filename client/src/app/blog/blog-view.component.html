@@ -1,15 +1,14 @@
 <div *ngIf="auth.loggedIn
-  && (auth.user()._id === blogEntry.user._id || auth.isAdmin)"
->
+  && (auth.user()._id === blogEntry.user._id || auth.isAdmin)">
   <div class="pull-right">
     <a class="btn btn-primary" [routerLink]="['edit']" id="blogEditBtn">
       <i class="fa fa-edit"></i>
       Edit
     </a>
-    <button class="btn btn-danger"
+    <button
+      class="btn btn-danger"
       id="blogDeleteBtn"
-      (click)="deleteBlogEntry()"
-    >
+      (click)="deleteBlogEntry()">
       <i class="fa fa-trash-o"></i>
       Delete
     </button>
@@ -25,7 +24,7 @@
 
 <small>
   Posted on {{blogEntry.created}} by
-  <a [routerLink]="['/blog/list']" [queryParams]="{user: blogEntry.user._id}">
+  <a [queryParams]="{user: blogEntry.user._id}" [routerLink]="['/blog/list']">
     {{blogEntry.user.profile.name}}
   </a>
 </small>

@@ -7,26 +7,26 @@ import { BlogListResolver } from './blog-list.resolver';
 import { AuthenticatedGuard } from "../user/authenticated.guard";
 
 export const BLOG_ROUTES = [
-	{
+  {
     path: 'blog/create',
     component: BlogCreateComponent,
     canActivate: [AuthenticatedGuard]
   },
-	{
+  {
     path: 'blog/list',
     component: BlogListComponent,
     resolve: {
       blogList: BlogListResolver
     }
   },
-	{
+  {
     path: 'blog/:slug',
     component: BlogViewComponent,
     resolve: {
       blogEntry: BlogEntryResolver
     }
   },
-	{
+  {
     path: 'blog/:slug/edit',
     component: BlogEditComponent,
     resolve: {

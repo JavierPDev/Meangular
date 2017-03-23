@@ -13,8 +13,10 @@ export class ProfileComponent implements OnInit {
   public profileForm: FormGroup;
   public user = this.authService.user();
 
-  constructor(public authService: AuthService,
-              private _fb: FormBuilder) {}
+  constructor(
+    public authService: AuthService,
+    private _fb: FormBuilder
+  ) {}
 
   public changePassword(): void {
     const {password, confirmPassword} = this.passwordForm.value;

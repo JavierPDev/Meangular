@@ -19,7 +19,8 @@ describe('LoginComponent', () => {
       providers: [
         {
           provide: AuthService,
-          useFactory: () => ({login: function(email, password){}})
+          useFactory: () => ({login: function(email, password) {}})
+        }
       ]
     });
     TestBed.compileComponents();

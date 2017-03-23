@@ -79,10 +79,10 @@ export class BlogService {
     return this._http.get('/api/blog', {search: queryParams})
       .map(res => res.json())
       .map(res => ({
-				blogEntries: res.blogs,
-				count: res.count,
-				skip: searchParams.skip
-			}))
+        blogEntries: res.blogs,
+        count: res.count,
+        skip: searchParams.skip
+      }))
       .toPromise();
   }
 

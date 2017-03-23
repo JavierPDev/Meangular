@@ -8,21 +8,21 @@ import { AuthenticatedGuard } from "./authenticated.guard";
 import { UnauthenticatedGuard } from "./unauthenticated.guard";
 
 export const USER_ROUTES = [
-	{
+  {
     path: 'login',
     component: LoginComponent,
     canActivate: [UnauthenticatedGuard]
   },
-	{
+  {
     path: 'signup',
     component: SignupComponent,
     canActivate: [UnauthenticatedGuard]
   },
-	{
+  {
     path: 'oauth',
     component: OauthComponent
   },
-	{
+  {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthenticatedGuard]

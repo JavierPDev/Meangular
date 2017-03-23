@@ -13,9 +13,11 @@ export class ResetPasswordComponent implements OnInit {
   public message: string = '';
   private _resetToken: string;
 
-  constructor(public authService: AuthService,
-              private _fb: FormBuilder,
-              private _activatedRoute: ActivatedRoute) {}
+  constructor(
+    public authService: AuthService,
+    private _fb: FormBuilder,
+    private _activatedRoute: ActivatedRoute
+  ) {}
 
   public reset(): void {
     const {password, confirmPassword} = this.resetForm.value;

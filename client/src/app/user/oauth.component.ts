@@ -10,9 +10,11 @@ import { AuthService } from './auth.service';
   template: ``
 })
 export class OauthComponent implements OnInit {
-  constructor(public authService: AuthService,
-              private _router: Router,
-              private _http: Http) {}
+  constructor(
+    public authService: AuthService,
+    private _router: Router,
+    private _http: Http
+  ) {}
 
   ngOnInit() {
     // Get and set jwt and user after redirect from oauth authentication 

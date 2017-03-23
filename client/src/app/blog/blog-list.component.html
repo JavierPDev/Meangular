@@ -1,9 +1,9 @@
 <h1>Blog List</h1>
 
-<a class="btn btn-primary"
+<a
+  class="btn btn-primary"
   id="createBlogEntryBtn"
-  *ngIf="auth.loggedIn" [routerLink]="['/blog/create']"
->
+  *ngIf="auth.loggedIn" [routerLink]="['/blog/create']">
   <i class="fa fa-plus"></i>
   New Blog Entry
 </a>
@@ -17,12 +17,11 @@
     <div class="form-group">
       <label for="sort">Sort</label>
       <select
+        class="form-control"
         id="sort"
         name="sort"
-        class="form-control"
-        [(ngModel)]="sort"
-        (change)="page = 0; changePage()"
-      >
+        (change)="changePage({page: 1})"
+        [(ngModel)]="sort">
         <option value="created">Date Ascending</option>
         <option value="-created">Date Descending</option>
         <option value="title">Title Ascending</option>
@@ -32,12 +31,11 @@
     <div class="form-group">
       <label for="limit">Limit</label>
       <select
+        class="form-control"
         id="limit"
         name="limit"
-        class="form-control"
-        [(ngModel)]="limit"
         (change)="page = 0; changePage()"
-      >
+        [(ngModel)]="limit">
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
@@ -49,17 +47,16 @@
   </div>
   <div>{{currentStart}} through {{currentEnd}} of {{count}}</div>
   <pagination
-    [boundaryLinks]="true"
-    [totalItems]="count"
-    [itemsPerPage]="limit"
-    [(ngModel)]="currentPage"
     class="pagination-sm"
-    previousText="&lsaquo;"
-    nextText="&rsaquo;"
     firstText="&laquo;"
     lastText="&raquo;"
+    nextText="&rsaquo;"
+    previousText="&lsaquo;"
+    [boundaryLinks]="true"
+    [itemsPerPage]="limit"
+    [(ngModel)]="currentPage"
     (pageChanged)="changePage($event)"
-  >
+    [totalItems]="count">
  </pagination> 
   <ul class="list-unstyled">
     <li *ngFor="let blogEntry of blogEntries trackBy _id">
@@ -69,9 +66,8 @@
       <small>
         Posted on {{blogEntry.created}} by
         <a
-          [routerLink]="['/blog/list']"
           [queryParams]="{user: blogEntry.user._id}"
-        >
+          [routerLink]="['/blog/list']">
           {{blogEntry.user.profile.name}}
         </a>
       </small>
@@ -81,17 +77,16 @@
     </li>
   </ul>
   <pagination
-    [boundaryLinks]="true"
-    [totalItems]="count"
-    [itemsPerPage]="limit"
-    [(ngModel)]="currentPage"
     class="pagination-sm"
-    previousText="&lsaquo;"
-    nextText="&rsaquo;"
     firstText="&laquo;"
     lastText="&raquo;"
+    nextText="&rsaquo;"
+    previousText="&lsaquo;"
+    [boundaryLinks]="true"
+    [itemsPerPage]="limit"
+    [(ngModel)]="currentPage"
     (pageChanged)="changePage($event)"
-  >
+    [totalItems]="count">
  </pagination> 
   <div>{{currentStart}} through {{currentEnd}} of {{count}}</div>
 </div>

@@ -42,10 +42,10 @@ describe('AuthService', () => {
             => new Http(backend, defaultOptions),
           deps: [MockBackend, BaseRequestOptions]
         },
-				{
-					provide: AuthHttp,
+        {
+          provide: AuthHttp,
           useExisting: Http
-				},
+        },
         {
           provide: Router,
           useValue: {

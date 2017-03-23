@@ -4,59 +4,60 @@
       id="profileForm"
       novalidate 
       [formGroup]="profileForm" 
-      (submit)="updateUser()"
-    >
+      (submit)="updateUser()">
       <fieldset>
         <legend>Profile</legend>
-        <div class="form-group"
+        <div
+          class="form-group"
           [class.has-error]="
             !profileForm.controls['email'].valid
-              && profileForm.controls['email'].touched"
-        >
+              && profileForm.controls['email'].touched">
           <label class="control-label" for="email">
-            Email
+            <strong>Email *</strong>
           </label>
-          <input type="email"
+          <input
+            class="form-control" 
             id="email"
             name="email"
-            class="form-control" 
+            type="email"
             *ngIf="!user.oauth"
-            [formControl]="profileForm.controls['email']"
-          />
+            [formControl]="profileForm.controls['email']"/>
           <p *ngIf="user.oauth">{{user.email}}</p>
-          <span class="help-block" *ngIf="
-            profileForm.controls['email'].hasError('required')
-          ">
+          <span
+            class="help-block"
+            *ngIf="profileForm.controls['email'].hasError('required')">
             Email is required
           </span>
-          <span class="help-block" *ngIf="
-            profileForm.controls['email'].hasError('pattern')
-          ">
+          <span
+            class="help-block"
+            *ngIf="profileForm.controls['email'].hasError('pattern')">
             Must be a proper email
           </span>
         </div>
-        <div class="form-group"
+        <div
+          class="form-group"
           [class.has-error]="
             !profileForm.controls['profile'].controls['name'].valid
-              && profileForm.controls['profile'].controls['name'].touched"
-        >
+              && profileForm.controls['profile'].controls['name'].touched">
           <label class="control-label" for="name">
-            Name
+            <strong>Name *</strong>
           </label>
-          <input type="text"
+          <input
+            class="form-control" 
             id="name"
             name="name"
-            class="form-control" 
-            [formControl]="profileForm.controls['profile'].controls['name']"
-          />
-          <span class="help-block" *ngIf="
-            profileForm.controls['profile'].controls['name'].hasError('required')
-          ">
+            type="text"
+            [formControl]="profileForm.controls['profile'].controls['name']"/>
+          <span
+            class="help-block"
+            *ngIf="profileForm.controls['profile']
+              .controls['name'].hasError('required')">
             Name is required
           </span>
-          <span class="help-block" *ngIf="
-            profileForm.controls['profile'].controls['name'].hasError('minlength')
-          ">
+          <span
+            class="help-block"
+            *ngIf="profileForm.controls['profile']
+              .controls['name'].hasError('minlength')">
             Name requires at least three characters
           </span>
         </div>
@@ -64,39 +65,39 @@
           <label class="control-label" for="gender">
             Gender
           </label>
-          <input type="text"
+          <input
+            class="form-control" 
             id="gender"
             name="gender"
-            class="form-control" 
-            [formControl]="profileForm.controls['profile'].controls['gender']"
-          />
+            type="text"
+            [formControl]="profileForm.controls['profile'].controls['gender']"/>
         </div>
         <div class="form-group">
           <label class="control-label" for="location">
             Location
           </label>
-          <input type="text"
+          <input
+            class="form-control" 
             id="location"
             name="location"
-            class="form-control" 
-            [formControl]="profileForm.controls['profile'].controls['location']"
-          />
+            type="text"
+            [formControl]="profileForm.controls['profile'].controls['location']"/>
         </div>
         <div class="form-group">
           <label class="control-label" for="website">
             Web site
           </label>
-          <input type="text"
+          <input
+            class="form-control" 
             id="website"
             name="website"
-            class="form-control" 
-            [formControl]="profileForm.controls['profile'].controls['website']"
-          />
+            type="text"
+            [formControl]="profileForm.controls['profile'].controls['website']"/>
         </div>
-        <button class="btn btn-primary"
+        <button
+          class="btn btn-primary"
           type="submit"
-          [disabled]="profileForm.invalid"
-        >
+          [disabled]="profileForm.invalid">
           Update Profile
         </button>
       </fieldset>
@@ -108,54 +109,52 @@
       novalidate
       *ngIf="!user.oauth"
       [formGroup]="passwordForm"
-      (submit)="changePassword()"
-    >
+      (submit)="changePassword()">
       <fieldset>
         <legend>Change Password</legend>
-        <div class="form-group"
-          [class.has-error]="
-            !passwordForm.controls['password'].valid
-              && passwordForm.controls['password'].touched
-        ">
+        <div
+          class="form-group"
+          [class.has-error]="!passwordForm.controls['password'].valid
+              && passwordForm.controls['password'].touched">
           <label class="control-label" for="password">
             Password
           </label>
-          <input type="password"
+          <input
+            class="form-control" 
             id="password"
             name="password"
-            class="form-control" 
-            [formControl]="passwordForm.controls['password']"
-          />
-          <span class="help-block" *ngIf="
-            passwordForm.controls['password'].hasError('minlength')
-          ">
+            type="password"
+            [formControl]="passwordForm.controls['password']"/>
+          <span
+            class="help-block"
+            *ngIf="passwordForm.controls['password'].hasError('minlength')">
             Password must contain at least 6 characters
           </span>
         </div>
-        <div class="form-group"
-          [class.has-error]="
-            !passwordForm.controls['confirmPassword'].valid
-              && passwordForm.controls['confirmPassword'].touched
-        ">
+        <div
+          class="form-group"
+          [class.has-error]="!passwordForm.controls['confirmPassword'].valid
+              && passwordForm.controls['confirmPassword'].touched">
           <label class="control-label" for="confirmPassword">
             Confirm Password
           </label>
-          <input type="password"
-            name="confirmPassword"
-            id="confirmPassword"
+          <input
             class="form-control" 
-            [formControl]="passwordForm.controls['confirmPassword']"
-          />
-          <span class="help-block" *ngIf="
-            passwordForm.controls['confirmPassword'].hasError('minlength')
-          ">
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            [formControl]="passwordForm.controls['confirmPassword']"/>
+          <span
+            class="help-block"
+            *ngIf="passwordForm.controls['confirmPassword']
+              .hasError('minlength')">
             Password must contain at least 6 characters
           </span>
         </div>
-        <button class="btn btn-primary"
+        <button
+          class="btn btn-primary"
           type="submit"
-          [disabled]="passwordForm.invalid"
-        >
+          [disabled]="passwordForm.invalid">
           Change Password
         </button>
       </fieldset>

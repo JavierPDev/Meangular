@@ -11,8 +11,10 @@ export class ForgotPasswordComponent implements OnInit {
   public forgotForm: FormGroup;
   public message: string = '';
 
-  constructor(public authService: AuthService,
-              private _fb: FormBuilder) {}
+  constructor(
+    public authService: AuthService,
+    private _fb: FormBuilder
+  ) {}
 
   public forgot(): void {
     const {email} = this.forgotForm.value;

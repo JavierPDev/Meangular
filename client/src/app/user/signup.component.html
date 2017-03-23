@@ -3,111 +3,108 @@
     <div class="jumbotron">
       <h2>Fill your data.</h2>
       <form novalidate [formGroup]="signupForm" (submit)="signup()">
-        <div class="form-group"
-          [class.has-error]="
-            !signupForm.controls['email'].valid
-              && signupForm.controls['email'].touched"
-        >
+        <div
+         class="form-group"
+          [class.has-error]="!signupForm.controls['email'].valid
+            && signupForm.controls['email'].touched">
           <label class="control-label" for="email">
-            Email
+            <strong>Email *</strong>
           </label>
-          <input type="email"
+          <input
+            class="form-control" 
             id="email"
             name="email"
-            class="form-control" 
-            [formControl]="signupForm.controls['email']"
-          />
-          <span class="help-block" *ngIf="
-            signupForm.controls['email'].hasError('required')
-              && signupForm.controls['email'].touched
-          ">
+            type="email"
+            [formControl]="signupForm.controls['email']"/>
+          <span
+            class="help-block"
+            *ngIf="signupForm.controls['email'].hasError('required')
+              && signupForm.controls['email'].touched">
             Email is required
           </span>
-          <span class="help-block" *ngIf="
-            signupForm.controls['email'].hasError('pattern')
-              && signupForm.controls['email'].touched
-          ">
+          <span
+            class="help-block"
+            *ngIf="signupForm.controls['email'].hasError('pattern')
+              && signupForm.controls['email'].touched">
             Must be a proper email
           </span>
         </div>
-        <div class="form-group"
+        <div
+          class="form-group"
           [class.has-error]="
             !signupForm.controls['profile'].controls['name'].valid
-              && signupForm.controls['profile'].controls['name'].touched"
-        >
+              && signupForm.controls['profile'].controls['name'].touched">
           <label class="control-label" for="name">
-            Name
+            <strong>Name *</strong>
           </label>
-          <input type="text"
+          <input
+            class="form-control" 
             id="name"
             name="name"
-            class="form-control" 
-            [formControl]="signupForm.controls['profile'].controls['name']"
-          />
-          <span class="help-block" *ngIf="
-            signupForm.controls['profile'].controls['name'].hasError('required')
-              && signupForm.controls['profile'].controls['name'].touched
-          ">
+            type="text"
+            [formControl]="signupForm.controls['profile'].controls['name']"/>
+          <span
+            class="help-block"
+            *ngIf="signupForm.controls['profile'].controls['name'].hasError('required')
+              && signupForm.controls['profile'].controls['name'].touched">
             Name is required
           </span>
-          <span class="help-block" *ngIf="
-            signupForm.controls['profile'].controls['name'].hasError('minlength')
-              && signupForm.controls['profile'].controls['name'].touched
-          ">
+          <span
+            class="help-block"
+            *ngIf="signupForm.controls['profile'].controls['name'].hasError('minlength')
+              && signupForm.controls['profile'].controls['name'].touched">
             Name requires at least three characters
           </span>
         </div>
-        <div class="form-group"
-          [class.has-error]="
-            !signupForm.controls['password'].valid
-              && signupForm.controls['password'].touched"
-        >
+        <div
+          class="form-group"
+          [class.has-error]="!signupForm.controls['password'].valid
+            && signupForm.controls['password'].touched">
           <label class="control-label" for="password">
-            Password
+            <strong>Password *</strong>
           </label>
-          <input type="password"
+          <input 
+            class="form-control" 
             id="password"
             name="password"
-            class="form-control" 
-            [formControl]="signupForm.controls['password']"
-          />
-          <span class="help-block" *ngIf="
-            signupForm.controls['password'].hasError('required')
-              && signupForm.controls['password'].touched
-          ">
+            type="password"
+            [formControl]="signupForm.controls['password']"/>
+          <span
+            class="help-block"
+            *ngIf="signupForm.controls['password'].hasError('required')
+              && signupForm.controls['password'].touched">
             Password is required
           </span>
-          <span class="help-block" *ngIf="
-            signupForm.controls['password'].hasError('minlength')
-              && signupForm.controls['password'].touched
-          ">
+          <span
+            class="help-block"
+            *ngIf="signupForm.controls['password'].hasError('minlength')
+              && signupForm.controls['password'].touched">
             Password requires at least six characters
           </span>
         </div>
-        <div class="form-group"
-          [class.has-error]="
-            !signupForm.controls['confirmPassword'].valid
-              && signupForm.controls['confirmPassword'].touched"
-        >
+        <div 
+          class="form-group"
+          [class.has-error]="!signupForm.controls['confirmPassword'].valid
+            && signupForm.controls['confirmPassword'].touched">
           <label class="control-label" for="confirmPassword">
-            Confirm Password
+            <strong>Confirm Password *</strong>
           </label>
-          <input type="password"
+          <input
+            class="form-control" 
             id="confirmPassword"
             name="confirmPassword"
-            class="form-control" 
-            [formControl]="signupForm.controls['confirmPassword']"
-          />
-          <span class="help-block" *ngIf="
-            signupForm.controls['confirmPassword'].hasError('required')
-              && signupForm.controls['confirmPassword'].touched
-          ">
+            type="password"
+            [formControl]="signupForm.controls['confirmPassword']"/>
+          <span
+            class="help-block"
+            *ngIf="signupForm.controls['confirmPassword'].hasError('required')
+              && signupForm.controls['confirmPassword'].touched">
             Password is required
           </span>
-          <span class="help-block" *ngIf="
-            signupForm.controls['confirmPassword'].hasError('minlength')
-              && signupForm.controls['confirmPassword'].touched
-          ">
+          <span
+            class="help-block"
+            *ngIf="signupForm.controls['confirmPassword'].hasError('minlength')
+              && signupForm.controls['confirmPassword'].touched">
             Password requires at least six characters
           </span>
         </div>
@@ -115,16 +112,13 @@
           {{authService.error}}
         </div>
         <button
-          type="submit"
           class="btn btn-primary"
-          [disabled]="signupForm.invalid"
-        >
+          type="submit"
+          [disabled]="signupForm.invalid">
           Sign Up!
         </button>
       </form>
-      
       <hr>
-
       <a class="btn btn-default" href="/auth/google">
         <i class="fa fa-google"></i> 
         Sign Up with Google
