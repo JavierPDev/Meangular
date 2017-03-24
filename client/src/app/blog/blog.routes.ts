@@ -4,13 +4,15 @@ import { BlogViewComponent } from './blog-view.component';
 import { BlogEditComponent } from './blog-edit.component';
 import { BlogEntryResolver } from './blog-entry.resolver';
 import { BlogListResolver } from './blog-list.resolver';
-import { AuthenticatedGuard } from "../user/authenticated.guard";
+import { AuthenticatedGuard } from '../user/authenticated.guard';
+import { CanDeactivateGuard } from '../core/can-deactivate.guard';
 
 export const BLOG_ROUTES = [
   {
     path: 'blog/create',
     component: BlogCreateComponent,
-    canActivate: [AuthenticatedGuard]
+    canActivate: [AuthenticatedGuard],
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'blog/list',
@@ -32,6 +34,7 @@ export const BLOG_ROUTES = [
     resolve: {
       blogEntry: BlogEntryResolver
     },
-    canActivate: [AuthenticatedGuard]
+    canActivate: [AuthenticatedGuard],
+    canDeactivate: [CanDeactivateGuard]
   }
 ];

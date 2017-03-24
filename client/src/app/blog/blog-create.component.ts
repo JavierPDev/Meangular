@@ -9,6 +9,7 @@ import { BlogService } from './blog.service';
 })
 export class BlogCreateComponent implements OnInit, OnDestroy {
   public blogCreateForm: FormGroup;
+  private _isBeingSaved: boolean = false;
 
   constructor(
     public blogService: BlogService,
@@ -16,7 +17,17 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
   ) {}
 
   public createBlogEntry(): void {
+    this._isBeingSaved = true;
     this.blogService.createBlogEntry(this.blogCreateForm.value);
+  }
+
+  canDeactivate() {
+    const formValues = this.blogCreateForm.value;
+    const valuesUnchanged = formValues.title === '' && formValues.content === '';
+
+    if (valuesUnchanged || this._isBeingSaved) return true;
+
+    return window.confirm('Discard changes?');
   }
 
   ngOnInit() {

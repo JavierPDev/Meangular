@@ -12,6 +12,7 @@ import { BlogEntry } from './blog-entry';
 export class BlogEditComponent implements OnInit, OnDestroy {
   public blogEditForm: FormGroup;
   public blogEntry;
+  private _isBeingSaved: boolean = false;
 
   constructor(
     public blogService: BlogService,
@@ -22,7 +23,18 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   public editBlogEntry(): void {
     const editedEntry: BlogEntry = this.blogEditForm.value;
     editedEntry._id = this.blogEntry._id;
+    this._isBeingSaved = true;
     this.blogService.updateBlogEntry(editedEntry);
+  }
+
+  canDeactivate() {
+    const formValues = this.blogEditForm.value;
+    const valuesUnchanged = formValues.title === this.blogEntry.title
+      && formValues.content === this.blogEntry.title;
+
+    if (valuesUnchanged || this._isBeingSaved) return true;
+
+    return window.confirm('Discard changes?');
   }
 
   ngOnInit() {

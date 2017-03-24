@@ -6,6 +6,7 @@ import { UserModule } from '../user/user.module';
 import { HomeComponent } from './home.component';
 import { NavbarComponent } from './navbar.component';
 import { PageNotFoundComponent } from './page-not-found.component';
+import { CanDeactivateGuard } from './can-deactivate.guard';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
     NavbarComponent
   ],
   providers: [
+    CanDeactivateGuard
   ]
 })
 export class CoreModule { }
