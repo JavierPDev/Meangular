@@ -34,7 +34,6 @@ function Register (self, done) {
   // this.updateFrontendCdn(self)
   // frontendFiles > Returns the files to send to the frontend
   // return self.frontendFiles
-  return
 }
 
 Register.prototype.getFolderContents = function (self) {

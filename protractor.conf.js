@@ -2,7 +2,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 /* global jasmine */
-const { SpecReporter  } = require('jasmine-spec-reporter')
+const { SpecReporter } = require('jasmine-spec-reporter')
 process.env.NODE_ENV = 'e2e'
 var Mean = require('./server.mean.js')
 var run = require('./run.js')

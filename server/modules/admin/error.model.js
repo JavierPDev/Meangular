@@ -36,4 +36,3 @@ var errorSchema = mongoose.Schema({
 })
 
 module.exports = errorSchema
-
