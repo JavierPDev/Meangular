@@ -16,6 +16,9 @@ Angular (2+) files found in `/client/src`.
 To use Google Oauth2 authentication flow for login/signup, set the client id, client secret, and redirect url in the `/configs/environments/*.js` file(s) you will be using or set them as environment variables on `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REDIRECT_URL` before running the app. If this information is not present, the Google login/signup links will result in a 404. If login through google is not being used these links can be deleted. 
 
 ```bash
+# Install
+yarn install
+
 # Start in development mode and watch for changes on server and frontend
 # using nodemon and angular-cli. 
 npm start
