@@ -32,15 +32,14 @@ describe('BlogCreateComponent', () => {
     TestBed.compileComponents();
     fixture = TestBed.createComponent(BlogCreateComponent);
     component = fixture.debugElement.componentInstance;
+    component.ngOnInit();
   });
 
   it('creates a blogCreateForm FormGroup', () => {
-    component.ngOnInit();
     expect(component.blogCreateForm instanceof FormGroup).toBe(true);
   });
 
   it('initializes form with blanks', () => {
-    component.ngOnInit();
     expect(component.blogCreateForm.value.title).toEqual('');
     expect(component.blogCreateForm.value.content).toEqual('');
   });
@@ -51,11 +50,38 @@ describe('BlogCreateComponent', () => {
       content: 'test content'
     };
     const blogService = TestBed.get(BlogService);
-    component.ngOnInit();
     spyOn(blogService, 'createBlogEntry');
     component.blogCreateForm.patchValue(newFormValues);
     component.createBlogEntry();
     expect(blogService.createBlogEntry)
       .toHaveBeenCalledWith(newFormValues);
+  });
+
+  describe('#canDeactivate', () => {
+    beforeAll(() => {
+      // Mock confirm so test can proceed without interaction
+      // Simulates user clicking cancel on browser confirm prompt
+      spyOn(window, 'confirm').and.returnValue(false);
+    });
+
+    it('allows deactivation if inputs are unchanged', () => {
+      expect(component.canDeactivate()).toBe(true);
+    });
+    
+    it('disallows deactivation if inputs are changed but blog entry not created',
+       () => {
+      const title = 'changed title';
+      const content = 'changed content';
+      component.blogCreateForm.patchValue({content, title});
+      expect(component.canDeactivate()).toBe(false);
+    });
+
+    it('allows deactivation if inputs changed & blog entry is created', () => {
+      const title = 'changed title';
+      const content = 'changed content';
+      component.blogCreateForm.patchValue({content, title});
+      component.createBlogEntry();
+      expect(component.canDeactivate()).toBe(true);
+    });
   });
 });
