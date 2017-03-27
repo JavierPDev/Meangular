@@ -30,7 +30,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   canDeactivate() {
     const formValues = this.blogEditForm.value;
     const valuesUnchanged = formValues.title === this.blogEntry.title
-      && formValues.content === this.blogEntry.title;
+      && formValues.content === this.blogEntry.content;
 
     if (valuesUnchanged || this._isBeingSaved) return true;
 

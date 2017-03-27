@@ -89,4 +89,33 @@ describe('BlogEditComponent', () => {
         _id: blogEntryStub._id
       });
   });
+
+  describe('#canDeactivate', () => {
+    beforeEach(() => {
+      // Mock confirm so test can proceed without interaction
+      // Simulates user clicking cancel on browser confirm prompt
+      spyOn(window, 'confirm').and.returnValue(false);
+      component.ngOnInit();
+    });
+
+    it('allows deactivation if inputs are unchanged', () => {
+      expect(component.canDeactivate()).toBe(true);
+    });
+    
+    it('disallows deactivation if inputs are changed but blog entry not edited',
+       () => {
+      const title = 'changed title';
+      const content = 'changed content';
+      component.blogEditForm.patchValue({content, title});
+      expect(component.canDeactivate()).toBe(false);
+    });
+
+    it('allows deactivation if inputs changed & blog entry is edited', () => {
+      const title = 'changed title';
+      const content = 'changed content';
+      component.blogEditForm.patchValue({content, title});
+      component.editBlogEntry();
+      expect(component.canDeactivate()).toBe(true);
+    });
+  });
 });
