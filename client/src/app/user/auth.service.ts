@@ -148,7 +148,7 @@ export class AuthService {
    * Signup user.
    * @param {User} user - User info for signup
    */
-  public signup(user: User): void {
+  public signup(user): void {
     user.redirect = localStorage['redirect'];
 
     this._http.post('/api/signup', user)
@@ -194,9 +194,9 @@ export class AuthService {
   private _watchForRedirectTarget(): void {
     this._router.events
       .filter(event => event instanceof NavigationEnd)
-      .filter(event => event.url !== '/login')
-      .filter(event => event.url !== '/signup')
-      .filter(event => event.url !== '/oauth')
-      .subscribe(event => localStorage['redirect'] = event.url);
+      .filter(event => event['url'] !== '/login')
+      .filter(event => event['url'] !== '/signup')
+      .filter(event => event['url'] !== '/oauth')
+      .subscribe(event => localStorage['redirect'] = event['url']);
   }
 }

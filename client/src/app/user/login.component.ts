@@ -13,7 +13,7 @@ export class LoginComponent implements OnDestroy {
 
   constructor(public authService: AuthService) {}
 
-  public login(ev): void {
+  public login(): void {
     this.authService.login(this.email, this.password);
   }
 
