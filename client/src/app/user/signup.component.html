@@ -5,8 +5,8 @@
       <form novalidate [formGroup]="signupForm" (submit)="signup()">
         <div
          class="form-group"
-          [class.has-error]="!signupForm.controls['email'].valid
-            && signupForm.controls['email'].touched">
+          [class.has-error]="!signupForm.get('email').valid
+            && signupForm.get('email').touched">
           <label class="control-label" for="email">
             <strong>Email *</strong>
           </label>
@@ -15,25 +15,25 @@
             id="email"
             name="email"
             type="email"
-            [formControl]="signupForm.controls['email']"/>
+            [formControl]="signupForm.get('email')"/>
           <span
             class="help-block"
-            *ngIf="signupForm.controls['email'].hasError('required')
-              && signupForm.controls['email'].touched">
+            *ngIf="signupForm.get('email').hasError('required')
+              && signupForm.get('email').touched">
             Email is required
           </span>
           <span
             class="help-block"
-            *ngIf="signupForm.controls['email'].hasError('pattern')
-              && signupForm.controls['email'].touched">
+            *ngIf="signupForm.get('email').hasError('pattern')
+              && signupForm.get('email').touched">
             Must be a proper email
           </span>
         </div>
         <div
           class="form-group"
           [class.has-error]="
-            !signupForm.controls['profile'].controls['name'].valid
-              && signupForm.controls['profile'].controls['name'].touched">
+            !signupForm.get('profile').get('name').valid
+              && signupForm.get('profile').get('name').touched">
           <label class="control-label" for="name">
             <strong>Name *</strong>
           </label>
@@ -42,24 +42,24 @@
             id="name"
             name="name"
             type="text"
-            [formControl]="signupForm.controls['profile'].controls['name']"/>
+            [formControl]="signupForm.get('profile').get('name')"/>
           <span
             class="help-block"
-            *ngIf="signupForm.controls['profile'].controls['name'].hasError('required')
-              && signupForm.controls['profile'].controls['name'].touched">
+            *ngIf="signupForm.get('profile').get('name').hasError('required')
+              && signupForm.get('profile').get('name').touched">
             Name is required
           </span>
           <span
             class="help-block"
-            *ngIf="signupForm.controls['profile'].controls['name'].hasError('minlength')
-              && signupForm.controls['profile'].controls['name'].touched">
+            *ngIf="signupForm.get('profile').get('name').hasError('minlength')
+              && signupForm.get('profile').get('name').touched">
             Name requires at least three characters
           </span>
         </div>
         <div
           class="form-group"
-          [class.has-error]="!signupForm.controls['password'].valid
-            && signupForm.controls['password'].touched">
+          [class.has-error]="!signupForm.get('password').valid
+            && signupForm.get('password').touched">
           <label class="control-label" for="password">
             <strong>Password *</strong>
           </label>
@@ -68,24 +68,24 @@
             id="password"
             name="password"
             type="password"
-            [formControl]="signupForm.controls['password']"/>
+            [formControl]="signupForm.get('password')"/>
           <span
             class="help-block"
-            *ngIf="signupForm.controls['password'].hasError('required')
-              && signupForm.controls['password'].touched">
+            *ngIf="signupForm.get('password').hasError('required')
+              && signupForm.get('password').touched">
             Password is required
           </span>
           <span
             class="help-block"
-            *ngIf="signupForm.controls['password'].hasError('minlength')
-              && signupForm.controls['password'].touched">
+            *ngIf="signupForm.get('password').hasError('minlength')
+              && signupForm.get('password').touched">
             Password requires at least six characters
           </span>
         </div>
         <div 
           class="form-group"
-          [class.has-error]="!signupForm.controls['confirmPassword'].valid
-            && signupForm.controls['confirmPassword'].touched">
+          [class.has-error]="!signupForm.get('confirmPassword').valid
+            && signupForm.get('confirmPassword').touched">
           <label class="control-label" for="confirmPassword">
             <strong>Confirm Password *</strong>
           </label>
@@ -94,17 +94,17 @@
             id="confirmPassword"
             name="confirmPassword"
             type="password"
-            [formControl]="signupForm.controls['confirmPassword']"/>
+            [formControl]="signupForm.get('confirmPassword')"/>
           <span
             class="help-block"
-            *ngIf="signupForm.controls['confirmPassword'].hasError('required')
-              && signupForm.controls['confirmPassword'].touched">
+            *ngIf="signupForm.get('confirmPassword').hasError('required')
+              && signupForm.get('confirmPassword').touched">
             Password is required
           </span>
           <span
             class="help-block"
-            *ngIf="signupForm.controls['confirmPassword'].hasError('minlength')
-              && signupForm.controls['confirmPassword'].touched">
+            *ngIf="signupForm.get('confirmPassword').hasError('minlength')
+              && signupForm.get('confirmPassword').touched">
             Password requires at least six characters
           </span>
         </div>

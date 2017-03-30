@@ -10,8 +10,8 @@
         <div
           class="form-group"
           [class.has-error]="
-            !profileForm.controls['email'].valid
-              && profileForm.controls['email'].touched">
+            !profileForm.get('email').valid
+              && profileForm.get('email').touched">
           <label class="control-label" for="email">
             <strong>Email *</strong>
           </label>
@@ -21,24 +21,24 @@
             name="email"
             type="email"
             *ngIf="!user.oauth"
-            [formControl]="profileForm.controls['email']"/>
+            [formControl]="profileForm.get('email')"/>
           <p *ngIf="user.oauth">{{user.email}}</p>
           <span
             class="help-block"
-            *ngIf="profileForm.controls['email'].hasError('required')">
+            *ngIf="profileForm.get('email').hasError('required')">
             Email is required
           </span>
           <span
             class="help-block"
-            *ngIf="profileForm.controls['email'].hasError('pattern')">
+            *ngIf="profileForm.get('email').hasError('pattern')">
             Must be a proper email
           </span>
         </div>
         <div
           class="form-group"
           [class.has-error]="
-            !profileForm.controls['profile'].controls['name'].valid
-              && profileForm.controls['profile'].controls['name'].touched">
+            !profileForm.get('profile').get('name').valid
+              && profileForm.get('profile').get('name').touched">
           <label class="control-label" for="name">
             <strong>Name *</strong>
           </label>
@@ -47,17 +47,17 @@
             id="name"
             name="name"
             type="text"
-            [formControl]="profileForm.controls['profile'].controls['name']"/>
+            [formControl]="profileForm.get('profile').get('name')"/>
           <span
             class="help-block"
-            *ngIf="profileForm.controls['profile']
-              .controls['name'].hasError('required')">
+            *ngIf="profileForm.get('profile')
+              .get('name').hasError('required')">
             Name is required
           </span>
           <span
             class="help-block"
-            *ngIf="profileForm.controls['profile']
-              .controls['name'].hasError('minlength')">
+            *ngIf="profileForm.get('profile')
+              .get('name').hasError('minlength')">
             Name requires at least three characters
           </span>
         </div>
@@ -70,7 +70,7 @@
             id="gender"
             name="gender"
             type="text"
-            [formControl]="profileForm.controls['profile'].controls['gender']"/>
+            [formControl]="profileForm.get('profile').get('gender')"/>
         </div>
         <div class="form-group">
           <label class="control-label" for="location">
@@ -81,7 +81,7 @@
             id="location"
             name="location"
             type="text"
-            [formControl]="profileForm.controls['profile'].controls['location']"/>
+            [formControl]="profileForm.get('profile').get('location')"/>
         </div>
         <div class="form-group">
           <label class="control-label" for="website">
@@ -92,7 +92,7 @@
             id="website"
             name="website"
             type="text"
-            [formControl]="profileForm.controls['profile'].controls['website']"/>
+            [formControl]="profileForm.get('profile').get('website')"/>
         </div>
         <button
           class="btn btn-primary"
@@ -114,8 +114,8 @@
         <legend>Change Password</legend>
         <div
           class="form-group"
-          [class.has-error]="!passwordForm.controls['password'].valid
-              && passwordForm.controls['password'].touched">
+          [class.has-error]="!passwordForm.get('password').valid
+              && passwordForm.get('password').touched">
           <label class="control-label" for="password">
             Password
           </label>
@@ -124,17 +124,17 @@
             id="password"
             name="password"
             type="password"
-            [formControl]="passwordForm.controls['password']"/>
+            [formControl]="passwordForm.get('password')"/>
           <span
             class="help-block"
-            *ngIf="passwordForm.controls['password'].hasError('minlength')">
+            *ngIf="passwordForm.get('password').hasError('minlength')">
             Password must contain at least 6 characters
           </span>
         </div>
         <div
           class="form-group"
-          [class.has-error]="!passwordForm.controls['confirmPassword'].valid
-              && passwordForm.controls['confirmPassword'].touched">
+          [class.has-error]="!passwordForm.get('confirmPassword').valid
+              && passwordForm.get('confirmPassword').touched">
           <label class="control-label" for="confirmPassword">
             Confirm Password
           </label>
@@ -143,10 +143,10 @@
             id="confirmPassword"
             name="confirmPassword"
             type="password"
-            [formControl]="passwordForm.controls['confirmPassword']"/>
+            [formControl]="passwordForm.get('confirmPassword')"/>
           <span
             class="help-block"
-            *ngIf="passwordForm.controls['confirmPassword']
+            *ngIf="passwordForm.get('confirmPassword')
               .hasError('minlength')">
             Password must contain at least 6 characters
           </span>
