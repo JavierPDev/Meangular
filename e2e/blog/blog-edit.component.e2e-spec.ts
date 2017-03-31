@@ -62,6 +62,7 @@ describe('BlogEdit component', () => {
       contentInput.sendKeys('user');
       submitBtn = element(by.css('[type="submit"]'));
       submitBtn.click();
+      browser.sleep(500);
       expect(element(by.id('blogEntryContent')).getText()).toBe('user');
     });
 
@@ -164,6 +165,28 @@ describe('BlogEdit component', () => {
       it('submit button is disabled', () => {
         appPage.expectSubmitEnabledStateToBe(false);
       });
+    });
+  });
+
+  describe('canDeactivate guard', () => {
+    beforeEach(() => {
+      browser.get('/blog/example/edit');
+    });
+
+    it('confirm box appears when attempting to navigate away when content changed',
+      () => {
+      contentInput = element(by.id('content'));
+      contentInput.sendKeys('foo');
+      appPage.clickBlogNavLink();
+      appPage.expectConfirmDialogPresent();
+    });
+
+    it('confirm box appears when attempting to navigate away when title changed',
+      () => {
+      titleInput = element(by.id('title'));
+      titleInput.sendKeys('bar');
+      appPage.clickBlogNavLink();
+      appPage.expectConfirmDialogPresent();
     });
   });
 });

@@ -1,4 +1,4 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by, ExpectedConditions } from 'protractor';
 
 export class AppPage {
   public clearToken() {
@@ -12,7 +12,7 @@ export class AppPage {
    * @param {Boolean} isEnabled - Whether to test for enabled or disabled
    * @param {String} containerSelector - CSS selector of submit btn's parent
    */
-  public expectSubmitEnabledStateToBe(isEnabled, containerSelector?) {
+  public expectSubmitEnabledStateToBe(isEnabled, containerSelector?): void {
     const selector = containerSelector
       ? containerSelector+' [type="submit"]' : '[type="submit"]';
     const submitBtn = element(by.css(selector));
@@ -29,5 +29,14 @@ export class AppPage {
 
   public getSuccessText() {
     return element(by.css('.alert.alert-success')).getText();
+  }
+
+  public clickBlogNavLink() {
+    element(by.cssContainingText('nav a', 'Blog')).click();
+  }
+
+  public expectConfirmDialogPresent() {
+    browser.wait(ExpectedConditions.alertIsPresent(), 5000);
+    browser.switchTo().alert().dismiss();
   }
 }
