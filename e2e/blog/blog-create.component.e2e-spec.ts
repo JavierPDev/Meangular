@@ -119,4 +119,26 @@ describe('BlogCreate component', () => {
       });
     });
   });
+
+  describe('canDeactivate guard', () => {
+    beforeEach(() => {
+      browser.get('/blog/create');
+    });
+
+    it('confirm box appears when attempting to navigate away when content changed',
+      () => {
+      contentInput = element(by.id('content'));
+      contentInput.sendKeys('foo');
+      appPage.clickBlogNavLink();
+      appPage.expectConfirmDialogPresent();
+    });
+
+    it('confirm box appears when attempting to navigate away when title changed',
+      () => {
+      titleInput = element(by.id('title'));
+      titleInput.sendKeys('bar');
+      appPage.clickBlogNavLink();
+      appPage.expectConfirmDialogPresent();
+    });
+  });
 });
