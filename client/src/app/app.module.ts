@@ -46,8 +46,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     useFactory: authHttpServiceFactory,
     deps: [ Http, RequestOptions ]
   },
-  
-  // { 
+  // {
   // 	provide: ErrorHandler,
   // 	useClass: GlobalErrorHandler
   // },

@@ -17,7 +17,7 @@ export class OauthComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Get and set jwt and user after redirect from oauth authentication 
+    // Get and set jwt and user after redirect from oauth authentication
     this._http.get('/auth/oauth/token')
       .map(res => res.json())
       .subscribe(res => {

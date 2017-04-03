@@ -3,7 +3,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { ForgotPasswordComponent } from './forgot-password.component';
 import { AuthService } from '../user/auth.service';
@@ -29,7 +29,7 @@ describe('ForgotPasswordComponent', () => {
               forgot: function(email) {
                 return Observable.from([email]);
               }
-            }
+            };
           }
         }
       ]

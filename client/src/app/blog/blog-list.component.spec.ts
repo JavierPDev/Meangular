@@ -3,7 +3,8 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
 
 import { BlogListComponent } from './blog-list.component';
 import { AuthService } from '../user/auth.service';
@@ -46,7 +47,7 @@ describe('BlogListComponent', () => {
           }
         },
         {
-          provide: AuthService, 
+          provide: AuthService,
           useValue: {}
         },
         {
@@ -89,7 +90,7 @@ describe('BlogListComponent', () => {
       expect(router.navigate)
         .toHaveBeenCalledWith(['/blog/list'], {queryParams});
     });
-    
+
     beforeEach(() => {
       component.ngOnInit();
       component.limit = 20;

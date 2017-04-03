@@ -3,7 +3,8 @@
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import { SignupComponent } from './signup.component';
 import { AuthService } from '../user/auth.service';
@@ -37,7 +38,7 @@ describe('SignupComponent', () => {
               signup: function(user) {
                 return Observable.of(user);
               }
-            }
+            };
           }
         }
       ],

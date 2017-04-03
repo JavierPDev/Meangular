@@ -12,7 +12,7 @@ import { BlogEntry } from './blog-entry';
 export class BlogEditComponent implements OnInit, OnDestroy {
   public blogEditForm: FormGroup;
   public blogEntry;
-  private _isBeingSaved: boolean = false;
+  private _isBeingSaved = false;
 
   constructor(
     public blogService: BlogService,
@@ -32,7 +32,9 @@ export class BlogEditComponent implements OnInit, OnDestroy {
     const valuesUnchanged = formValues.title === this.blogEntry.title
       && formValues.content === this.blogEntry.content;
 
-    if (valuesUnchanged || this._isBeingSaved) return true;
+    if (valuesUnchanged || this._isBeingSaved) {
+      return true;
+    }
 
     return window.confirm('Discard changes?');
   }

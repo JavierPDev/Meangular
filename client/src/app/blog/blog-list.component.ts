@@ -16,8 +16,8 @@ export class BlogListComponent implements OnInit {
   public currentStart: number;
   public currentEnd: number;
   public currentPage: number;
-  public limit: number = 20;
-  public sort: string = '-created';
+  public limit = 20;
+  public sort = '-created';
   private _routeParams;
 
   constructor(
@@ -39,16 +39,18 @@ export class BlogListComponent implements OnInit {
   }
 
   private _setPageData(blogListData: any): void {
-    let {
+    const {
       count,
       blogEntries,
       limit,
-      skip,
-      page,
       sort
     } = blogListData;
+    let {
+      skip,
+      page
+    } = blogListData;
     skip = skip || 0;
-    page = page - 1 || 0
+    page = page - 1 || 0;
     this.blogEntries = blogEntries;
     this.count = count;
     this.limit = limit || this.limit;
