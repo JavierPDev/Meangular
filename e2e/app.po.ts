@@ -14,7 +14,7 @@ export class AppPage {
    */
   public expectSubmitEnabledStateToBe(isEnabled, containerSelector?): void {
     const selector = containerSelector
-      ? containerSelector+' [type="submit"]' : '[type="submit"]';
+      ? containerSelector + ' [type="submit"]' : '[type="submit"]';
     const submitBtn = element(by.css(selector));
     expect(submitBtn.isEnabled()).toBe(isEnabled);
   }

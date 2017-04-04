@@ -9,7 +9,7 @@ import { BlogService } from './blog.service';
 })
 export class BlogCreateComponent implements OnInit, OnDestroy {
   public blogCreateForm: FormGroup;
-  private _isBeingSaved: boolean = false;
+  private _isBeingSaved = false;
 
   constructor(
     public blogService: BlogService,
@@ -25,7 +25,9 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
     const formValues = this.blogCreateForm.value;
     const valuesUnchanged = formValues.title === '' && formValues.content === '';
 
-    if (valuesUnchanged || this._isBeingSaved) return true;
+    if (valuesUnchanged || this._isBeingSaved) {
+      return true;
+    }
 
     return window.confirm('Discard changes?');
   }

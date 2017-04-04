@@ -80,9 +80,6 @@ describe('BlogEdit component', () => {
   });
 
   describe('title validation', () => {
-    let formGroup;
-    let warningSpan;
-
     beforeAll(() => {
       userPage.login('help@greenpioneersolutions.com', 'truetrue1!');
       browser.get('/blog/example/edit');
@@ -95,10 +92,10 @@ describe('BlogEdit component', () => {
     describe('required', () => {
       beforeAll(() => {
         titleInput.clear();
-        titleInput.sendKeys('ta')
+        titleInput.sendKeys('ta');
         titleInput.clear();
         titleInput.click();
-        titleInput.sendKeys('j')
+        titleInput.sendKeys('j');
         titleInput.sendKeys(Key.BACK_SPACE);
         body.click();
       });
@@ -129,9 +126,6 @@ describe('BlogEdit component', () => {
   });
 
   describe('content validation', () => {
-    let formGroup;
-    let warningSpan;
-
     beforeAll(() => {
       contentInput = element(by.id('content'));
       formGroup = contentInput.element(by.xpath('..'));
@@ -143,7 +137,7 @@ describe('BlogEdit component', () => {
       beforeAll(() => {
         contentInput.clear();
         contentInput.click();
-        contentInput.sendKeys('j')
+        contentInput.sendKeys('j');
         contentInput.sendKeys(Key.BACK_SPACE);
         body.click();
       });

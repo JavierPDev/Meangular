@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { AuthHttp, JwtHelper } from 'angular2-jwt';
 import { Router, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/toPromise';
@@ -22,6 +22,7 @@ export class AuthService {
   /**
    * Regex pattern used for form validation
    */
+  // tslint:disable-next-line
   public emailPattern: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   /**
    * Auth errors stored here for alerting to user
@@ -30,8 +31,8 @@ export class AuthService {
   /**
    * Admin status gotten from user roles
    */
-  public isAdmin: boolean = false;
-  public loggedIn: boolean = false;
+  public isAdmin = false;
+  public loggedIn = false;
   private _jwtHelper: JwtHelper = new JwtHelper();
   private _user;
 
@@ -46,7 +47,7 @@ export class AuthService {
     // Set default redirect target. Localstorage needed for oauth auth flow.
     localStorage['redirect'] = '/';
   }
-  
+
   /**
    * Change user's password
    * @param {Object} password form value - Password form value
@@ -77,8 +78,9 @@ export class AuthService {
     const tokenIsPresentAndExpired = token
       && this._jwtHelper.isTokenExpired(token);
 
-    if (!token || tokenIsPresentAndExpired)
+    if (!token || tokenIsPresentAndExpired) {
       return Promise.resolve(false);
+    }
 
     return this._authHttp.get('/api/authenticate')
       .map(res => res.json())
@@ -111,7 +113,9 @@ export class AuthService {
    * Logout user and return to homepage.
    */
   public logout(): void {
-    if (!localStorage['id_token']) return;
+    if (!localStorage['id_token']) {
+      return;
+    }
 
     this._authHttp.get('/api/logout')
       .subscribe(() => {
@@ -128,10 +132,10 @@ export class AuthService {
    * @return {Observable<AuthResponse>}
    */
   public resetPassword(password: string, confirmPassword: string, token: string): Observable<AuthResponse> {
-    return this._http.post('/api/reset/'+token, {password, confirmPassword})
+    return this._http.post('/api/reset/' + token, {password, confirmPassword})
       .map(res => res.json());
   }
-  
+
   /**
    * Set user after authentication. Public for oauth.
    * @param {AuthResponse} res - Response object from server
@@ -156,7 +160,7 @@ export class AuthService {
       .subscribe(res => this._onAuthenticated.call(this, res),
                 err => this.error = JSON.parse(err._body).msg);
   }
-  
+
   /**
    * Update user.
    * @param {User} user - User info to update
