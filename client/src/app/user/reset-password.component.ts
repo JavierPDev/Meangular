@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class ResetPasswordComponent implements OnInit {
   public resetForm: FormGroup;
-  public message: string = '';
+  public message = '';
   private _resetToken: string;
 
   constructor(

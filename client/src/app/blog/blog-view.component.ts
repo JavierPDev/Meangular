@@ -23,7 +23,7 @@ export class BlogViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Get blog entry data from route resolve 
+    // Get blog entry data from route resolve
     this.blogEntry = this._activateRoute.snapshot.data['blogEntry'];
   }
 

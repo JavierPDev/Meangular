@@ -30,7 +30,7 @@ describe('AppComponent', () => {
       component.ngOnInit();
       tick();
       expect(component).toBeTruthy();
-    } catch(e) {
+    } catch (e) {
       console.log('e', e);
     }
   }));

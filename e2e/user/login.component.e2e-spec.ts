@@ -28,8 +28,8 @@ describe('Login component', () => {
 
     it('displays error for non-existent email', () => {
       const nonexistentEmail = 'doesnot@exist.com';
-      emailInput.sendKeys(nonexistentEmail)
-      passwordInput.sendKeys('truetrue1!')
+      emailInput.sendKeys(nonexistentEmail);
+      passwordInput.sendKeys('truetrue1!');
       loginForm.submit();
       expect(appPage.getErrorText())
         .toBe(`Email ${nonexistentEmail} not found`);
@@ -37,8 +37,8 @@ describe('Login component', () => {
 
     it('displays error for wrong password', () => {
       const email = 'javier@javierdev.com';
-      emailInput.sendKeys(email)
-      passwordInput.sendKeys('invalidpass')
+      emailInput.sendKeys(email);
+      passwordInput.sendKeys('invalidpass');
       loginForm.submit();
       expect(appPage.getErrorText()).toBe('Invalid email or password.');
     });

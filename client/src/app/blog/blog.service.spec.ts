@@ -24,6 +24,7 @@ const blogEntryStub: BlogEntry = {
 };
 const blogListStub = [blogEntryStub];
 const slug = 'test-blog-entry';
+// tslint:disable-next-line
 const jwt = 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ODk4ZTg3MzFhYTM5Nzc5NTk4OTY1NjIiLCJpYXQiOjE0ODgzMDUwMDYsImV4cCI6MTQ4ODMxMjIwNn0.Mk41xT9GHchIzkI2NQQF_jWymmNpIcVB1YJFaL5Olho';
 let service;
 let mockBackend;
@@ -202,7 +203,7 @@ describe('BlogService', () => {
       mockBackend.connections.subscribe(c => {
         expect(c.request.method).toBe(RequestMethod.Get);
       });
-      service.getBlogEntryBySlug('test')
+      service.getBlogEntryBySlug('test');
       tick();
     }));
 
@@ -250,7 +251,7 @@ describe('BlogService', () => {
       mockBackend.connections.subscribe(c => {
         expect(c.request.method).toBe(RequestMethod.Get);
       });
-      service.getBlogList()
+      service.getBlogList();
       tick();
     }));
 
@@ -272,7 +273,7 @@ describe('BlogService', () => {
   });
 
   describe('updateBlogEntry()', () => {
-    const title: string = 'Updated blog title';
+    const title = 'Updated blog title';
     const editedBlogEntry: BlogEntry = Object.assign({}, blogEntryStub, {title});
 
     it('calls the correct api url', fakeAsync(() => {
@@ -301,7 +302,7 @@ describe('BlogService', () => {
     }));
 
     it('navigates to correct url upon update success', fakeAsync(() => {
-      const updatedSlug: string = 'updated-blog-title';
+      const updatedSlug = 'updated-blog-title';
       const responseStub = Object.assign({}, editedBlogEntry, {slug: updatedSlug});
       const router = TestBed.get(Router);
       spyOn(router, 'navigate');

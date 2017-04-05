@@ -17,14 +17,16 @@ export class UserPage {
           element(by.css('form')).submit();
           browser.sleep(300);
         }
-      })
+      });
   }
 
   public logout() {
     const logoutLink = element(by.cssContainingText('a', 'Logout'));
     browser.isElementPresent(logoutLink)
       .then(isPresent => {
-        if (isPresent) logoutLink.click();
+        if (isPresent) {
+          logoutLink.click();
+        }
       });
   }
 }

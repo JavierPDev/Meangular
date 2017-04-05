@@ -6,10 +6,11 @@ import { Http, BaseRequestOptions, RequestMethod,
   Response, ResponseOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from './auth.service';
 
+// tslint:disable-next-line
 const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ODk4ZTg3MzFhYTM5Nzc5NTk4OTY1NjIiLCJpYXQiOjE0ODg4MTg5NTcsImV4cCI6MjM1MjgxODk1N30.A0BCOmA2pUBWch85ou_fKv87zZMrFxczd2uTFOdToeE';
 const authenticatedResponseStub = {
   authenticated: true,
@@ -125,7 +126,7 @@ describe('AuthService', () => {
       service.getAuthenticatedState()
         .then((authState) => {
           expect(authState).toBe(false);
-        })
+        });
       tick();
     }));
 
@@ -158,7 +159,7 @@ describe('AuthService', () => {
       service.getAuthenticatedState()
         .then(isAuthenticated => {
           expect(isAuthenticated).toBe(true);
-        })
+        });
       tick();
     }));
 
@@ -175,7 +176,7 @@ describe('AuthService', () => {
         .then(authState => {
           expect(service.setAuthenticatedUser)
             .toHaveBeenCalledWith(authenticatedResponseStub);
-        })
+        });
       tick();
     }));
   });

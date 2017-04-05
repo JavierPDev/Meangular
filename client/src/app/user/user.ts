@@ -8,5 +8,5 @@ export class User {
   public oauth?: string;
   public profile: {
     name: string
-  }
+  };
 }

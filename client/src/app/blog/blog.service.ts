@@ -37,7 +37,7 @@ export class BlogService {
    * @param {BlogEntry} entry - Blog entry
    */
   public deleteBlogEntry(entry: BlogEntry): void {
-    this._authHttp.delete('/api/blog/'+entry._id)
+    this._authHttp.delete('/api/blog/' + entry._id)
       .map(res => res.json())
       .subscribe(() => {
         this._router.navigate(['/blog/list']);
@@ -66,14 +66,22 @@ export class BlogService {
    */
   public getBlogList(params: any): Promise<any> {
     const searchParams = Object.assign({}, params);
+
     if (searchParams.page) {
       searchParams.skip = searchParams.limit * (searchParams.page - 1);
       delete searchParams.page;
     }
-    if (!searchParams.sort) searchParams.sort = '-created';
+
+    if (!searchParams.sort) {
+      searchParams.sort = '-created';
+    }
+
     const queryParams = new URLSearchParams();
+
     for (const key in searchParams) {
-      queryParams.set(key, searchParams[key]);
+      if (searchParams.hasOwnProperty(key)) {
+        queryParams.set(key, searchParams[key]);
+      }
     }
 
     return this._http.get('/api/blog', {search: queryParams})
@@ -91,7 +99,7 @@ export class BlogService {
    * @param {BlogEntry} entry - Blog entry
    */
   public updateBlogEntry(entry: BlogEntry): void {
-    this._authHttp.put('/api/blog/'+entry._id, entry)
+    this._authHttp.put('/api/blog/' + entry._id, entry)
       .map(res => res.json())
       .subscribe(blogEntry => {
         this._router.navigate(['/blog', blogEntry.slug]);

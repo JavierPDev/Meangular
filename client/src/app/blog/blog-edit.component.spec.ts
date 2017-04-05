@@ -101,7 +101,7 @@ describe('BlogEditComponent', () => {
     it('allows deactivation if inputs are unchanged', () => {
       expect(component.canDeactivate()).toBe(true);
     });
-    
+
     it('disallows deactivation if inputs are changed but blog entry not edited',
        () => {
       const title = 'changed title';

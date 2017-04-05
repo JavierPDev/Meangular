@@ -3,7 +3,8 @@
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import { ResetPasswordComponent } from './reset-password.component';
 import { AuthService } from '../user/auth.service';
@@ -28,7 +29,7 @@ describe('ResetPasswordComponent', () => {
               resetPassword: function(password, confirmPassword) {
                 return Observable.from([password, confirmPassword]);
               }
-            }
+            };
           }
         },
         {

@@ -39,10 +39,10 @@ describe('Profile component', () => {
     describe('required', () => {
       beforeAll(() => {
         emailInput.clear();
-        emailInput.sendKeys('ta')
+        emailInput.sendKeys('ta');
         emailInput.clear();
         emailInput.click();
-        emailInput.sendKeys('j')
+        emailInput.sendKeys('j');
         emailInput.sendKeys(Key.BACK_SPACE);
         body.click();
       });
@@ -113,10 +113,10 @@ describe('Profile component', () => {
     describe('required', () => {
       beforeAll(() => {
         nameInput.clear();
-        nameInput.sendKeys('ta')
+        nameInput.sendKeys('ta');
         nameInput.clear();
         nameInput.click();
-        nameInput.sendKeys('j')
+        nameInput.sendKeys('j');
         nameInput.sendKeys(Key.BACK_SPACE);
         body.click();
       });

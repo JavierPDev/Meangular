@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   public forgotForm: FormGroup;
-  public message: string = '';
+  public message = '';
 
   constructor(
     public authService: AuthService,

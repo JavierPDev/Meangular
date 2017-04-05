@@ -49,10 +49,10 @@ describe('BlogCreate component', () => {
     describe('required', () => {
       beforeAll(() => {
         titleInput.clear();
-        titleInput.sendKeys('ta')
+        titleInput.sendKeys('ta');
         titleInput.clear();
         titleInput.click();
-        titleInput.sendKeys('j')
+        titleInput.sendKeys('j');
         titleInput.sendKeys(Key.BACK_SPACE);
         body.click();
       });
@@ -95,7 +95,7 @@ describe('BlogCreate component', () => {
       beforeAll(() => {
         contentInput.clear();
         contentInput.click();
-        contentInput.sendKeys('j')
+        contentInput.sendKeys('j');
         contentInput.sendKeys(Key.BACK_SPACE);
         body.click();
       });

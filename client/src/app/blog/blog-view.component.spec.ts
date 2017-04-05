@@ -41,11 +41,11 @@ describe('BlogViewComponent', () => {
         {
           provide: BlogService,
           useValue: {
-            deleteBlogEntry: (blogEntry) => blogEntry
+            deleteBlogEntry: (blogEntryInput) => blogEntry
           }
         },
         {
-          provide: AuthService, 
+          provide: AuthService,
           useValue: {}
         }
       ],
