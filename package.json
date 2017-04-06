@@ -40,7 +40,7 @@
     "e2e": "protractor",
     "pree2e:dev": "webdriver-manager update --standalone false --gecko false",
     "e2e:dev": "protractor",
-    "test": "npm run mocha && ng test --single-run && npm run e2e && npm run lint",
+    "test": "npm run mocha && ng test --single-run && npm run e2e && npm run lint && ng lint",
     "mocha": "node_modules/.bin/mocha tests/unit/mocha.test.js  ",
     "lint": "node_modules/.bin/standard",
     "lint:fix": "node_modules/.bin/standard --fix",
