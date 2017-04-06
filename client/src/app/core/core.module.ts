@@ -7,6 +7,7 @@ import { HomeComponent } from './home.component';
 import { NavbarComponent } from './navbar.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { CanDeactivateGuard } from './can-deactivate.guard';
+import { CoreRoutingModule } from './core.routes';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CanDeactivateGuard } from './can-deactivate.guard';
     RouterModule,
 
     UserModule,
+    CoreRoutingModule
   ],
   exports: [
     NavbarComponent

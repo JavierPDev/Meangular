@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
 import { BlogCreateComponent } from './blog-create.component';
 import { BlogListComponent } from './blog-list.component';
 import { BlogViewComponent } from './blog-view.component';
@@ -7,7 +10,7 @@ import { BlogListResolver } from './blog-list.resolver';
 import { AuthenticatedGuard } from '../user/authenticated.guard';
 import { CanDeactivateGuard } from '../core/can-deactivate.guard';
 
-export const BLOG_ROUTES = [
+const BLOG_ROUTES: Routes = [
   {
     path: 'blog/create',
     component: BlogCreateComponent,
@@ -38,3 +41,13 @@ export const BLOG_ROUTES = [
     canDeactivate: [CanDeactivateGuard]
   }
 ];
+
+@NgModule({
+  imports: [
+    RouterModule.forChild(BLOG_ROUTES)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class BlogRoutingModule {}

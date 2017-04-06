@@ -12,6 +12,7 @@ import { BlogListComponent } from './blog-list.component';
 import { BlogEntryResolver } from './blog-entry.resolver';
 import { BlogListResolver } from './blog-list.resolver';
 import { BlogService } from './blog.service';
+import { BlogRoutingModule } from './blog.routes';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BlogService } from './blog.service';
     ReactiveFormsModule,
     PaginationModule,
 
-    UserModule
+    UserModule,
+    BlogRoutingModule
   ],
   exports: [
   ],
