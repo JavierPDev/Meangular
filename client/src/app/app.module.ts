@@ -10,8 +10,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
 import { BlogModule } from './blog/blog.module';
-import { Routes } from './app.routes';
 import { GlobalErrorHandler } from './common/global-error-handler';
+import { AppRoutingModule } from './app.routes';
 
 // Needed for angular2-jwt to work properly. See:
 // https://github.com/auth0/angular2-jwt/issues/258#issuecomment-272223420
@@ -30,10 +30,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     SlimLoadingBarModule.forRoot(),
     PaginationModule.forRoot(),
 
+    BlogModule,
     UserModule,
     CoreModule,
-    BlogModule,
-    Routes
+    AppRoutingModule
   ],
   exports: [
     SlimLoadingBarModule

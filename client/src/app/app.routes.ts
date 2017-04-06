@@ -1,15 +1,17 @@
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { USER_ROUTES } from './user/user.routes';
-import { CORE_ROUTES } from './core/core.routes';
-import { BLOG_ROUTES } from './blog/blog.routes';
 
-const APP_ROUTES = [
-  ...USER_ROUTES,
-  ...BLOG_ROUTES,
-
-  // Place last to catch 404s
-  ...CORE_ROUTES
+// Add misc app routes here
+const APP_ROUTES: Routes = [
 ];
 
-export const Routes = RouterModule.forRoot(APP_ROUTES);
+@NgModule({
+  imports: [
+    RouterModule.forRoot(APP_ROUTES)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AppRoutingModule {}

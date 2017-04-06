@@ -12,6 +12,7 @@ import { OauthComponent } from './oauth.component';
 import { AuthService } from './auth.service';
 import { AuthenticatedGuard } from './authenticated.guard';
 import { UnauthenticatedGuard } from './unauthenticated.guard';
+import { UserRoutingModule } from './user.routes';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { UnauthenticatedGuard } from './unauthenticated.guard';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    UserRoutingModule
   ],
   exports: [
   ],
