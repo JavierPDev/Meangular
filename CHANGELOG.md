@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.17.0] - 2017-04-07
+### Added
+- Travis CI support added.
+
+### Changed
+- #16 Make blog module lazy loaded.
+
+## [0.16.0] - 2017-04-06
+### Added
+- Front-end linting added to `npm test`.
+
+### Changed
+- #15 Refactor blog routes to follow Angular convention of using modules for all feature module route configurations.
+
+## [0.15.0] - 2017-04-04
+### Added
+- #14 Front-end linting support added.
+- Blog e2e tests added for CanDeactivate guard.
+
+### Changed
+- Update code to pass front-end linting.
+
 ## [0.14.0] - 2017-03-30
 ### Added
 - ng cli tool aliased to ng in npm scripts (ie. Use `npm run ng`)
