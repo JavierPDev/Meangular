@@ -49,6 +49,10 @@ function routes (self) {
   self.app.get('/images/*', nothingFoundHandler('nothing found in images'))
   self.app.get('/uploads/*', nothingFoundHandler('nothing found in uploads'))
   self.app.get('/dist/*', nothingFoundHandler('nothing found in dist'))
+  // Allow lazy-loading of Angular modules
+  self.app.get('/*.chunk.js', function (req, res) {
+    res.sendFile(path.join(__dirname, '../client/dist' + req.url))
+  })
   self.app.get('/*', function (req, res) {
     seo(self, req, function (seoSettings) {
       ejs.renderFile(path.join(__dirname, './layout/index.html'), {

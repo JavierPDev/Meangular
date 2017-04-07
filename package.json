@@ -1,6 +1,6 @@
 {
   "name": "meangular",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "Meangular is built on Mean Stack JS and Angular-cli",
   "main": "index.js",
   "engines": {
@@ -36,15 +36,14 @@
     ]
   },
   "scripts": {
-    "pree2e": "ng build --prod --output-hashing none --aot true && webdriver-manager update --standalone false --gecko false",
+    "pree2e": "npm run ng:build:prod",
     "e2e": "protractor",
-    "pree2e:dev": "webdriver-manager update --standalone false --gecko false",
     "e2e:dev": "protractor",
     "test": "npm run mocha && ng test --single-run && npm run e2e && npm run lint && ng lint",
     "mocha": "node_modules/.bin/mocha tests/unit/mocha.test.js  ",
     "lint": "node_modules/.bin/standard",
     "lint:fix": "node_modules/.bin/standard --fix",
-    "postinstall": "node scripts/postinstall.js",
+    "postinstall": "node scripts/postinstall.js && webdriver-manager update",
     "ng": "ng",
     "ng:build:watch": "node_modules/.bin/ng build --watch",
     "ng:build:prod": "node_modules/.bin/ng build --prod --output-hashing none --aot true",
@@ -201,7 +200,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "protractor": "~5.1.0",
     "selenium-standalone": "^5.9.0",
-    "standard": "latest",
+    "standard": "^9.0.2",
     "supertest": "^2.0.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",

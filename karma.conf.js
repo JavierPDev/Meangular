@@ -1,3 +1,4 @@
+var browsers = process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome']
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/0.13/config/configuration-file.html
 
@@ -39,7 +40,15 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: browsers,
     singleRun: false
   })
 }

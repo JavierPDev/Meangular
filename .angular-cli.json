@@ -15,19 +15,19 @@
       "index": "index.html",
       "main": "main.ts",
       "test": "test.ts",
-			"tsconfig": "tsconfig.app.json",
-			"testTsconfig": "tsconfig.spec.json",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "mobile": false,
       "styles": [
         "styles.scss"
       ],
       "scripts": [],
-			"environmentSource": "environments/environment.ts",
-			"environments": {
-				"dev": "environments/environment.ts",
-				"prod": "environments/environment.prod.ts"
-			}
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
     }
   ],
   "e2e": {
@@ -35,17 +35,17 @@
       "config": "./protractor.conf.js"
     }
   },
-	"lint": [
-		{
-			"project": "client/src/tsconfig.app.json"
-		},
-		{
-			"project": "client/src/tsconfig.spec.json"
-		},
-		{
-			"project": "e2e/tsconfig.e2e.json"
-		}
-	],
+  "lint": [
+    {
+      "project": "client/src/tsconfig.app.json"
+    },
+    {
+      "project": "client/src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
   "test": {
     "karma": {
       "config": "./karma.conf.js"

@@ -26,7 +26,7 @@ import { BlogRoutingModule } from './blog.routes';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    PaginationModule,
+    PaginationModule.forRoot(),
 
     UserModule,
     BlogRoutingModule

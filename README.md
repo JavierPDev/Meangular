@@ -1,13 +1,27 @@
+[![Build Status](https://travis-ci.org/JavierPDev/Meangular.svg?branch=master)](https://travis-ci.org/JavierPDev/Meangular)
+
 # Meangular
 
-Full-stack solution based on Mean Stack JS (readme documentation included below) and Angular-cli.
+Full-stack solution based on Mean Stack JS (readme documentation included below) and Angular-cli (now @angular/cli).
 
-Currently uses Angular 4.
+Meangular currently uses Angular 4.
 
 Out-of-the-box features:
-* Authentication and Authorization
-* Blog functionality with built-in pagination and sorting
-* Optional social login using Google Oauth2
+* User
+  * Profile
+  * Authentication and Authorization
+    * Optional social login using Google Oauth2
+* Blog
+  * Lazy loaded
+  * Create, Edit, and Delete by owner or admin
+    * Deactivation guards when navigating away after form change
+  * Pagination
+    * Sorting
+    * Limit
+    * Filter by user
+* Unit tested front-end and back-end
+* End-to-end tested
+* Linted front-end and back-end code
 
 ## Demo
 [Try it live](http://meangular.herokuapp.com)
@@ -18,7 +32,7 @@ Angular files found in `/client/src`.
 To use Google Oauth2 authentication flow for login/signup, set the client id, client secret, and redirect url in the `/configs/environments/*.js` file(s) you will be using or set them as environment variables on `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REDIRECT_URL` before running the app. If this information is not present, the Google login/signup links will result in a 404. If login through google is not being used these links can be deleted. 
 
 ```bash
-# Install
+# Install (Note: Using yarn sometimes results in version mismatch which will make ahead-of-time compilation fail for production)
 npm install
 
 # Start in development mode and watch for changes on server and frontend
