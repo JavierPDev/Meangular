@@ -8,7 +8,7 @@ var Mean = require('./server.mean.js')
 var run = require('./run.js')
 var seed = require('./tests/seed.js')
 
-exports.config = {
+var config = {
   allScriptsTimeout: 11000,
   specs: [
     './e2e/**/*.e2e-spec.ts'
@@ -16,7 +16,6 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
-  directConnect: true,
   baseUrl: 'http://localhost:3000/',
   framework: 'jasmine',
   jasmineNodeOpts: {
@@ -34,3 +33,17 @@ exports.config = {
     jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}))
   }
 }
+
+if (process.env.TRAVIS) {
+  config.sauceUser = process.env.SAUCE_USERNAME
+  config.sauceKey = process.env.SAUCE_ACCESS_KEY
+  config.capabilities = {
+    'browserName': 'chrome',
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+    'build': process.env.TRAVIS_BUILD_NUMBER
+  }
+} else {
+  config.directConnect = true
+}
+
+exports.config = config
