@@ -4,12 +4,10 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-import { PaginationModule  } from 'ng2-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
-import { BlogModule } from './blog/blog.module';
 import { GlobalErrorHandler } from './common/global-error-handler';
 import { AppRoutingModule } from './app.routes';
 
@@ -28,12 +26,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CommonModule,
     HttpModule,
     SlimLoadingBarModule.forRoot(),
-    PaginationModule.forRoot(),
 
-    BlogModule,
+    AppRoutingModule,
     UserModule,
     CoreModule,
-    AppRoutingModule
   ],
   exports: [
     SlimLoadingBarModule
