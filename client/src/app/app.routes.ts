@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
-// Add misc app routes here
+// Add lazy-loaded routes/modules here
 const APP_ROUTES: Routes = [
+  {
+    path: 'blog',
+    loadChildren: './blog/blog.module#BlogModule'
+  }
 ];
 
 @NgModule({

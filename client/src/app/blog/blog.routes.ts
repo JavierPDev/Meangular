@@ -12,33 +12,38 @@ import { CanDeactivateGuard } from '../core/can-deactivate.guard';
 
 const BLOG_ROUTES: Routes = [
   {
-    path: 'blog/create',
-    component: BlogCreateComponent,
-    canActivate: [AuthenticatedGuard],
-    canDeactivate: [CanDeactivateGuard]
-  },
-  {
-    path: 'blog/list',
-    component: BlogListComponent,
-    resolve: {
-      blogList: BlogListResolver
-    }
-  },
-  {
-    path: 'blog/:slug',
-    component: BlogViewComponent,
-    resolve: {
-      blogEntry: BlogEntryResolver
-    }
-  },
-  {
-    path: 'blog/:slug/edit',
-    component: BlogEditComponent,
-    resolve: {
-      blogEntry: BlogEntryResolver
-    },
-    canActivate: [AuthenticatedGuard],
-    canDeactivate: [CanDeactivateGuard]
+    path: '',
+    children: [
+      {
+        path: 'create',
+        component: BlogCreateComponent,
+        canActivate: [AuthenticatedGuard],
+        canDeactivate: [CanDeactivateGuard]
+      },
+      {
+        path: 'list',
+        component: BlogListComponent,
+        resolve: {
+          blogList: BlogListResolver
+        }
+      },
+      {
+        path: ':slug',
+        component: BlogViewComponent,
+        resolve: {
+          blogEntry: BlogEntryResolver
+        }
+      },
+      {
+        path: ':slug/edit',
+        component: BlogEditComponent,
+        resolve: {
+          blogEntry: BlogEntryResolver
+        },
+        canActivate: [AuthenticatedGuard],
+        canDeactivate: [CanDeactivateGuard]
+      }
+    ]
   }
 ];
 
