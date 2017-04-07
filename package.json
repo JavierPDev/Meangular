@@ -200,7 +200,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "protractor": "~5.1.0",
     "selenium-standalone": "^5.9.0",
-    "standard": "latest",
+    "standard": "^9.0.2",
     "supertest": "^2.0.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
