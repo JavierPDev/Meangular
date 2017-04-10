@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.17.1] - 2017-04-10
+### Changed
+- Give pollyfill scripts their own bundle.
+- Use `/client/src/index.html` as index template instead of Mean Stack JS's `/server/layout/index.html` and switch production build to use output hashing.
+
 ## [0.17.0] - 2017-04-07
 ### Added
 - Travis CI support added.
