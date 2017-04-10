@@ -49,13 +49,19 @@ function routes (self) {
   self.app.get('/images/*', nothingFoundHandler('nothing found in images'))
   self.app.get('/uploads/*', nothingFoundHandler('nothing found in uploads'))
   self.app.get('/dist/*', nothingFoundHandler('nothing found in dist'))
-  // Allow lazy-loading of Angular modules
-  self.app.get('/*.chunk.js', function (req, res) {
+  // Angular-cli targets js files as being in root public so rewrite to dist
+  self.app.get('/*.js', function (req, res) {
     res.sendFile(path.join(__dirname, '../client/dist' + req.url))
   })
+  if (process.env.NODE_ENV === 'development') {
+    self.app.get('/*.map', function (req, res) {
+      res.sendFile(path.join(__dirname, '../client/dist' + req.url))
+    })
+  }
   self.app.get('/*', function (req, res) {
     seo(self, req, function (seoSettings) {
-      ejs.renderFile(path.join(__dirname, './layout/index.html'), {
+      // Use /client/dist/index.html built by angular-cli from /client/src/index.html
+      ejs.renderFile(path.join(__dirname, '../client/dist/index.html'), {
         html: seoSettings,
         googleAnalytics: self.settings.googleAnalytics,
         name: self.settings.app.name,

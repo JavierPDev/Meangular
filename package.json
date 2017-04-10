@@ -46,7 +46,7 @@
     "postinstall": "node scripts/postinstall.js && webdriver-manager update",
     "ng": "ng",
     "ng:build:watch": "node_modules/.bin/ng build --watch",
-    "ng:build:prod": "node_modules/.bin/ng build --prod --output-hashing none --aot true",
+    "ng:build:prod": "node_modules/.bin/ng build --prod --aot",
     "start": "concurrently -k \"npm run ng:build:watch\" \"npm run start:server:watch\"",
     "browser-sync": "browser-sync start --proxy 'localhost:3000' --port 3001 --files 'client/dist/inline.bundle.js' 'client/dist/styles.bundle.css' 'client/dist/main.bundle.js' --no-open",
     "start:debug": "node debug index.js",
