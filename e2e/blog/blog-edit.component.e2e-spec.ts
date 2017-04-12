@@ -18,6 +18,11 @@ describe('BlogEdit component', () => {
     appPage = new AppPage();
   });
 
+  it('has the correct DOM title', () => {
+    browser.get('/blog/example/edit');
+    appPage.expectDOMTitleToBe('Meangular | Blog Edit: example');
+  });
+
   describe('input', () => {
     beforeAll(() => {
       userPage.login('help@greenpioneersolutions.com', 'truetrue1!');
@@ -75,6 +80,7 @@ describe('BlogEdit component', () => {
       contentInput.sendKeys('admin');
       submitBtn = element(by.css('[type="submit"]'));
       submitBtn.click();
+      browser.sleep(500);
       expect(element(by.id('blogEntryContent')).getText()).toBe('admin');
     });
   });

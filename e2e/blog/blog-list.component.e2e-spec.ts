@@ -20,6 +20,10 @@ describe('BlogList component', () => {
       headingLink = element(by.css('li h2 a'));
     });
 
+    it('has the correct DOM title', () => {
+      appPage.expectDOMTitleToBe('Meangular | Blog List');
+    });
+
     it('loads blog items', () => {
       expect(headingLink.getText()).toBe('example');
     });

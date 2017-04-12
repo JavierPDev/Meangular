@@ -16,7 +16,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
 
   constructor(
     public blogService: BlogService,
-    private _activateRoute: ActivatedRoute,
+    private _route: ActivatedRoute,
     private _fb: FormBuilder
   ) {}
 
@@ -40,7 +40,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.blogEntry = this._activateRoute.snapshot.data['blogEntry'];
+    this.blogEntry = this._route.snapshot.data['resolveData'];
     this.blogEditForm = this._fb.group({
       'title': [this.blogEntry.title, Validators.required],
       'content': [this.blogEntry.content, Validators.required]

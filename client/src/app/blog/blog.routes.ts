@@ -18,27 +18,39 @@ const BLOG_ROUTES: Routes = [
         path: 'create',
         component: BlogCreateComponent,
         canActivate: [AuthenticatedGuard],
-        canDeactivate: [CanDeactivateGuard]
+        canDeactivate: [CanDeactivateGuard],
+        data: {
+          title: 'Create Blog Entry'
+        }
       },
       {
         path: 'list',
         component: BlogListComponent,
+        data: {
+          title: 'Blog List'
+        },
         resolve: {
-          blogList: BlogListResolver
+          resolveData: BlogListResolver
         }
       },
       {
         path: ':slug',
         component: BlogViewComponent,
+        data: {
+          title: 'Blog Entry: '
+        },
         resolve: {
-          blogEntry: BlogEntryResolver
+          resolveData: BlogEntryResolver
         }
       },
       {
         path: ':slug/edit',
         component: BlogEditComponent,
+        data: {
+          title: 'Blog Edit: '
+        },
         resolve: {
-          blogEntry: BlogEntryResolver
+          resolveData: BlogEntryResolver
         },
         canActivate: [AuthenticatedGuard],
         canDeactivate: [CanDeactivateGuard]

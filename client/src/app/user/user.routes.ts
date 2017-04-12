@@ -14,12 +14,18 @@ const USER_ROUTES: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [UnauthenticatedGuard]
+    canActivate: [UnauthenticatedGuard],
+    data: {
+      title: 'Login'
+    }
   },
   {
     path: 'signup',
     component: SignupComponent,
-    canActivate: [UnauthenticatedGuard]
+    canActivate: [UnauthenticatedGuard],
+    data: {
+      title: 'Signup'
+    }
   },
   {
     path: 'oauth',
@@ -28,17 +34,26 @@ const USER_ROUTES: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthenticatedGuard]
+    canActivate: [AuthenticatedGuard],
+    data: {
+      title: 'Profile'
+    }
   },
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
-    canActivate: [UnauthenticatedGuard]
+    canActivate: [UnauthenticatedGuard],
+    data: {
+      title: 'Forgot Password'
+    }
   },
   {
     path: 'reset/:token',
     component: ResetPasswordComponent,
-    canActivate: [UnauthenticatedGuard]
+    canActivate: [UnauthenticatedGuard],
+    data: {
+      title: 'Password Reset'
+    }
   }
 ];
 

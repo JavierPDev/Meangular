@@ -7,11 +7,17 @@ import { PageNotFoundComponent } from './page-not-found.component';
 const CORE_ROUTES: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    data: {
+      title: 'Home'
+    }
   },
   {
     path: '**',
-    component: PageNotFoundComponent
+    component: PageNotFoundComponent,
+    data: {
+      title: '404 - Page Not Found'
+    }
   }
 ];
 

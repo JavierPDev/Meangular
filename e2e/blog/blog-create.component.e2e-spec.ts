@@ -17,6 +17,7 @@ describe('BlogCreate component', () => {
     body = element(by.css('body'));
   });
 
+
   describe('creation', () => {
     beforeAll(() => {
       userPage.login('help@greenpioneersolutions.com', 'truetrue1!');
@@ -24,6 +25,10 @@ describe('BlogCreate component', () => {
       titleInput = element(by.id('title'));
       contentInput = element(by.name('content'));
       submitBtn = element(by.css('[type="submit"]'));
+    });
+
+    it('has the correct DOM title', () => {
+      appPage.expectDOMTitleToBe('Meangular | Create Blog Entry');
     });
 
     it('successfully creates blog entry', () => {

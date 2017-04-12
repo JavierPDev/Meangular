@@ -34,7 +34,7 @@ describe('BlogViewComponent', () => {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              data: {blogEntry}
+              data: {resolveData: blogEntry}
             }
           }
         },

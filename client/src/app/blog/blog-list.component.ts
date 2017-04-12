@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/skip';
 
@@ -10,7 +10,7 @@ import { BlogEntry } from './blog-entry';
   selector: 'app-blog-list',
   templateUrl: './blog-list.component.html'
 })
-export class BlogListComponent implements OnInit {
+export class BlogListComponent implements OnInit, OnDestroy {
   public blogEntries: [BlogEntry];
   public count: number;
   public currentStart: number;
@@ -18,6 +18,7 @@ export class BlogListComponent implements OnInit {
   public currentPage: number;
   public limit = 20;
   public sort = '-created';
+  private _queryParamsSub;
   private _routeParams;
 
   constructor(
@@ -63,12 +64,12 @@ export class BlogListComponent implements OnInit {
   ngOnInit() {
     // Get initial blog list data from route resolve so no empty page for user
     // at first page load
-    const blogListData = this._route.snapshot.data['blogList'];
+    const blogListData = this._route.snapshot.data['resolveData'];
     this._routeParams = this._route.snapshot.queryParams;
     this._setPageData(Object.assign(blogListData, this._routeParams));
 
     // Watch for page changes to get blog list and set page data
-    this._route.queryParams
+    this._queryParamsSub = this._route.queryParams
       .skip(1)
       .subscribe(routeParams => {
         this._routeParams = routeParams;
@@ -77,5 +78,9 @@ export class BlogListComponent implements OnInit {
             this._setPageData(Object.assign(blogList, routeParams));
           });
       });
+  }
+
+  ngOnDestroy() {
+    this._queryParamsSub.unsubscribe();
   }
 }

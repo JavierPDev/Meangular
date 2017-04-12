@@ -20,6 +20,10 @@ describe('Login component', () => {
     loginForm = element(by.css('form'));
   });
 
+  it('has the correct DOM title', () => {
+    appPage.expectDOMTitleToBe('Meangular | Login');
+  });
+
   describe('error alert', () => {
     beforeEach(() => {
       emailInput.clear();

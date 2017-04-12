@@ -24,6 +24,10 @@ describe('Signup component', () => {
     body = element(by.css('body'));
   });
 
+  it('has the correct DOM title', () => {
+    appPage.expectDOMTitleToBe('Meangular | Signup');
+  });
+
   describe('email validation', () => {
     let formGroup;
     let warningSpan;

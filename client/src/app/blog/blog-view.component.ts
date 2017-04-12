@@ -15,7 +15,7 @@ export class BlogViewComponent implements OnInit, OnDestroy {
   constructor(
     public auth: AuthService,
     public blogService: BlogService,
-    private _activateRoute: ActivatedRoute
+    private _route: ActivatedRoute
   ) {}
 
   public deleteBlogEntry(): void {
@@ -24,7 +24,7 @@ export class BlogViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Get blog entry data from route resolve
-    this.blogEntry = this._activateRoute.snapshot.data['blogEntry'];
+    this.blogEntry = this._route.snapshot.data['resolveData'];
   }
 
   ngOnDestroy() {

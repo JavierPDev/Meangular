@@ -41,7 +41,7 @@ describe('BlogListComponent', () => {
           useValue: {
             queryParams: Observable.from([1]),
             snapshot: {
-              data: {blogList: {blogEntries: blogListStub}},
+              data: {resolveData: {blogEntries: blogListStub}},
               queryParams: {limit: 10, sort: '-created', skip: 0}
             }
           }
@@ -60,6 +60,7 @@ describe('BlogListComponent', () => {
     TestBed.compileComponents();
     fixture = TestBed.createComponent(BlogListComponent);
     component = fixture.debugElement.componentInstance;
+    component.ngOnDestroy = function() {};
   });
 
   it('loads the blog list component', () => {

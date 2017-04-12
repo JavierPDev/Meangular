@@ -19,6 +19,14 @@ export class AppPage {
     expect(submitBtn.isEnabled()).toBe(isEnabled);
   }
 
+  /**
+   * Run expectation for DOM title to be set to argument.
+   * @param {String} title - DOM title
+   */
+  public expectDOMTitleToBe(title: string): void {
+    expect(browser.getTitle()).toBe(title);
+  }
+
   public getH1Text() {
     return element(by.css('h1')).getText();
   }

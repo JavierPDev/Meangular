@@ -16,7 +16,7 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private _fb: FormBuilder,
-    private _activatedRoute: ActivatedRoute
+    private _route: ActivatedRoute
   ) {}
 
   public reset(): void {
@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
         Validators.minLength(6)
       ]]
     });
-    this._activatedRoute.params
+    this._route.params
       .subscribe(params => this._resetToken = params['token']);
   }
 }

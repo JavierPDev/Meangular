@@ -37,7 +37,7 @@ describe('BlogEditComponent', () => {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              data: {blogEntry: blogEntryStub}
+              data: {resolveData: blogEntryStub}
             }
           }
         },

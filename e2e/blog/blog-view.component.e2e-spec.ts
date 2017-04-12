@@ -17,6 +17,10 @@ describe('BlogView component', () => {
       browser.get('/blog/example');
     });
 
+    it('has the correct DOM title', () => {
+      appPage.expectDOMTitleToBe('Meangular | Blog Entry: example');
+    });
+
     it('has correct blog entry title', () => {
       const headingText = appPage.getH1Text();
       expect(headingText).toBe('example');
