@@ -1,4 +1,4 @@
- 
+{ 
   "name": "meangular",
   "version": "0.18.0",
   "description": "Open-source MEAN stack solution based on Mean Stack JS and Angular-cli for Angular (2+).",
