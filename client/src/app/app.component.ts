@@ -9,6 +9,8 @@ import {
   NavigationError
 } from '@angular/router';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-root',
