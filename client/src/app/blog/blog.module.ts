@@ -28,7 +28,6 @@ import { BlogRoutingModule } from './blog.routes';
     ReactiveFormsModule,
     PaginationModule.forRoot(),
 
-    UserModule,
     BlogRoutingModule
   ],
   exports: [
