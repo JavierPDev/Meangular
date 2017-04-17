@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.19.0] - 2017-04-17
+### Added
+- Added database seeding functionality for npm scripts using `npm run seed`.
+
 ## [0.18.1] - 2017-04-14
 ### Fixed
 - Fix `UserModule` import resulting in `AuthService`'s injection of separate instances across lazy loaded modules rather than one shared singleton.

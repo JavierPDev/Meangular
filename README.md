@@ -58,6 +58,10 @@ npm run ng
 
 # Build frontend files in production mode and then run server in production mode
 npm run start:production
+
+# Seed database with users and blog entries (Users and Blog entries can be added
+# in /seed/data/users.js and /seed/data/blogs.js).
+npm run seed
 ```
 
 
