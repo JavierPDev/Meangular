@@ -7,7 +7,7 @@ export class UserPage {
    * @param {String} email - User email
    * @param {String} password - User password
    */
-  public login(email = 'javier@javierdev.com', password = 'Ajq4NZ19$l') {
+  public login(email = 'admin@meangular.com', password = 'truetrue1!') {
     browser.get('/login');
     browser.getCurrentUrl()
       .then(url => {

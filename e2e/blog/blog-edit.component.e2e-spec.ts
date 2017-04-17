@@ -25,7 +25,7 @@ describe('BlogEdit component', () => {
 
   describe('input', () => {
     beforeAll(() => {
-      userPage.login('help@greenpioneersolutions.com', 'truetrue1!');
+      userPage.login('help@meangular.com', 'truetrue1!');
       browser.get('/blog/example/edit');
     });
 
@@ -59,7 +59,7 @@ describe('BlogEdit component', () => {
 
     it('successfully edits if using user that created entry', () => {
       userPage.logout();
-      userPage.login('qa@greenpioneersolutions.com', 'truetrue1!');
+      userPage.login('accounting@meangular.com', 'truetrue1!');
       browser.get('/blog/example/edit');
       expect(browser.getCurrentUrl()).toMatch('/blog/example/edit');
       contentInput = element(by.name('content'));
@@ -87,7 +87,7 @@ describe('BlogEdit component', () => {
 
   describe('title validation', () => {
     beforeAll(() => {
-      userPage.login('help@greenpioneersolutions.com', 'truetrue1!');
+      userPage.login('help@meangular.com', 'truetrue1!');
       browser.get('/blog/example/edit');
       titleInput = element(by.id('title'));
       formGroup = titleInput.element(by.xpath('..'));

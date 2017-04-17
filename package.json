@@ -37,8 +37,9 @@
   },
   "scripts": {
     "browser-sync": "browser-sync start --proxy 'localhost:3000' --port 3001 --files 'client/dist/inline.bundle.js' 'client/dist/styles.bundle.css' 'client/dist/main.bundle.js' --no-open",
-    "build:watch": "ng build --watch",
+    "build:dev": "ng build",
     "build:prod": "ng build --prod --aot",
+    "build:watch": "ng build --watch",
     "cli": "node commands/cli.js",
     "e2e": "npm run build:prod && protractor",
     "e2e:dev": "protractor",
@@ -50,6 +51,7 @@
     "postinstall": "node scripts/postinstall.js && webdriver-manager update",
     "processes:linux": "ps -ef | grep 'node index.js'",
     "processes:linux:kill": "ps -ef | grep 'node index.js' | grep -v grep | awk '{print $2}' | xargs kill -9",
+    "seed": "node seed/seed.js",
     "start": "concurrently -k \"npm run build:watch\" \"npm run start:server:watch\"",
     "start:debug": "node debug index.js",
     "start:inspect": "node --inspect  index.js",

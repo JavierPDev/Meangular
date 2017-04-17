@@ -20,7 +20,7 @@ describe('BlogCreate component', () => {
 
   describe('creation', () => {
     beforeAll(() => {
-      userPage.login('help@greenpioneersolutions.com', 'truetrue1!');
+      userPage.login('help@meangular.com', 'truetrue1!');
       browser.get('/blog/create');
       titleInput = element(by.id('title'));
       contentInput = element(by.name('content'));
@@ -32,11 +32,11 @@ describe('BlogCreate component', () => {
     });
 
     it('successfully creates blog entry', () => {
-      titleInput.sendKeys('new');
-      contentInput.sendKeys('new');
+      titleInput.sendKeys('example');
+      contentInput.sendKeys('example');
       submitBtn.click();
       browser.sleep(300);
-      expect(element(by.id('blogEntryContent')).getText()).toBe('new');
+      expect(element(by.id('blogEntryContent')).getText()).toBe('example');
     });
   });
 
@@ -45,7 +45,7 @@ describe('BlogCreate component', () => {
     let warningSpan;
 
     beforeAll(() => {
-      userPage.login('help@greenpioneersolutions.com', 'truetrue1!');
+      userPage.login('help@meangular.com', 'truetrue1!');
       browser.get('/blog/create');
       titleInput = element(by.id('title'));
       formGroup = titleInput.element(by.xpath('..'));

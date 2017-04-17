@@ -40,7 +40,7 @@ describe('Login component', () => {
     });
 
     it('displays error for wrong password', () => {
-      const email = 'javier@javierdev.com';
+      const email = 'owner@meangular.com';
       emailInput.sendKeys(email);
       passwordInput.sendKeys('invalidpass');
       loginForm.submit();

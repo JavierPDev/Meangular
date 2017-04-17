@@ -33,7 +33,7 @@ describe('BlogView component', () => {
   });
 
   describe('edit and delete buttons', () => {
-    it('is not displayed if unauthenticated', () => {
+    it('are not displayed if unauthenticated', () => {
       userPage.logout();
       browser.get('/blog/example');
       const blogEditBtn = element(by.id('blogEditBtn'));
@@ -42,9 +42,9 @@ describe('BlogView component', () => {
       expect(blogDeleteBtn.isPresent()).toBe(false);
     });
 
-    it('is not displayed if authenticated with user that did not create entry',
+    it('are not displayed if authenticated with user that did not create entry',
        () => {
-      userPage.login('help@greenpioneersolutions.com', 'truetrue1!');
+      userPage.login('help@meangular.com', 'truetrue1!');
       browser.get('/blog/example');
       const blogEditBtn = element(by.id('blogEditBtn'));
       const blogDeleteBtn = element(by.id('blogDeleteBtn'));
@@ -52,9 +52,9 @@ describe('BlogView component', () => {
       expect(blogDeleteBtn.isPresent()).toBe(false);
     });
 
-    it('is displayed if authenticated with user that created entry', () => {
+    it('are displayed if authenticated with user that created entry', () => {
       userPage.logout();
-      userPage.login('qa@greenpioneersolutions.com', 'truetrue1!');
+      userPage.login('accounting@meangular.com', 'truetrue1!');
       browser.get('/blog/example');
       const blogEditBtn = element(by.id('blogEditBtn'));
       const blogDeleteBtn = element(by.id('blogDeleteBtn'));
@@ -62,7 +62,7 @@ describe('BlogView component', () => {
       expect(blogDeleteBtn.isPresent()).toBe(true);
     });
 
-    it('is displayed if authenticated with admin user', () => {
+    it('are displayed if authenticated with admin user', () => {
       userPage.logout();
       userPage.login();
       browser.get('/blog/example');
@@ -80,12 +80,12 @@ describe('BlogView component', () => {
     });
 
     it('delete button works', () => {
-      browser.get('/blog/example');
+      browser.get('/blog/clara');
       const blogDeleteBtn = element(by.id('blogDeleteBtn'));
       blogDeleteBtn.click();
       browser.sleep(300);
       expect(appPage.getH1Text()).toBe('Blog List');
-      const noEl = element(by.cssContainingText('li h2 a', 'example'));
+      const noEl = element(by.cssContainingText('li h2 a', 'clara'));
       expect(noEl.isPresent()).toBe(false);
     });
   });
