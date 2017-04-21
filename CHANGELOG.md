@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.19.1] - 2017-04-21
+### Fixed
+- Livereload now working with Angular setup.
+
+### Changed
+- Move mocha file to root and delete unneeded `tests` directory.
+
 ## [0.19.0] - 2017-04-17
 ### Added
 - Added database seeding functionality for npm scripts using `npm run seed`.
