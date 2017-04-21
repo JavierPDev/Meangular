@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'e2e'
-var Mean = require('../../server.mean.js')
-var run = require('../../run.js')
-var seed = require('../../seed/seed.js')
+var Mean = require('./server.mean.js')
+var run = require('./run.js')
+var seed = require('./seed/seed.js')
 describe('Meangular API Testing', function () {
   before(function (done) {
     this.timeout(20000)
@@ -12,6 +12,6 @@ describe('Meangular API Testing', function () {
     })
   })
   require('glob').sync('server/modules/**/*.spec.js').forEach(function (file) {
-    require('../../' + file)
+    require('./' + file)
   })
 })

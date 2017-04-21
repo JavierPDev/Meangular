@@ -46,7 +46,7 @@
     "generate-ssl-certs": "bash scripts/generate-ssl-certs.sh ",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "mocha": "mocha tests/unit/mocha.test.js  ",
+    "mocha": "mocha mocha.test.js  ",
     "ng": "ng",
     "postinstall": "node scripts/postinstall.js && webdriver-manager update",
     "processes:linux": "ps -ef | grep 'node index.js'",
