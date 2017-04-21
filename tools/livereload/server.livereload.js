@@ -6,7 +6,7 @@ var debug = require('debug')('meanstackjs:livereload')
 
 function Livereload (self, done) {
   var server = livereload.createServer()
-  server.watch(path.join(__dirname, '../../client'))
+  server.watch(path.join(__dirname, '../../client/dist'))
   debug('starting Livereload Server')
   done(null)
 }

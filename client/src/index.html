@@ -41,6 +41,9 @@
 
 <body>    
   <app-root>Loading</app-root>
+	<% if (environment == 'development') { %>
+    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+	<%  } %>
   <script>
     (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
