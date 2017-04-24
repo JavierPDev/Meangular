@@ -22,6 +22,7 @@ Out-of-the-box features:
 * Unit tested front-end and back-end
 * End-to-end tested
 * Linted front-end and back-end code
+* Database seeding
 
 ## Demo
 [Try it live](http://meangular.herokuapp.com)
@@ -37,7 +38,7 @@ To use Google Oauth2 authentication flow for login/signup, set the client id, cl
 npm install
 
 # Start in development mode and watch for changes on server and frontend
-# using nodemon and angular-cli. 
+# using nodemon, angular-cli, and livereload. 
 npm start
 
 # Start browser-sync
@@ -57,10 +58,10 @@ npm run e2e:dev
 npm run ng
 
 # Build frontend files in production mode and then run server in production mode
-npm run start:production
+npm run start:prod
 
 # Seed database with users and blog entries (Users and Blog entries can be added
-# in /seed/data/users.js and /seed/data/blogs.js).
+# in /seed/data/users.js and /seed/data/blogs.js. Note: Node 7.6+ required for this feature).
 npm run seed
 ```
 
