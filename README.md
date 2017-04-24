@@ -10,7 +10,7 @@ Out-of-the-box features:
 * User
   * Profile
   * Authentication and Authorization
-    * Optional social login using Google Oauth2
+    * Optional third-party login/signup using Google Oauth2
 * Blog
   * Lazy loaded
   * Create, Edit, and Delete by owner or admin
@@ -23,6 +23,9 @@ Out-of-the-box features:
 * End-to-end tested
 * Linted front-end and back-end code
 * Database seeding
+* Debug support with [Visual Studio Code](https://code.visualstudio.com/), just switch to debug pane and choose debug type (`Launch Chrome` or `Launch Node`) and hit F5.
+  * Node debugging, [check here for more info](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
+  * Chrome debugging, [check here for more info](https://github.com/Microsoft/vscode-chrome-debug)
 
 ## Demo
 [Try it live](http://meangular.herokuapp.com)

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.20.0] - 2017-04-24
+## Added
+- Added vscode configs for debugging with vscode.
+
+### Changed
+- Updated readme with seed and livereload info.
+- Normalize `package.json` scripts to use 'prod' instead of 'production' and update Procfile and readme with it.
+
 ## [0.19.1] - 2017-04-21
 ### Fixed
 - Livereload now working with Angular setup.
