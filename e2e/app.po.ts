@@ -1,10 +1,6 @@
 import { browser, element, by, ExpectedConditions } from 'protractor';
 
 export class AppPage {
-  public clearToken() {
-    browser.executeScript('localStorage.clear()');
-  }
-
   /**
    * Run expectation for submit button to be enabled/disabled according to
    * argument. Optional second argument is useful when multiple submit
@@ -12,7 +8,7 @@ export class AppPage {
    * @param {Boolean} isEnabled - Whether to test for enabled or disabled
    * @param {String} containerSelector - CSS selector of submit btn's parent
    */
-  public expectSubmitEnabledStateToBe(isEnabled, containerSelector?): void {
+  public expectSubmitEnabledStateToBe(isEnabled: boolean, containerSelector?: string): void {
     const selector = containerSelector
       ? containerSelector + ' [type="submit"]' : '[type="submit"]';
     const submitBtn = element(by.css(selector));
@@ -39,11 +35,11 @@ export class AppPage {
     return element(by.css('.alert.alert-success')).getText();
   }
 
-  public clickBlogNavLink() {
+  public clickBlogNavLink(): void {
     element(by.cssContainingText('nav a', 'Blog')).click();
   }
 
-  public expectConfirmDialogPresent() {
+  public expectConfirmDialogPresent(): void {
     browser.wait(ExpectedConditions.alertIsPresent(), 5000);
     browser.switchTo().alert().dismiss();
   }

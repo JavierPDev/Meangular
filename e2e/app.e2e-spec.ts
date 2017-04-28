@@ -1,4 +1,4 @@
-import { browser } from 'protractor';
+import { browser, by, element } from 'protractor';
 import { AppPage } from './app.po';
 
 describe('App', () => {
@@ -9,7 +9,7 @@ describe('App', () => {
     browser.get('/');
   });
 
-  it('displays correct heading', () => {
-    expect(appPage.getH1Text()).toEqual('Meangular');
+  it('loads', () => {
+    expect(element(by.css('app-home')).isPresent()).toBe(true);
   });
 });
