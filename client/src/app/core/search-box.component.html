@@ -1,0 +1,10 @@
+<form
+  novalidate
+  [formGroup]="searchForm">
+  <input
+    class="form-control"
+    name="searchTerm"
+    placeholder="Search..."
+    type="search"
+    [formControl]="searchForm.get('searchTerm')">
+</form>

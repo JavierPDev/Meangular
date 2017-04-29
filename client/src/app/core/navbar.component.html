@@ -6,9 +6,9 @@
 		<ul class="nav navbar-nav pull-left">
       <li>
         <a
-          routerLink="/blog/list"
+          [routerLink]="['/blog/list']"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}">
+          [routerLinkActiveOptions]="{exact: false}">
           Blog
         </a>
       </li>

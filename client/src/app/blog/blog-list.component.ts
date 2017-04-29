@@ -11,31 +11,45 @@ import { BlogEntry } from './blog-entry';
   templateUrl: './blog-list.component.html'
 })
 export class BlogListComponent implements OnInit, OnDestroy {
-  public blogEntries: [BlogEntry];
+  public blogEntries: Array<BlogEntry>;
   public count: number;
   public currentStart: number;
   public currentEnd: number;
   public currentPage: number;
   public limit = 20;
+  public queryParams;
+  public searchTerm: string;
   public sort = '-created';
   private _queryParamsSub;
-  private _routeParams;
 
   constructor(
     public auth: AuthService,
-    private _blogService: BlogService,
+    public blogService: BlogService,
     private _route: ActivatedRoute,
     private _router: Router
   ) {}
 
   /**
    * Change page. Used by pagination component and by selects' (change) output.
-   * @param {Object} evt - Optional event object from pagination output
+   * @param {Object} options - Pagination options
    */
-  public changePage(evt?: any): void {
-    const page = evt ? evt.page : 1;
-    const newParams = { page, sort: this.sort, limit: this.limit };
-    const queryParams = Object.assign({}, this._routeParams, newParams);
+  public changePage(options?: any): void {
+    const page = options ? options.page : 1;
+    const newSearch = options && (options.search || options.search === '')
+      ? options.search : null;
+    const oldParams = Object.assign({}, this.queryParams);
+    const newParams: any = {page, sort: this.sort, limit: this.limit};
+    const queryParams: any = Object.assign({}, oldParams, newParams);
+
+    if (newSearch) {
+      queryParams.search = newSearch;
+      queryParams.page = 1;
+    } else if (newSearch === '') {
+      delete queryParams.search;
+    }
+
+    this.searchTerm = queryParams.search;
+    this.currentPage = queryParams.page;
     this._router.navigate(['/blog/list'], {queryParams});
   }
 
@@ -44,7 +58,8 @@ export class BlogListComponent implements OnInit, OnDestroy {
       count,
       blogEntries,
       limit,
-      sort
+      sort,
+      search
     } = blogListData;
     let {
       skip,
@@ -57,26 +72,42 @@ export class BlogListComponent implements OnInit, OnDestroy {
     this.limit = limit || this.limit;
     this.sort = sort || this.sort;
     this.currentPage = page + 1;
-    this.currentStart = skip + 1;
-    this.currentEnd = skip + blogEntries.length;
+    this.currentStart = count > 0 ? skip + 1 : 0;
+    this.currentEnd = this.currentStart > 0 ? skip + blogEntries.length : 0;
   }
 
   ngOnInit() {
     // Get initial blog list data from route resolve so no empty page for user
     // at first page load
     const blogListData = this._route.snapshot.data['resolveData'];
-    this._routeParams = this._route.snapshot.queryParams;
-    this._setPageData(Object.assign(blogListData, this._routeParams));
+    this.queryParams = this._route.snapshot.queryParams;
+    this._setPageData(Object.assign(blogListData, this.queryParams));
 
-    // Watch for page changes to get blog list and set page data
+    if (this.queryParams.search) {
+      this.searchTerm = this.queryParams.search;
+    }
+
+    // Watch for route query param changes to get blog list and set page data
     this._queryParamsSub = this._route.queryParams
       .skip(1)
-      .subscribe(routeParams => {
-        this._routeParams = routeParams;
-        this._blogService.getBlogList(routeParams)
+      .subscribe(qp => {
+        const queryParams: any = Object.assign({}, qp);
+        this.queryParams = queryParams;
+
+        // If navigating back to default blog list page 1 while already on blog
+        // list, reset everything.
+        if (!queryParams.search && !queryParams.page
+            && !queryParams.sort && !queryParams.limit) {
+          this.searchTerm = '';
+          this.currentPage = 1;
+          this.sort = '-created';
+          this.limit = 20;
+        }
+
+        this.blogService.getBlogList(queryParams)
           .then(blogList => {
-            this._setPageData(Object.assign(blogList, routeParams));
-          });
+            this._setPageData(Object.assign(blogList, queryParams));
+          }, err => this.blogService.error = err);
       });
   }
 

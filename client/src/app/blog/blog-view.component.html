@@ -24,7 +24,14 @@
 
 <small>
   Posted on {{blogEntry.created}} by
-  <a [queryParams]="{user: blogEntry.user._id}" [routerLink]="['/blog/list']">
+  <!-- Pass username query param just for post count template. Only
+       user (id) is actually used for filtering. -->
+    <a
+      [queryParams]="{
+        user: blogEntry.user._id,
+        username: blogEntry.user.profile.name
+      }"
+      [routerLink]="['/blog/list']">
     {{blogEntry.user.profile.name}}
   </a>
 </small>

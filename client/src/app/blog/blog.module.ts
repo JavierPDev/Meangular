@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationModule  } from 'ng2-bootstrap/pagination';
 
-import { UserModule } from '../user/user.module';
+import { CoreModule } from '../core/core.module';
 import { BlogCreateComponent } from './blog-create.component';
 import { BlogViewComponent } from './blog-view.component';
 import { BlogEditComponent } from './blog-edit.component';
@@ -28,7 +28,8 @@ import { BlogRoutingModule } from './blog.routes';
     ReactiveFormsModule,
     PaginationModule.forRoot(),
 
-    BlogRoutingModule
+    BlogRoutingModule,
+    CoreModule
   ],
   exports: [
   ],

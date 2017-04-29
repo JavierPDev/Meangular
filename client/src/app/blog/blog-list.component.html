@@ -8,56 +8,73 @@
   New Blog Entry
 </a>
 
+<app-search-box
+  [searchTerm]="searchTerm"
+  (searchChanged)="changePage({search: $event.searchTerm, page: 1})">
+</app-search-box>
+
+<br />
+
+<div class="alert alert-danger" *ngIf="blogService.error">
+  {{blogService.error}}
+</div>
+
 <div *ngIf="!blogEntries" class="alert alert-info">
   No blog entries at this time.
 </div>
 
 <div *ngIf="blogEntries">
-  <div class="pull-right">
-    <div class="form-group">
-      <label for="sort">Sort</label>
-      <select
-        class="form-control"
-        id="sort"
-        name="sort"
-        (change)="changePage({page: 1})"
-        [(ngModel)]="sort">
-        <option value="created">Date Ascending</option>
-        <option value="-created">Date Descending</option>
-        <option value="title">Title Ascending</option>
-        <option value="-title">Title Descending</option>
-      </select>
+  <div>
+    <div class="pull-right">
+      <div class="form-group">
+        <label for="sort">Sort</label>
+        <select
+          class="form-control"
+          id="sort"
+          name="sort"
+          (change)="changePage({page: 1})"
+          [(ngModel)]="sort">
+          <option value="created">Date Ascending</option>
+          <option value="-created">Date Descending</option>
+          <option value="title">Title Ascending</option>
+          <option value="-title">Title Descending</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="limit">Limit</label>
+        <select
+          class="form-control"
+          id="limit"
+          name="limit"
+          (change)="page = 0; changePage()"
+          [(ngModel)]="limit">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="limit">Limit</label>
-      <select
-        class="form-control"
-        id="limit"
-        name="limit"
-        (change)="page = 0; changePage()"
-        [(ngModel)]="limit">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select>
+    <div>
+      {{currentStart}} through {{currentEnd}} of {{count}}
+      <span *ngIf="searchTerm">for search term "{{searchTerm}}"</span>
+      <span *ngIf="queryParams.user">by user {{queryParams.username}}</span>
     </div>
+    <pagination
+      class="pagination-sm"
+      firstText="&laquo;"
+      lastText="&raquo;"
+      nextText="&rsaquo;"
+      previousText="&lsaquo;"
+      [boundaryLinks]="true"
+      [itemsPerPage]="limit"
+      [(ngModel)]="currentPage"
+      (pageChanged)="changePage($event)"
+      [totalItems]="count">
+   </pagination> 
   </div>
-  <div>{{currentStart}} through {{currentEnd}} of {{count}}</div>
-  <pagination
-    class="pagination-sm"
-    firstText="&laquo;"
-    lastText="&raquo;"
-    nextText="&rsaquo;"
-    previousText="&lsaquo;"
-    [boundaryLinks]="true"
-    [itemsPerPage]="limit"
-    [(ngModel)]="currentPage"
-    (pageChanged)="changePage($event)"
-    [totalItems]="count">
- </pagination> 
   <ul class="list-unstyled">
     <li *ngFor="let blogEntry of blogEntries trackBy _id">
       <h2>
@@ -65,8 +82,13 @@
       </h2>
       <small>
         Posted on {{blogEntry.created}} by
+        <!-- Pass username query param just for post count template. Only
+             user (id) is actually used for filtering. -->
         <a
-          [queryParams]="{user: blogEntry.user._id}"
+          [queryParams]="{
+            user: blogEntry.user._id,
+            username: blogEntry.user.profile.name
+          }"
           [routerLink]="['/blog/list']">
           {{blogEntry.user.profile.name}}
         </a>
@@ -76,17 +98,23 @@
       </div>
     </li>
   </ul>
-  <pagination
-    class="pagination-sm"
-    firstText="&laquo;"
-    lastText="&raquo;"
-    nextText="&rsaquo;"
-    previousText="&lsaquo;"
-    [boundaryLinks]="true"
-    [itemsPerPage]="limit"
-    [(ngModel)]="currentPage"
-    (pageChanged)="changePage($event)"
-    [totalItems]="count">
- </pagination> 
-  <div>{{currentStart}} through {{currentEnd}} of {{count}}</div>
+  <div>
+    <!-- Setting (pageChanged) again here would make it fire twice on page changes -->
+    <pagination
+      class="pagination-sm"
+      firstText="&laquo;"
+      lastText="&raquo;"
+      nextText="&rsaquo;"
+      previousText="&lsaquo;"
+      [boundaryLinks]="true"
+      [itemsPerPage]="limit"
+      [(ngModel)]="currentPage"
+      [totalItems]="count">
+   </pagination> 
+    <div>
+      {{currentStart}} through {{currentEnd}} of {{count}}
+      <span *ngIf="searchTerm">for search term "{{searchTerm}}"</span>
+      <span *ngIf="queryParams.user">by user {{queryParams.username}}</span>
+    </div>
+  </div>
 </div>

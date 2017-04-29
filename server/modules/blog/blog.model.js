@@ -23,6 +23,7 @@ var blogSchema = mongoose.Schema({
   }
 })
 
+blogSchema.index({title: 'text'})
 blogSchema.plugin(urlSlugs('title'))
 
 module.exports = blogSchema

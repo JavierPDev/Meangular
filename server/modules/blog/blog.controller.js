@@ -8,9 +8,15 @@ exports.getBlog = function (req, res, next) {
   debug('start getBlog')
   auto({
     blogs: function (cb) {
+      var returnedBlogs
       debug(req.queryParameters)
-      blogs
-        .find(req.queryParameters.filter || '')
+      if (req.query.search) {
+        const findConditions = Object.assign({}, req.queryParameters.filter, {$text: {$search: req.query.search}})
+        returnedBlogs = blogs.find(findConditions)
+      } else {
+        returnedBlogs = blogs.find(req.queryParameters.filter || '')
+      }
+      returnedBlogs
         .where(req.queryParameters.where || '')
         .sort(req.queryParameters.sort || '')
         .select(req.queryParameters.select || '')
@@ -20,8 +26,14 @@ exports.getBlog = function (req, res, next) {
         .exec(cb)
     },
     count: function (cb) {
-      blogs
-        .find(req.queryParameters.filter || '')
+      var returnedBlogs
+      if (req.query.search) {
+        const findConditions = Object.assign({}, req.queryParameters.filter, {$text: {$search: req.query.search}})
+        returnedBlogs = blogs.find(findConditions)
+      } else {
+        returnedBlogs = blogs.find(req.queryParameters.filter || '')
+      }
+      returnedBlogs
         .where(req.queryParameters.where || '')
         .count()
         .exec(cb)

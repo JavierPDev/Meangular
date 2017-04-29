@@ -25,7 +25,7 @@ describe('NavbarComponent', () => {
     component = fixture.debugElement.componentInstance;
   });
 
-  it('loads the component component', () => {
+  it('loads the navbar component', () => {
     expect(component).toBeTruthy();
   });
 
