@@ -19,6 +19,7 @@ Out-of-the-box features:
     * Sorting
     * Limit
     * Filter by user
+  * Full-text search using title
 * Unit tested front-end and back-end
 * End-to-end tested
 * Linted front-end and back-end code

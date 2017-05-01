@@ -4,8 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.21.0] - 2017-05-01
+### Added
+- Added full-text search to blog model using title field.
+- Added searchbox component to core module.
+- Blog list shows search term and user name used when filtering down results.
+
 ## [0.20.0] - 2017-04-24
-## Added
+### Added
 - Added vscode configs for debugging with vscode.
 
 ### Changed
