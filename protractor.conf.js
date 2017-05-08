@@ -31,9 +31,9 @@ var config = {
   },
   onPrepare: function () {
     jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}))
-    
+
     // Add Jasmine Matchers/jasmine-expect for protractor use
-		var matchers = require('./node_modules/jasmine-expect/src')
+    var matchers = require('./node_modules/jasmine-expect/src')
     beforeAll(function () {
       jasmine.addMatchers(matchers)
     })

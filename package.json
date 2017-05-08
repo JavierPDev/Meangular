@@ -23,8 +23,10 @@
       "inject",
       "beforeEach",
       "before",
+      "beforeAll",
       "afterEach",
-      "after"
+      "after",
+      "afterAll"
     ],
     "ignore": [
       "commands/template/",
