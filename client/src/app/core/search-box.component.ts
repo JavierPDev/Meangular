@@ -11,9 +11,9 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges {
   @Input() public searchTerm = '';
-  @Input('debounce') private _debounce = 500;
-  @Input('minlength') private _minlength = 3;
-  @Output('searchChanged') private _searchChanged = new EventEmitter();
+  @Input() public debounce = 500;
+  @Input() public minlength = 3;
+  @Output() public searchChanged = new EventEmitter();
   public searchForm: FormGroup;
   private _searchSub: Subscription;
 
@@ -22,9 +22,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit() {
     this.searchForm = this._fb.group({searchTerm: [this.searchTerm]});
     this._searchSub = this.searchForm.controls['searchTerm'].valueChanges
-      .debounceTime(this._debounce)
-      .filter(val => val.length >= this._minlength || val === '')
-      .subscribe(val => this._searchChanged.emit({searchTerm: val}));
+      .debounceTime(this.debounce)
+      .filter(val => val.length >= this.minlength || val === '')
+      .subscribe(val => this.searchChanged.emit({searchTerm: val}));
   }
 
   ngOnDestroy() {

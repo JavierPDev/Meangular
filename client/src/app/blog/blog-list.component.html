@@ -57,7 +57,7 @@
         </select>
       </div>
     </div>
-    <div>
+    <div class="blog-count">
       {{currentStart}} through {{currentEnd}} of {{count}}
       <span *ngIf="searchTerm">for search term "{{searchTerm}}"</span>
       <span *ngIf="queryParams.user">by user {{queryParams.username}}</span>
@@ -76,7 +76,7 @@
    </pagination> 
   </div>
   <ul class="list-unstyled">
-    <li *ngFor="let blogEntry of blogEntries trackBy _id">
+    <li *ngFor="let blogEntry of blogEntries trackBy _id" class="blog-list-item">
       <h2>
         <a [routerLink]="['/blog', blogEntry.slug]">{{blogEntry.title}}</a>
       </h2>
