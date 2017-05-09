@@ -1,6 +1,6 @@
 module.exports = security
 var cors = require('cors')
-var contentLength = require('express-content-length-validator')
+// var contentLength = require('express-content-length-validator')
 var helmet = require('helmet')
 var hpp = require('hpp')
 // var throttler = require('mongo-throttle')
@@ -35,11 +35,12 @@ function security (self) {
 
   // CORS PREFLIGHT OPTIONS
   // app.options('*', cors()) // include before other routes
+  // Disabled for profile picture uploads
   // Validate MAX_CONTENT_LENGTH_ACCEPTED
-  var MAX_CONTENT_LENGTH_ACCEPTED = 9999
-  self.app.use(contentLength.validateMax({
-    max: MAX_CONTENT_LENGTH_ACCEPTED,
-    status: 400,
-    message: 'Please make a small payload'
-  }))
+  // var MAX_CONTENT_LENGTH_ACCEPTED = 9999
+  // self.app.use(contentLength.validateMax({
+  //   max: MAX_CONTENT_LENGTH_ACCEPTED,
+  //   status: 400,
+  //   message: 'Please make a small payload'
+  // }))
 }

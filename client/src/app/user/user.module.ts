@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { LoginComponent } from './login.component';
 import { SignupComponent } from './signup.component';
@@ -28,6 +29,7 @@ import { UserRoutingModule } from './user.routes';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    FileUploadModule,
 
     UserRoutingModule
   ],

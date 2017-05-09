@@ -490,14 +490,35 @@ exports.postPhoto = function (req, res, next) {
         debug('end postPhoto')
         return res.status(400).send(err)
       }
-      var createDir = filePath + '/' + req.file.originalname
-      fs.writeFile(createDir, data, function (err) {
+      var originalname = req.file.originalname
+      var extension = originalname.substring(originalname.length - 4)
+      var createDir = filePath + '/' + req.user._id + extension
+      var url = createDir.substring(createDir.indexOf('uploads/'))
+      fs.writeFile(createDir, data, {flag: 'w'}, function (err) {
         if (err) {
           debug('end postPhoto')
           return res.status(400).send(err)
         } else {
           debug('end postPhoto')
-          return res.status(201).send()
+          User.findById(req.user.id, function (err, user) {
+            if (err) {
+              return next(err)
+            }
+            user = _.merge(user, req.body)
+            user.profile.picture = url
+            user.save(function (err) {
+              if (err) {
+                return next(err)
+              }
+              fs.unlink(req.file.path, function (err) {
+                if (err) {
+                  return next(err)
+                }
+                debug('end postPhoto')
+                return res.status(201).send()
+              })
+            })
+          })
         }
       })
     })

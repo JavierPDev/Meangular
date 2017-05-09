@@ -147,6 +147,7 @@
     "morgan": "^1.6.1",
     "multer": "^1.1.0",
     "ng2-bootstrap": "^1.6.3",
+    "ng2-file-upload": "^1.2.1",
     "ng2-slim-loading-bar": "^4.0.0",
     "node-horseman": "^3.2.0",
     "node-sass": "^4.0.0",

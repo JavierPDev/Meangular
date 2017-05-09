@@ -102,8 +102,28 @@
         </button>
       </fieldset>
     </form>
+
     <br />
     <br />
+
+    <div>
+      <img
+        *ngIf="profilePic && !uploader.queue[0]"
+        src="{{profilePic}}?time={{timestamp}}"
+        style="width: 100%;"/>
+      <input type="file" ng2FileSelect [uploader]="uploader" (change)="detectChanges()"/>
+      <br />
+      <button
+        class="btn btn-default"
+        (click)="uploader.queue[0].upload()"
+        [disabled]="!uploader.queue[0]">
+        Upload Picture
+      </button>
+    </div>
+
+    <br />
+    <br />
+
     <form
       id="passwordForm"
       novalidate

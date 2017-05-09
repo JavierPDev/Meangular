@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
 
 import { AuthService } from './auth.service';
+
+const uploadOptions = {
+  url: '/api/photos/upload',
+  authToken: localStorage['id_token']
+};
 
 @Component({
   selector: 'app-profile',
@@ -11,10 +17,18 @@ export class ProfileComponent implements OnInit {
   public message: String = '';
   public passwordForm: FormGroup;
   public profileForm: FormGroup;
+  /**
+   * Timestamp used for cachebusting profile image since filename is
+   * always based on user id.
+   */
+  public timestamp = new Date().valueOf();
+  public uploader: FileUploader = new FileUploader(uploadOptions);
   public user = this.authService.user();
+  public profilePic = this.user.profile.picture;
 
   constructor(
     public authService: AuthService,
+    private _detector: ChangeDetectorRef,
     private _fb: FormBuilder
   ) {}
 
@@ -27,6 +41,14 @@ export class ProfileComponent implements OnInit {
       password: '',
       confirmPassword: ''
     });
+  }
+
+  /**
+   * Detect changes to component. Needed because file-upload plugin isn't
+   * detecting changes on its own.
+   */
+  public detectChanges(): void {
+    this._detector.detectChanges();
   }
 
   public updateUser(): void {
@@ -66,5 +88,12 @@ export class ProfileComponent implements OnInit {
       'password': ['', Validators.minLength(6)],
       'confirmPassword': ['', Validators.minLength(6)]
     });
+    this.uploader.onSuccessItem = item => {
+      const extension = item.file.name.substring(item.file.name.length - 4);
+      this.profilePic = `uploads/${this.user._id}${extension}`;
+      this.timestamp = new Date().valueOf();
+      this.uploader.queue.splice(0, 1);
+      this.detectChanges();
+    };
   }
 }
