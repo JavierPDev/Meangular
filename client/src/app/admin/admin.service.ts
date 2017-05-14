@@ -38,10 +38,7 @@ export class AdminService {
    */
   public deleteBlogEntry(entry: BlogEntry): void {
     this._authHttp.delete('/api/blog/' + entry._id)
-      .map(res => res.json())
-      .subscribe(() => {
-        this._router.navigate(['/blog/list']);
-      }, err => this.error = JSON.parse(err._body).msg || err.statusText);
+      .map(res => res.json());
   }
 
   /**

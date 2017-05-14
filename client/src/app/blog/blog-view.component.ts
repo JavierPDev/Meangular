@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BlogService } from './blog.service';
 import { BlogEntry } from './blog-entry';
@@ -15,11 +15,15 @@ export class BlogViewComponent implements OnInit, OnDestroy {
   constructor(
     public auth: AuthService,
     public blogService: BlogService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _router: Router
   ) {}
 
   public deleteBlogEntry(): void {
-    this.blogService.deleteBlogEntry(this.blogEntry);
+    this.blogService.deleteBlogEntry(this.blogEntry)
+      .subscribe(() => {
+        this._router.navigate(['/blog/list']);
+      }, err => this.blogService.error = JSON.parse(err._body).msg || err.statusText);
   }
 
   ngOnInit() {

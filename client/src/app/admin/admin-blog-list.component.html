@@ -15,8 +15,8 @@
 
 <br />
 
-<div class="alert alert-danger" *ngIf="adminService.error">
-  {{adminService.error}}
+<div class="alert alert-danger" *ngIf="blogService.error">
+  {{blogService.error}}
 </div>
 
 <div *ngIf="!blogEntries" class="alert alert-info">
@@ -75,29 +75,53 @@
       [totalItems]="count">
    </pagination> 
   </div>
-  <ul class="list-unstyled">
-    <li *ngFor="let blogEntry of blogEntries trackBy _id" class="blog-list-item">
-      <h2>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Date</th>
+      <th>Content</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <tr
+      class="admin-blog-list-item"
+      *ngFor="let blogEntry of blogEntries trackBy _id">
+      <td>
         <a [routerLink]="['/blog', blogEntry.slug]">{{blogEntry.title}}</a>
-      </h2>
-      <small>
-        Posted on {{blogEntry.created}} by
-        <!-- Pass username query param just for post count template. Only
-             user (id) is actually used for filtering. -->
+      </td>
+      <td>
         <a
           [queryParams]="{
             user: blogEntry.user._id,
             username: blogEntry.user.profile.name
           }"
-          [routerLink]="['/blog/list']">
+          [routerLink]="['/admin/blog/list']">
           {{blogEntry.user.profile.name}}
         </a>
-      </small>
-      <div>
+      </td>
+      <td>
+        {{blogEntry.created}}
+      </td>
+      <td>
         {{blogEntry.content.slice(0, 100)}}...
-      </div>
-    </li>
-  </ul>
+      </td>
+      <td>
+        <a
+          class="btn btn-default"
+          routerLink="/blog/{{blogEntry.slug}}/edit">
+          <i class="fa fa-edit"></i>
+        </a>
+      </td>
+      <td>
+        <button
+          class="btn btn-default"
+          (click)="deleteBlogEntry(blogEntry)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
   <div>
     <!-- Setting (pageChanged) again here would make it fire twice on page changes -->
     <pagination

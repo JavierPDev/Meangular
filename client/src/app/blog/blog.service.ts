@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -36,12 +37,9 @@ export class BlogService {
    * Delete blog entry
    * @param {BlogEntry} entry - Blog entry
    */
-  public deleteBlogEntry(entry: BlogEntry): void {
-    this._authHttp.delete('/api/blog/' + entry._id)
-      .map(res => res.json())
-      .subscribe(() => {
-        this._router.navigate(['/blog/list']);
-      }, err => this.error = JSON.parse(err._body).msg || err.statusText);
+  public deleteBlogEntry(entry: BlogEntry): Observable<any> {
+    return this._authHttp.delete('/api/blog/' + entry._id)
+      .map(res => res.json());
   }
 
   /**

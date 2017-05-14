@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/skip';
 
 import { AuthService } from '../user/auth.service';
@@ -20,13 +21,14 @@ export class BlogListComponent implements OnInit, OnDestroy {
   public queryParams;
   public searchTerm: string;
   public sort = '-created';
-  private _queryParamsSub;
+  protected _url = '/blog/list';
+  protected _queryParams: Subscription;
 
   constructor(
     public auth: AuthService,
     public blogService: BlogService,
-    private _route: ActivatedRoute,
-    private _router: Router
+    protected _route: ActivatedRoute,
+    protected _router: Router
   ) {}
 
   /**
@@ -50,10 +52,10 @@ export class BlogListComponent implements OnInit, OnDestroy {
 
     this.searchTerm = queryParams.search;
     this.currentPage = queryParams.page;
-    this._router.navigate(['/blog/list'], {queryParams});
+    this._router.navigate([this._url], {queryParams});
   }
 
-  private _setPageData(blogListData: any): void {
+  protected _setPageData(blogListData: any): void {
     const {
       count,
       blogEntries,
@@ -76,20 +78,10 @@ export class BlogListComponent implements OnInit, OnDestroy {
     this.currentEnd = this.currentStart > 0 ? skip + blogEntries.length : 0;
   }
 
-  ngOnInit() {
-    // Get initial blog list data from route resolve so no empty page for user
-    // at first page load
-    const blogListData = this._route.snapshot.data['resolveData'];
-    this.queryParams = this._route.snapshot.queryParams;
-    this._setPageData(Object.assign(blogListData, this.queryParams));
-
-    if (this.queryParams.search) {
-      this.searchTerm = this.queryParams.search;
-    }
-
+  protected _getBlogListOnQueryParamChange(skip: number): void {
     // Watch for route query param changes to get blog list and set page data
-    this._queryParamsSub = this._route.queryParams
-      .skip(1)
+    this._queryParams = this._route.queryParams
+      .skip(skip)
       .subscribe(qp => {
         const queryParams: any = Object.assign({}, qp);
         this.queryParams = queryParams;
@@ -111,7 +103,21 @@ export class BlogListComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnInit() {
+    // Get initial blog list data from route resolve so no empty page for user
+    // at first page load
+    const blogListData = this._route.snapshot.data['resolveData'];
+    this.queryParams = this._route.snapshot.queryParams;
+    this._setPageData(Object.assign(blogListData, this.queryParams));
+
+    if (this.queryParams.search) {
+      this.searchTerm = this.queryParams.search;
+    }
+
+    this._getBlogListOnQueryParamChange(1);
+  }
+
   ngOnDestroy() {
-    this._queryParamsSub.unsubscribe();
+    this._queryParams.unsubscribe();
   }
 }
