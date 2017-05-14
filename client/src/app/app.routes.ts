@@ -4,6 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 // Add lazy-loaded routes/modules here
 const APP_ROUTES: Routes = [
   {
+    path: 'admin',
+    loadChildren: './admin/admin.module#AdminModule'
+  },
+  {
     path: 'blog',
     loadChildren: './blog/blog.module#BlogModule'
   }

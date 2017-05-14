@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BlogListComponent } from './blog-list.component';
+import { AdminBlogListComponent } from './admin-blog-list.component';
 import { AuthenticatedGuard } from '../user/authenticated.guard';
 import { CanDeactivateGuard } from '../core/can-deactivate.guard';
 
@@ -10,10 +10,10 @@ const ADMIN_ROUTES: Routes = [
     path: '',
     children: [
       {
-        path: 'list',
-        component: BlogListComponent,
+        path: 'blog/list',
+        component: AdminBlogListComponent,
         data: {
-          title: 'Admin List'
+          title: 'Admin Blog List'
         },
       },
     ]

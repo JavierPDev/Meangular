@@ -1,4 +1,4 @@
-<h1>Blog List</h1>
+<h1>Admin Blog List</h1>
 
 <a
   class="btn btn-primary"
@@ -15,8 +15,8 @@
 
 <br />
 
-<div class="alert alert-danger" *ngIf="blogService.error">
-  {{blogService.error}}
+<div class="alert alert-danger" *ngIf="adminService.error">
+  {{adminService.error}}
 </div>
 
 <div *ngIf="!blogEntries" class="alert alert-info">

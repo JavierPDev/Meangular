@@ -29,4 +29,4 @@ import { AdminRoutingModule } from './admin.routes';
     AdminService,
   ]
 })
-export class BlogModule {}
+export class AdminModule {}

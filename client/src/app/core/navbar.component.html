@@ -24,6 +24,25 @@
           Sign Up
         </a>
       </li>
+			<li dropdown *ngIf="auth.loggedIn && auth.isAdmin">
+        <a class="pointer" dropdownToggle>Admin</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="/admin/blog/list"
+              routerLinkActive="active">
+              Blog
+            </a>
+            <a
+              class="dropdown-item"
+              routerLink="/admin/users/list"
+              routerLinkActive="active">
+              Users
+            </a>
+          </li>
+        </ul>
+      </li>
 			<li *ngIf="auth.loggedIn">
         <a routerLink="/profile" routerLinkActive="active">
           Profile

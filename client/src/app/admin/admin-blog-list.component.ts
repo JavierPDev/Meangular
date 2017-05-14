@@ -1,14 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import 'rxjs/add/operator/skip';
 
+import { AdminService } from './admin.service';
 import { AuthService } from '../user/auth.service';
-import { BlogService } from './blog.service';
-import { BlogEntry } from './blog-entry';
+import { BlogEntry } from '../blog/blog-entry';
 
 @Component({
   selector: 'app-blog-list',
-  templateUrl: './blog-list.component.html'
+  templateUrl: './admin-blog-list.component.html'
 })
 export class AdminBlogListComponent implements OnInit, OnDestroy {
   public blogEntries: Array<BlogEntry>;
@@ -24,7 +23,7 @@ export class AdminBlogListComponent implements OnInit, OnDestroy {
 
   constructor(
     public auth: AuthService,
-    public blogService: BlogService,
+    public adminService: AdminService,
     private _route: ActivatedRoute,
     private _router: Router
   ) {}
@@ -50,7 +49,7 @@ export class AdminBlogListComponent implements OnInit, OnDestroy {
 
     this.searchTerm = queryParams.search;
     this.currentPage = queryParams.page;
-    this._router.navigate(['/blog/list'], {queryParams});
+    this._router.navigate(['/admin/blog/list'], {queryParams});
   }
 
   private _setPageData(blogListData: any): void {
@@ -77,22 +76,15 @@ export class AdminBlogListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Get initial blog list data from route resolve so no empty page for user
-    // at first page load
-    const blogListData = this._route.snapshot.data['resolveData'];
-    this.queryParams = this._route.snapshot.queryParams;
-    this._setPageData(Object.assign(blogListData, this.queryParams));
-
-    if (this.queryParams.search) {
-      this.searchTerm = this.queryParams.search;
-    }
-
     // Watch for route query param changes to get blog list and set page data
     this._queryParamsSub = this._route.queryParams
-      .skip(1)
       .subscribe(qp => {
         const queryParams: any = Object.assign({}, qp);
         this.queryParams = queryParams;
+
+        if (queryParams.search) {
+          this.searchTerm = queryParams.search;
+        }
 
         // If navigating back to default blog list page 1 while already on blog
         // list, reset everything.
@@ -104,10 +96,10 @@ export class AdminBlogListComponent implements OnInit, OnDestroy {
           this.limit = 20;
         }
 
-        this.blogService.getBlogList(queryParams)
+        this.adminService.getBlogList(queryParams)
           .then(blogList => {
             this._setPageData(Object.assign(blogList, queryParams));
-          }, err => this.blogService.error = err);
+          }, err => this.adminService.error = err);
       });
   }
 
