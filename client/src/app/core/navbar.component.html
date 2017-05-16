@@ -25,7 +25,10 @@
         </a>
       </li>
 			<li dropdown *ngIf="auth.loggedIn && auth.isAdmin">
-        <a class="pointer" dropdownToggle>Admin</a>
+        <a class="pointer" dropdownToggle>
+          Admin
+          <i class="fa fa-angle-down"></i>
+        </a>
         <ul class="dropdown-menu">
           <li>
             <a

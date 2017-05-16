@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
 
 import { ProfileComponent } from './profile.component';
 import { AuthService } from '../user/auth.service';

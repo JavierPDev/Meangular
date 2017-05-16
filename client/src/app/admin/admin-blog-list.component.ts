@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { BlogListComponent } from '../blog/blog-list.component';
 import { BlogEntry } from '../blog/blog-entry';
@@ -7,7 +7,7 @@ import { BlogEntry } from '../blog/blog-entry';
   selector: 'app-admin-blog-list',
   templateUrl: './admin-blog-list.component.html'
 })
-export class AdminBlogListComponent extends BlogListComponent {
+export class AdminBlogListComponent extends BlogListComponent implements OnInit {
   protected _url = '/admin/blog/list';
 
   public deleteBlogEntry(entry: BlogEntry): void {

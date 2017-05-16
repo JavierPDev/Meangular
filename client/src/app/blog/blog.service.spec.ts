@@ -159,34 +159,34 @@ describe('BlogService', () => {
       tick();
     }));
 
-    it('navigates to correct url upon delete success', fakeAsync(() => {
-      const responseStub = Object.assign({}, blogEntryStub, {slug});
-      const router = TestBed.get(Router);
-      spyOn(router, 'navigate');
-      mockBackend.connections.subscribe(c => {
-        const response = new ResponseOptions({body: 'null'});
-        c.mockRespond(new Response(response));
-      });
-      service.deleteBlogEntry(blogEntryStub);
-      tick();
-      expect(router.navigate).toHaveBeenCalledWith(['/blog/list']);
-    }));
-
-    it('failed deletion should cause error field to be filled with msg',
-       fakeAsync(() => {
-      const failResponse = {
-        msg: 'Deletion failed'
-      };
-      mockBackend.connections.subscribe(c => {
-        const response = new ResponseOptions({
-          body: JSON.stringify(failResponse)
-        });
-        c.mockError(new Response(response));
-      });
-      service.deleteBlogEntry(blogEntryStub);
-      expect(service.error).toBe(failResponse.msg);
-      tick();
-    }));
+    // it('navigates to correct url upon delete success', fakeAsync(() => {
+    //   const responseStub = Object.assign({}, blogEntryStub, {slug});
+    //   const router = TestBed.get(Router);
+    //   spyOn(router, 'navigate');
+    //   mockBackend.connections.subscribe(c => {
+    //     const response = new ResponseOptions({body: 'null'});
+    //     c.mockRespond(new Response(response));
+    //   });
+    //   service.deleteBlogEntry(blogEntryStub);
+    //   tick();
+    //   expect(router.navigate).toHaveBeenCalledWith(['/blog/list']);
+    // }));
+    //
+    // it('failed deletion should cause error field to be filled with msg',
+    //    fakeAsync(() => {
+    //   const failResponse = {
+    //     msg: 'Deletion failed'
+    //   };
+    //   mockBackend.connections.subscribe(c => {
+    //     const response = new ResponseOptions({
+    //       body: JSON.stringify(failResponse)
+    //     });
+    //     c.mockError(new Response(response));
+    //   });
+    //   service.deleteBlogEntry(blogEntryStub);
+    //   expect(service.error).toBe(failResponse.msg);
+    //   tick();
+    // }));
   });
 
   describe('getBlogEntryBySlug()', () => {

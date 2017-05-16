@@ -9,17 +9,20 @@ Meangular currently uses Angular 4.
 Out-of-the-box features:
 * User
   * Profile
+    * Photo upload
   * Authentication and Authorization
     * Optional third-party login/signup using Google Oauth2
 * Blog
   * Lazy loaded
-  * Create, Edit, and Delete by owner or admin
+  * Create, Edit, and Delete by author or admin
     * Deactivation guards when navigating away after form change
   * Pagination
     * Sorting
     * Limit
     * Filter by user
   * Full-text search using title
+* Admin
+  * lazy loaded
 * Unit tested front-end and back-end
 * End-to-end tested
 * Linted front-end and back-end code
