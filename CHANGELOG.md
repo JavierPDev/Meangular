@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.23.1] - 2017-05-23
+### Fixed
+- Fixed admin route auth guard for admin blog list.
+
 ## [0.23.0] - 2017-05-16
 ### Added
 - Added admin section for blogs.
