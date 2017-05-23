@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminBlogListComponent } from './admin-blog-list.component';
-import { AuthenticatedGuard } from '../user/authenticated.guard';
+import { AdminAuthenticatedGuard } from './admin-auth.guard';
 import { CanDeactivateGuard } from '../core/can-deactivate.guard';
 
 const ADMIN_ROUTES: Routes = [
@@ -15,6 +15,7 @@ const ADMIN_ROUTES: Routes = [
         data: {
           title: 'Admin Blog List'
         },
+        canActivate: [AdminAuthenticatedGuard],
       },
     ]
   }

@@ -9,6 +9,7 @@ import { BlogModule } from '../blog/blog.module';
 import { AdminBlogListComponent } from './admin-blog-list.component';
 import { AdminService } from './admin.service';
 import { AdminRoutingModule } from './admin.routes';
+import { AdminAuthenticatedGuard } from './admin-auth.guard';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AdminRoutingModule } from './admin.routes';
   ],
   providers: [
     AdminService,
+    AdminAuthenticatedGuard
   ]
 })
 export class AdminModule {}

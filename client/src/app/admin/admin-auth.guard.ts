@@ -15,7 +15,7 @@ export class AdminAuthenticatedGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
       return this._authService.getAuthenticatedState()
         .then(isAuthenticated => {
-          if (isAuthenticated || !this._authService.isAdmin) {
+          if (!isAuthenticated || !this._authService.isAdmin) {
             this._router.navigate(['/']);
           }
 
