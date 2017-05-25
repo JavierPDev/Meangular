@@ -1,6 +1,10 @@
 <h1>Edit Blog Entry</h1>
 
-<form novalidate [formGroup]="blogEditForm" (submit)="editBlogEntry()">
+<form
+  novalidate
+  *ngIf="authService.user()._id === blogEntry.user._id || authService.isAdmin"
+  [formGroup]="blogEditForm"
+  (submit)="editBlogEntry()">
   <div
     class="form-group"
     [class.has-error]="blogEditForm.controls['title'].invalid
@@ -51,3 +55,9 @@
     <a class="btn btn-default" [routerLink]="['/blog/list']">Cancel</a>
   </div>
 </form>
+
+<div
+  class="alert alert-danger"
+  *ngIf="authService.user()._id !== blogEntry.user._id && !authService.isAdmin">
+  You are not authorized to edit this post
+</div>

@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { AuthService } from '../user/auth.service';
 import { BlogEditComponent } from './blog-edit.component';
 import { BlogService } from './blog.service';
 
@@ -46,6 +47,10 @@ describe('BlogEditComponent', () => {
           useValue: {
             updateBlogEntry: (blogEntry) => blogEntry
           }
+        },
+        {
+          provide: AuthService,
+          useValue: {}
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]

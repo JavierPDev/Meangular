@@ -25,7 +25,8 @@ describe('BlogEdit component', () => {
 
   describe('input', () => {
     beforeAll(() => {
-      userPage.login('help@meangular.com', 'truetrue1!');
+      userPage.logout();
+      userPage.login();
       browser.get('/blog/example/edit');
     });
 
@@ -52,9 +53,13 @@ describe('BlogEdit component', () => {
     });
 
     it('gives unauthorized msg if not admin or user that created entry', () => {
+      userPage.logout();
+      userPage.login('qa@meangular.com', 'truetrue1!');
+      browser.get('/blog/example/edit');
       submitBtn = element(by.css('[type="submit"]'));
-      submitBtn.click();
-      expect(appPage.getErrorText()).toBe('Unauthorized');
+      expect(submitBtn.isPresent()).toBe(false);
+      expect(appPage.getErrorText())
+        .toBe('You are not authorized to edit this post');
     });
 
     it('successfully edits if using user that created entry', () => {

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { AuthService } from '../user/auth.service';
 import { BlogService } from './blog.service';
 import { BlogEntry } from './blog-entry';
 
@@ -15,6 +16,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   private _isBeingSaved = false;
 
   constructor(
+    public authService: AuthService,
     public blogService: BlogService,
     private _route: ActivatedRoute,
     private _fb: FormBuilder
