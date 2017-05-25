@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.23.2] - 2017-05-25
+### Changed
+- If user not admin or author of blog entry then blog edit displays unauthorized alert instead of edit form. Used to display unauthorized alert after form submission.
+
 ## [0.23.1] - 2017-05-23
 ### Fixed
 - Fixed admin route auth guard for admin blog list.
