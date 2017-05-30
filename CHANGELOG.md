@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.23.3] - 2017-05-30
+### Added
+- Added admin blog list unit and e2e tests.
+
+### Fixed
+- Fixed failing blog view unit test.
+
 ## [0.23.2] - 2017-05-25
 ### Changed
 - If user not admin or author of blog entry then blog edit displays unauthorized alert instead of edit form. Used to display unauthorized alert after form submission.
