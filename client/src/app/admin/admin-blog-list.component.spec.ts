@@ -52,7 +52,9 @@ describe('AdminBlogListComponent', () => {
         },
         {
           provide: BlogService,
-          useValue: {getBlogList: function() {}}
+          useValue: {
+            deleteBlogEntry: entry => Observable.from([entry])
+          }
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -63,4 +65,16 @@ describe('AdminBlogListComponent', () => {
     component.ngOnDestroy = function() {};
   });
 
+  it('loads the admin blog list component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  describe('deleteBlogEntry()', () => {
+    it('calls deleteBlogEntry service method', () => {
+      const blogService = TestBed.get(BlogService);
+      spyOn(blogService, 'deleteBlogEntry').and.callThrough();
+      component.deleteBlogEntry(blogListStub[0]);
+      expect(blogService.deleteBlogEntry).toHaveBeenCalledWith(blogListStub[0]);
+    });
+  });
 });

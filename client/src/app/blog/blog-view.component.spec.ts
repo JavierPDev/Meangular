@@ -71,12 +71,11 @@ describe('BlogViewComponent', () => {
     expect(component.blogEntry).toEqual(blogEntry);
   });
 
-  // TODO: Fix component not using injected service
-  // it('calls BlogService deleteBlogEntry method for component method', () => {
-  //   const blogService = TestBed.get(BlogService);
-  //   component.ngOnInit();
-  //   spyOn(blogService, 'deleteBlogEntry');
-  //   component.deleteBlogEntry();
-  //   expect(blogService.deleteBlogEntry).toHaveBeenCalledWith(blogEntry);
-  // });
+  it('calls BlogService deleteBlogEntry method for component method', () => {
+    const blogService = TestBed.get(BlogService);
+    component.ngOnInit();
+    spyOn(blogService, 'deleteBlogEntry').and.callThrough();
+    component.deleteBlogEntry();
+    expect(blogService.deleteBlogEntry).toHaveBeenCalledWith(blogEntry);
+  });
 });
