@@ -9,18 +9,13 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { BlogService } from './blog.service';
 import { BlogEntry } from './blog-entry';
+import { User } from '../user/user';
 
 const blogEntryStub: BlogEntry = {
   title: 'Test blog entry',
   content: 'Test content',
   created: new Date(),
-  _id: 'objectid',
-  user: {
-    profile: {
-      name: 'Test User'
-    },
-    _id: 'objectid'
-  }
+  _id: 'objectid'
 };
 const blogListStub = [blogEntryStub];
 const slug = 'test-blog-entry';
@@ -37,8 +32,8 @@ describe('BlogService', () => {
         BaseRequestOptions,
         {
           provide: Http,
-          useFactory: (backend, defaultOptions)
-            => new Http(backend, defaultOptions),
+          useFactory: (backend, defaultOptions) =>
+            new Http(backend, defaultOptions),
           deps: [MockBackend, BaseRequestOptions]
         },
         {
@@ -51,8 +46,8 @@ describe('BlogService', () => {
             navigate: () => true,
             navigateByUrl: () => true
           }
-        }
-        BlogService,
+        },
+        BlogService
       ]
     });
   });

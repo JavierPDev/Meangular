@@ -29,7 +29,7 @@ const password = 'a5ljkaA!lj';
 let service;
 let mockBackend;
 // Overwrite private method that doesn't need testing
-AuthService.prototype._watchForRedirectTarget = function(){};
+AuthService.prototype['_watchForRedirectTarget'] = function() {};
 
 describe('AuthService', () => {
   beforeEach(() => {
@@ -39,8 +39,8 @@ describe('AuthService', () => {
         BaseRequestOptions,
         {
           provide: Http,
-          useFactory: (backend, defaultOptions)
-            => new Http(backend, defaultOptions),
+          useFactory: (backend, defaultOptions) =>
+            new Http(backend, defaultOptions),
           deps: [MockBackend, BaseRequestOptions]
         },
         {
