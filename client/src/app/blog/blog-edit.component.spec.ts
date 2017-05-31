@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { AuthService } from '../user/auth.service';
 import { BlogEditComponent } from './blog-edit.component';
@@ -34,6 +35,7 @@ describe('BlogEditComponent', () => {
         BlogEditComponent
       ],
       providers: [
+        {provide: Location, useValue: {}},
         {
           provide: ActivatedRoute,
           useValue: {

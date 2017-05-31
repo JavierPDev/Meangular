@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BlogService } from './blog.service';
@@ -13,6 +14,7 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 
   constructor(
     public blogService: BlogService,
+    public location: Location,
     private _fb: FormBuilder
   ) {}
 

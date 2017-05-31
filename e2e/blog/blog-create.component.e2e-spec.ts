@@ -17,6 +17,14 @@ describe('BlogCreate component', () => {
     body = element(by.css('body'));
   });
 
+  it('has a working cancel button that goes back', () => {
+    browser.get('/blog/list');
+    expect(browser.getCurrentUrl()).toEndWith('/blog/list');
+    browser.get('/blog/create');
+    expect(browser.getCurrentUrl()).toEndWith('/blog/create');
+    appPage.getCancelButton().click();
+    expect(browser.getCurrentUrl()).toEndWith('/blog/list');
+  });
 
   describe('creation', () => {
     beforeAll(() => {

@@ -23,6 +23,10 @@ export class AppPage {
     expect(browser.getTitle()).toBe(title);
   }
 
+  public getCancelButton() {
+    return element(by.cssContainingText('.btn-default', 'Cancel'));
+  }
+
   public getH1Text() {
     return element(by.css('h1')).getText();
   }

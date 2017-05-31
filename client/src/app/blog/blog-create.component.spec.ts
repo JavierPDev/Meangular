@@ -3,6 +3,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { BlogCreateComponent } from './blog-create.component';
 import { BlogService } from './blog.service';
@@ -20,6 +21,7 @@ describe('BlogCreateComponent', () => {
         BlogCreateComponent
       ],
       providers: [
+        {provide: Location, useValue: {}},
         {
           provide: BlogService,
           useValue: {

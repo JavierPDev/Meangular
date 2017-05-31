@@ -33,13 +33,20 @@ describe('AdminBlogList component', () => {
       createBtn.click();
       expect(appPage.getH1Text()).toBe('Create a Blog Entry');
     });
+
+    describe('cancel button in blog create from admin list', () => {
+      it('goes back to admin list', () => {
+        expect(browser.getCurrentUrl()).toEndWith('/blog/create');
+        appPage.getCancelButton().click();
+        expect(browser.getCurrentUrl()).toEndWith('/admin/blog/list');
+      });
+    });
   });
 
   describe('list', () => {
     let link: ElementFinder;
 
     beforeAll(() => {
-      browser.get('/admin/blog/list');
       link = element(by.css('td a'));
     });
 
@@ -56,16 +63,23 @@ describe('AdminBlogList component', () => {
       expect(appPage.getH1Text()).toBe('example');
     });
 
-    it('has working blog edit buttons', () => {
-      browser.get('/admin/blog/list');
-      const editBtn = element(by.css('.fa-edit'));
-      expect(editBtn.isDisplayed()).toBe(true);
-      editBtn.click();
-      expect(appPage.getH1Text()).toBe('Edit Blog Entry');
+    describe('cancel button in blog create from admin list', () => {
+      it('has working blog edit buttons', () => {
+        browser.get('/admin/blog/list');
+        const editBtn = element(by.css('.fa-edit'));
+        expect(editBtn.isDisplayed()).toBe(true);
+        editBtn.click();
+        expect(appPage.getH1Text()).toBe('Edit Blog Entry');
+      });
+
+      it('goes back to admin list', () => {
+        expect(browser.getCurrentUrl()).toContain('edit');
+        appPage.getCancelButton().click();
+        expect(browser.getCurrentUrl()).toEndWith('/admin/blog/list');
+      });
     });
 
     it('has working blog delete', (done) => {
-      browser.get('/admin/blog/list');
       element.all(by.css('.fa-trash'))
         .then(items => {
           const deleteBtn: ElementFinder = items[6];

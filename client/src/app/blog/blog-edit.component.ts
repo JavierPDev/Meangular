@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -18,6 +19,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   constructor(
     public authService: AuthService,
     public blogService: BlogService,
+    public location: Location,
     private _route: ActivatedRoute,
     private _fb: FormBuilder
   ) {}

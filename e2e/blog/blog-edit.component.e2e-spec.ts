@@ -18,6 +18,15 @@ describe('BlogEdit component', () => {
     appPage = new AppPage();
   });
 
+  it('has a working cancel button that goes back', () => {
+    browser.get('/blog/list');
+    expect(browser.getCurrentUrl()).toEndWith('/blog/list');
+    browser.get('/blog/example/edit');
+    expect(browser.getCurrentUrl()).toEndWith('/blog/example/edit');
+    appPage.getCancelButton().click();
+    expect(browser.getCurrentUrl()).toEndWith('/blog/list');
+  });
+
   it('has the correct DOM title', () => {
     browser.get('/blog/example/edit');
     appPage.expectDOMTitleToBe('Meangular | Blog Edit: example');

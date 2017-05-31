@@ -49,6 +49,10 @@
        [disabled]="blogCreateForm.invalid">
       Submit
     </button>
-    <a class="btn btn-default" [routerLink]="['/blog/list']">Cancel</a>
+    <button
+      class="btn btn-default"
+      type="button"
+      (click)="location.back()">
+      Cancel</button>
   </div>
 </form>
