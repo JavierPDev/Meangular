@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.23.4] - 2017-05-31
+### Changed
+- Blog edit and create views' cancel buttons now go back to the previous page rather than always going to the blog list.
+
 ## [0.23.3] - 2017-05-30
 ### Added
 - Added admin blog list unit and e2e tests.
