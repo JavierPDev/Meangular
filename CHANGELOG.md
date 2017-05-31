@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.23.5] - 2017-05-31
+### Fixed
+- Fix typescript compile errors in test specs. They only pop up in new builds so are likely due to a package update.
+
 ## [0.23.4] - 2017-05-31
 ### Changed
 - Blog edit and create views' cancel buttons now go back to the previous page rather than always going to the blog list.
