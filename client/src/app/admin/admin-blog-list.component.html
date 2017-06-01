@@ -8,74 +8,14 @@
   New Blog Entry
 </a>
 
-<app-search-box
-  [searchTerm]="searchTerm"
-  (searchChanged)="changePage({search: $event.searchTerm, page: 1})">
-</app-search-box>
-
 <br />
 
 <div class="alert alert-danger" *ngIf="blogService.error">
   {{blogService.error}}
 </div>
 
-<div *ngIf="!blogEntries" class="alert alert-info">
-  No blog entries at this time.
-</div>
-
-<div *ngIf="blogEntries">
-  <div>
-    <div class="pull-right">
-      <div class="form-group">
-        <label for="sort">Sort</label>
-        <select
-          class="form-control"
-          id="sort"
-          name="sort"
-          (change)="changePage({page: 1})"
-          [(ngModel)]="sort">
-          <option value="created">Date Ascending</option>
-          <option value="-created">Date Descending</option>
-          <option value="title">Title Ascending</option>
-          <option value="-title">Title Descending</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="limit">Limit</label>
-        <select
-          class="form-control"
-          id="limit"
-          name="limit"
-          (change)="page = 0; changePage()"
-          [(ngModel)]="limit">
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
-      </div>
-    </div>
-    <div class="blog-count">
-      {{currentStart}} through {{currentEnd}} of {{count}}
-      <span *ngIf="searchTerm">for search term "{{searchTerm}}"</span>
-      <span *ngIf="queryParams.user">by user {{queryParams.username}}</span>
-    </div>
-    <pagination
-      class="pagination-sm"
-      firstText="&laquo;"
-      lastText="&raquo;"
-      nextText="&rsaquo;"
-      previousText="&lsaquo;"
-      [boundaryLinks]="true"
-      [itemsPerPage]="limit"
-      [(ngModel)]="currentPage"
-      (pageChanged)="changePage($event)"
-      [totalItems]="count">
-   </pagination> 
-  </div>
-  <table class="table table-striped table-hover">
+<app-paginated-search-list [url]="url" [listRetriever]="blogService.getList" #list>
+  <table class="table table-striped table-hover" *ngIf="list.items">
     <tr>
       <th>Title</th>
       <th>Author</th>
@@ -86,7 +26,7 @@
     </tr>
     <tr
       class="admin-blog-list-item"
-      *ngFor="let blogEntry of blogEntries trackBy _id">
+      *ngFor="let blogEntry of list.items trackBy _id">
       <td>
         <a [routerLink]="['/blog', blogEntry.slug]">{{blogEntry.title}}</a>
       </td>
@@ -122,23 +62,4 @@
       </td>
     </tr>
   </table>
-  <div>
-    <!-- Setting (pageChanged) again here would make it fire twice on page changes -->
-    <pagination
-      class="pagination-sm"
-      firstText="&laquo;"
-      lastText="&raquo;"
-      nextText="&rsaquo;"
-      previousText="&lsaquo;"
-      [boundaryLinks]="true"
-      [itemsPerPage]="limit"
-      [(ngModel)]="currentPage"
-      [totalItems]="count">
-   </pagination> 
-    <div>
-      {{currentStart}} through {{currentEnd}} of {{count}}
-      <span *ngIf="searchTerm">for search term "{{searchTerm}}"</span>
-      <span *ngIf="queryParams.user">by user {{queryParams.username}}</span>
-    </div>
-  </div>
-</div>
+</app-paginated-search-list>

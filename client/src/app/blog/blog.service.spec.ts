@@ -70,7 +70,7 @@ describe('BlogService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('createBlogEntry()', () => {
+  describe('#createBlogEntry()', () => {
     it('calls the correct api url', fakeAsync(() => {
       const expectedUrl = `/api/blog`;
       mockBackend.connections.subscribe(c => {
@@ -128,7 +128,7 @@ describe('BlogService', () => {
     }));
   });
 
-  describe('deleteBlogEntry()', () => {
+  describe('#deleteBlogEntry()', () => {
     it('calls the correct api url', fakeAsync(() => {
       const expectedUrl = `/api/blog/${blogEntryStub._id}`;
       mockBackend.connections.subscribe(c => {
@@ -184,7 +184,7 @@ describe('BlogService', () => {
     // }));
   });
 
-  describe('getBlogEntryBySlug()', () => {
+  describe('#getBlogEntryBySlug()', () => {
     it('calls the correct api url', fakeAsync(() => {
       const expectedUrl = `/api/blog?slug=${slug}&limit=1`;
       mockBackend.connections.subscribe(c => {
@@ -218,13 +218,13 @@ describe('BlogService', () => {
     }));
   });
 
-  describe('getBlogList()', () => {
+  describe('#getList()', () => {
     it('calls the correct api url without query parameters', fakeAsync(() => {
       const expectedUrl = `/api/blog?sort=-created`;
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(expectedUrl);
       });
-      service.getBlogList();
+      service.getList();
       tick();
     }));
 
@@ -238,7 +238,7 @@ describe('BlogService', () => {
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(expectedUrl);
       });
-      service.getBlogList(queryParams);
+      service.getList(queryParams);
       tick();
     }));
 
@@ -246,7 +246,7 @@ describe('BlogService', () => {
       mockBackend.connections.subscribe(c => {
         expect(c.request.method).toBe(RequestMethod.Get);
       });
-      service.getBlogList();
+      service.getList();
       tick();
     }));
 
@@ -257,9 +257,9 @@ describe('BlogService', () => {
         });
         c.mockRespond(new Response(response));
       });
-      service.getBlogList()
+      service.getList()
         .then(blogListData => {
-          const blogEntries = blogListData.blogEntries;
+          const blogEntries = blogListData.items;
           expect(blogEntries[0].title).toEqual(blogListStub[0].title);
           expect(blogEntries[0].content).toEqual(blogListStub[0].content);
         });

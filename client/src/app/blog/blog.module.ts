@@ -2,15 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PaginationModule  } from 'ng2-bootstrap/pagination';
 
 import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
 import { BlogCreateComponent } from './blog-create.component';
 import { BlogViewComponent } from './blog-view.component';
 import { BlogEditComponent } from './blog-edit.component';
 import { BlogListComponent } from './blog-list.component';
 import { BlogEntryResolver } from './blog-entry.resolver';
-import { BlogListResolver } from './blog-list.resolver';
 import { BlogService } from './blog.service';
 import { BlogRoutingModule } from './blog.routes';
 
@@ -26,17 +25,16 @@ import { BlogRoutingModule } from './blog.routes';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    PaginationModule.forRoot(),
 
     BlogRoutingModule,
-    CoreModule
+    CoreModule,
+    SharedModule,
   ],
   exports: [
   ],
   providers: [
     BlogService,
     BlogEntryResolver,
-    BlogListResolver
   ]
 })
 export class BlogModule {}

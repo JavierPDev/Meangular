@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { User } from './user';
 
-interface AuthResponse {
+interface IAuthResponse {
   readonly success?: boolean;
   readonly authenticated?: boolean;
   readonly user?: User;
@@ -51,9 +51,9 @@ export class AuthService {
   /**
    * Change user's password
    * @param {Object} password form value - Password form value
-   * @return {Observable<AuthResponse>}
+   * @return {Observable<IAuthResponse>}
    */
-  public changePassword(password: string, confirmPassword: string): Observable<AuthResponse> {
+  public changePassword(password: string, confirmPassword: string): Observable<IAuthResponse> {
     return this._authHttp.put('/api/account/password',
       {password, confirmPassword})
       .map(res => res.json());
@@ -62,9 +62,9 @@ export class AuthService {
   /**
    * Send forgot request to server so user can reset password
    * @param {String} email - User's email
-   * @return {Observable<AuthResponse>}
+   * @return {Observable<IAuthResponse>}
    */
-  public forgot(email: string): Observable<AuthResponse> {
+  public forgot(email: string): Observable<IAuthResponse> {
     return this._http.post('/api/forgot', {email})
       .map(res => res.json());
   }
@@ -129,18 +129,18 @@ export class AuthService {
    * @param {String} password - Password
    * @param {String} confirmPassword - Password confirmation
    * @param {String} token - Password reset token
-   * @return {Observable<AuthResponse>}
+   * @return {Observable<IAuthResponse>}
    */
-  public resetPassword(password: string, confirmPassword: string, token: string): Observable<AuthResponse> {
+  public resetPassword(password: string, confirmPassword: string, token: string): Observable<IAuthResponse> {
     return this._http.post('/api/reset/' + token, {password, confirmPassword})
       .map(res => res.json());
   }
 
   /**
    * Set user after authentication. Public for oauth.
-   * @param {AuthResponse} res - Response object from server
+   * @param {IAuthResponse} res - Response object from server
    */
-  public setAuthenticatedUser(res: AuthResponse): void {
+  public setAuthenticatedUser(res: IAuthResponse): void {
     this._user = res.user;
     this.isAdmin = this._user.roles.indexOf('admin') > -1;
     this.loggedIn = true;
@@ -164,9 +164,9 @@ export class AuthService {
   /**
    * Update user.
    * @param {User} user - User info to update
-   * @return {Observable<AuthResponse>}
+   * @return {Observable<IAuthResponse>}
    */
-  public updateUser(user: User): Observable<AuthResponse> {
+  public updateUser(user: User): Observable<IAuthResponse> {
     return this._authHttp.put('/api/account/profile', user)
       .map(res => res.json());
   }

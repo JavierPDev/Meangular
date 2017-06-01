@@ -8,7 +8,6 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
-import { GlobalErrorHandler } from './common/global-error-handler';
 import { AppRoutingModule } from './app.routes';
 
 // Needed for angular2-jwt to work properly. See:
@@ -42,10 +41,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     useFactory: authHttpServiceFactory,
     deps: [ Http, RequestOptions ]
   },
-  // {
-  // 	provide: ErrorHandler,
-  // 	useClass: GlobalErrorHandler
-  // },
   ],
   bootstrap: [AppComponent]
 })

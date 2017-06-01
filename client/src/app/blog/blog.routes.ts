@@ -6,7 +6,6 @@ import { BlogListComponent } from './blog-list.component';
 import { BlogViewComponent } from './blog-view.component';
 import { BlogEditComponent } from './blog-edit.component';
 import { BlogEntryResolver } from './blog-entry.resolver';
-import { BlogListResolver } from './blog-list.resolver';
 import { AuthenticatedGuard } from '../user/authenticated.guard';
 import { CanDeactivateGuard } from '../core/can-deactivate.guard';
 
@@ -28,9 +27,6 @@ const BLOG_ROUTES: Routes = [
         component: BlogListComponent,
         data: {
           title: 'Blog List'
-        },
-        resolve: {
-          resolveData: BlogListResolver
         }
       },
       {

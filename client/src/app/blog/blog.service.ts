@@ -58,11 +58,12 @@ export class BlogService {
   }
 
   /**
-   * Get blog list
+   * Get blog list. Uses arrow function format for this binding so it can work
+   * when passed into component inputs.
    * @param {Object} params - Params for filtering blog list
    * @return {Promise<any>} blogList - Promise resolving to blogEntries, count, skip
    */
-  public getBlogList(params: any): Promise<any> {
+  public getList = (params: any): Promise<any> => {
     const searchParams = Object.assign({}, params);
 
     if (searchParams.page) {
@@ -85,7 +86,7 @@ export class BlogService {
     return this._http.get('/api/blog', {search: queryParams})
       .map(res => res.json())
       .map(res => ({
-        blogEntries: res.blogs,
+        items: res.blogs,
         count: res.count,
         skip: searchParams.skip
       }))

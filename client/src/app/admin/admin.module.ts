@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PaginationModule  } from 'ng2-bootstrap/pagination';
 
-import { CoreModule } from '../core/core.module';
 import { BlogModule } from '../blog/blog.module';
+import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
 import { AdminBlogListComponent } from './admin-blog-list.component';
 import { AdminService } from './admin.service';
 import { AdminRoutingModule } from './admin.routes';
@@ -20,11 +20,11 @@ import { AdminAuthenticatedGuard } from './admin-auth.guard';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    PaginationModule.forRoot(),
 
     AdminRoutingModule,
     CoreModule,
-    BlogModule
+    BlogModule,
+    SharedModule,
   ],
   exports: [
   ],

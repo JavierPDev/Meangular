@@ -29,7 +29,7 @@ describe('Searchbox component', () => {
     });
 
     it('displays results count with search term', () => {
-      const count = element(by.css('.blog-count'));
+      const count = element(by.css('.item-count'));
       const expectedText = '1 through 1 of 1 for search term "lorem"';
       expect(count.isDisplayed()).toBe(true);
       expect(count.getText()).toBe(expectedText);
@@ -57,7 +57,7 @@ describe('Searchbox component', () => {
     });
 
     it('displays results count with search term and user author', () => {
-      const count = element(by.css('.blog-count'));
+      const count = element(by.css('.item-count'));
       const expectedText = '1 through 1 of 1 for search term "lorem" by user'
         + ' owner';
       expect(count.isDisplayed()).toBe(true);
