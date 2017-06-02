@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.24.0] - 2017-06-02
+### Changed
+- Refactor paginated lists. Instead of each having its own implementation, change to composing using a base paginated-search-list component that uses transclusion/projection to display content.
+
 ## [0.23.5] - 2017-05-31
 ### Fixed
 - Fix typescript compile errors in test specs. They only pop up in new builds so are likely due to a package update.
