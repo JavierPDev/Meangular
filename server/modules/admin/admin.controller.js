@@ -7,19 +7,43 @@ var debug = require('debug')('meanstackjs:admin')
 // Users
 exports.getUsers = function (req, res, next) {
   debug('start getUsers')
-  Users
-    .find(req.queryParameters.filter || '')
-    .where(req.queryParameters.where || '')
-    .sort(req.queryParameters.sort || '')
-    .limit(req.queryParameters.limit || '')
-    .skip(req.queryParameters.skip || '')
-    .populate(req.queryParameters.populateId || 'user', req.queryParameters.populateItems || '')
-    .select('-password')
-    .exec(function (err, users) {
-      if (err) return next(err)
-      debug('end getUsers')
-      return res.send(users)
-    })
+  auto({
+    users: function (cb) {
+      var returnedUsers
+      debug(req.queryParameters)
+      if (req.query.search) {
+        const findConditions = Object.assign({}, req.queryParameters.filter, {$text: {$search: req.query.search}})
+        returnedUsers = Users.find(findConditions)
+      } else {
+        returnedUsers = Users.find(req.queryParameters.filter || '')
+      }
+      returnedUsers
+        .where(req.queryParameters.where || '')
+        .sort(req.queryParameters.sort || '')
+        .select(req.queryParameters.select || '')
+        .limit(req.queryParameters.limit || '')
+        .skip(req.queryParameters.skip || '')
+        .populate(req.queryParameters.populateId || 'user', req.queryParameters.populateItems || '')
+        .exec(cb)
+    },
+    count: function (cb) {
+      var returnedUsers
+      if (req.query.search) {
+        const findConditions = Object.assign({}, req.queryParameters.filter, {$text: {$search: req.query.search}})
+        returnedUsers = Users.find(findConditions)
+      } else {
+        returnedUsers = Users.find(req.queryParameters.filter || '')
+      }
+      returnedUsers
+        .where(req.queryParameters.where || '')
+        .count()
+        .exec(cb)
+    }
+  }, function (err, results) {
+    if (err) return next(err)
+    debug('end getusers')
+    return res.status(200).send(results)
+  })
 }
 exports.deleteUsers = function (req, res, next) {
   req.adminUser.remove(function () {

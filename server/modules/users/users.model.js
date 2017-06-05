@@ -13,6 +13,7 @@ var userSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
     unique: true,
+    index: true,
     required: 'We need an email address to create your account.',
     validate: [
       validate({

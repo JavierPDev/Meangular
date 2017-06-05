@@ -1,0 +1,46 @@
+<h1>Admin User List</h1>
+
+<br />
+
+<div class="alert alert-danger" *ngIf="adminService.error">
+  {{adminService.error}}
+</div>
+
+<app-paginated-search-list [url]="url" [listRetriever]="adminService.getUserList" #list>
+  <table class="table table-striped table-hover" *ngIf="list.items">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Last Login</th>
+    </tr>
+    <tr
+      class="admin-blog-list-item"
+      *ngFor="let user of list.items trackBy _id">
+      <td>
+        <a routerLink="/admin/user/{{user._id}}/edit">
+          {{user.profile.name}}
+        </a>
+      </td>
+      <td>
+        <a routerLink="/admin/user/{{user._id}}/edit">{{user.email}}</a>
+      </td>
+      <td>
+        {{user.lastLoggedIn}}
+      </td>
+      <td>
+        <a
+          class="btn btn-default"
+          routerLink="/admin/user/{{user._id}}/edit">
+          <i class="fa fa-edit"></i>
+        </a>
+      </td>
+      <td>
+        <button
+          class="btn btn-default"
+          (click)="deleteUser(user)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+</app-paginated-search-list>

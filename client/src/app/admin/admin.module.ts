@@ -7,13 +7,15 @@ import { BlogModule } from '../blog/blog.module';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { AdminBlogListComponent } from './admin-blog-list.component';
+import { AdminUserListComponent } from './admin-user-list.component';
 import { AdminService } from './admin.service';
 import { AdminRoutingModule } from './admin.routes';
 import { AdminAuthenticatedGuard } from './admin-auth.guard';
 
 @NgModule({
   declarations: [
-    AdminBlogListComponent
+    AdminBlogListComponent,
+    AdminUserListComponent,
   ],
   imports: [
     CommonModule,
