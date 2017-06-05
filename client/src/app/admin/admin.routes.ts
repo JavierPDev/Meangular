@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminBlogListComponent } from './admin-blog-list.component';
+import { AdminUserEditComponent } from './admin-user-edit.component';
 import { AdminUserListComponent } from './admin-user-list.component';
 import { AdminAuthenticatedGuard } from './admin-auth.guard';
 import { CanDeactivateGuard } from '../core/can-deactivate.guard';
@@ -26,6 +27,15 @@ const ADMIN_ROUTES: Routes = [
         },
         canActivate: [AdminAuthenticatedGuard],
       },
+      {
+        path: 'user/:id/edit',
+        component: AdminUserEditComponent,
+        data: {
+          title: 'Admin User Edit: '
+        },
+        canActivate: [AdminAuthenticatedGuard],
+        canDeactivate: [CanDeactivateGuard]
+      }
     ]
   }
 ];

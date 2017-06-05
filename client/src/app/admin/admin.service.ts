@@ -13,7 +13,7 @@ export class AdminService {
   /**
    * Blog errors stored here for alerting to user
    */
-  public error: string;
+  public error: string|null = null;
 
   constructor(
     private _authHttp: AuthHttp,
@@ -26,6 +26,17 @@ export class AdminService {
    */
   public deleteUser(user: User): Observable<any> {
     return this._authHttp.delete('/api/admin/users/' + user._id)
+      .map(res => res.json());
+  }
+
+  /**
+   * Get user by id
+   *
+   * @param {string} id - User id
+   * @returns {Observable<User>} user - User
+   */
+  public getUser(id: string): Observable<User> {
+    return this._authHttp.get('/api/admin/users/' + id)
       .map(res => res.json());
   }
 
@@ -69,10 +80,14 @@ export class AdminService {
    * @param {User} user - User
    */
   public updateUser(user: User): void {
+    if (user.roles.includes('none')) {
+      user.roles = [];
+    }
+
     this._authHttp.put('/api/admin/users/' + user._id, user)
       .map(res => res.json())
       .subscribe(() => {
-        this._router.navigate(['/admin/users/list']);
+        this._router.navigate(['/admin/user/list']);
       }, err => this.error = JSON.parse(err._body).msg || err.statusText);
   }
 }

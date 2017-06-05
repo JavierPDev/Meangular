@@ -67,7 +67,7 @@ exports.postUsers = function (req, res, next) {
   })
 }
 exports.putUsers = function (req, res, next) {
-  req.adminUser = _.merge(req.adminUser, req.body)
+  req.adminUser = Object.assign(req.adminUser, req.body)
   req.adminUser.save(function (err) {
     console.log('err', err)
     if (err) return next(err)

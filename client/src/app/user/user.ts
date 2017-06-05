@@ -7,6 +7,9 @@ export class User {
   public roles: string[];
   public oauth?: string;
   public profile: {
-    name: string
+    gender: string,
+    location: string,
+    name: string,
+    website: string
   };
 }
