@@ -6,7 +6,11 @@
   {{adminService.error}}
 </div>
 
-<app-paginated-search-list [url]="url" [listRetriever]="adminService.getUserList" #list>
+<app-paginated-search-list
+  [listRetriever]="adminService.getUserList"
+  [sortFields]="sortFields"
+  [url]="url"
+  #list>
   <table class="table table-striped table-hover" *ngIf="list.items">
     <tr>
       <th>Name</th>

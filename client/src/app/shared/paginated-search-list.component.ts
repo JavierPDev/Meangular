@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { IListResponse } from './list-response';
+import { ISortField } from './sort-field';
 
 /**
  * Parent class and component for paginated lists. Assumes that the service
@@ -20,6 +21,10 @@ export class PaginatedSearchListComponent implements OnInit, OnDestroy {
    * the route's query parameters.
    */
   @Input() listRetriever: Function;
+  /**
+   * Fields by which to sort list items.
+  */
+  @Input() sortFields: Array<ISortField>;
   /**
    * Base url of this list route. Used to navigate during paging.
   */

@@ -10,6 +10,10 @@ import { BlogService } from '../blog/blog.service';
   templateUrl: './admin-blog-list.component.html'
 })
 export class AdminBlogListComponent {
+  public sortFields = [
+    {displayName: 'Created', fieldName: 'created'},
+    {displayName: 'Title', fieldName: 'title'}
+  ];
   public url = '/admin/blog/list';
 
   constructor(

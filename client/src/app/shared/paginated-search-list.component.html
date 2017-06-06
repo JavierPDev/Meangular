@@ -24,10 +24,16 @@
           name="sort"
           (change)="changePage({page: 1})"
           [(ngModel)]="sort">
-          <option value="created">Date Ascending</option>
-          <option value="-created">Date Descending</option>
-          <option value="title">Title Ascending</option>
-          <option value="-title">Title Descending</option>
+          <option
+            *ngFor="let field of sortFields"
+            value="{{field.fieldName}}">
+            {{field.displayName}} Ascending
+          </option>
+          <option
+            *ngFor="let field of sortFields"
+            value="-{{field.fieldName}}">
+            {{field.displayName}} Descending
+          </option>
         </select>
       </div>
       <div class="form-group">
