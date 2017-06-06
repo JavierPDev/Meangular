@@ -20,7 +20,7 @@ exports.getUsers = function (req, res, next) {
       returnedUsers
         .where(req.queryParameters.where || '')
         .sort(req.queryParameters.sort || '')
-        .select(req.queryParameters.select || '')
+        .select('-password')
         .limit(req.queryParameters.limit || '')
         .skip(req.queryParameters.skip || '')
         .populate(req.queryParameters.populateId || 'user', req.queryParameters.populateItems || '')
