@@ -34,9 +34,8 @@ exports.postComment = function (req, res, next) {
 }
 
 exports.putComment = function (req, res, next) {
-  console.log('req', req)
+  console.log('put', req.comment)
   req.comment = _.merge(req.comment, req.body)
-  req.comment.user = req.user._id
   req.comment.save(function (err) {
     if (err) return next(err)
     return res.status(200).send(req.comment)
@@ -65,20 +64,17 @@ exports.paramComment = function (req, res, next, id) {
     })
   }
 
-  auto({
-    comments: function (cb) {
-      comments
-        .findOne({_id: id})
-        .populate('user')
-        .exec(cb)
-    }
-  }, function (err, results) {
-    if (err) return next(err)
-    req.comment = results.comments
-    console.log(results.comments)
-    debug('end paramComment')
-    next()
-  })
+  comments
+    .findOne({_id: id})
+    .populate('user')
+    .exec(function (err, comment) {
+      if (err) return next(err)
+      console.log('comment', comment)
+      req.comment = comment
+      console.log('param', req.comment)
+      debug('end paramComment')
+      next()
+    })
 }
 
 exports.paramBlog = require('../blog/blog.controller').paramBlog

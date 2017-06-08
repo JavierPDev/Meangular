@@ -8,10 +8,10 @@ module.exports = function (app, auth, mail, settings, models) {
   app.post('/api/blog/:blogId/comment', auth.isAuthenticated, comment.postComment)
 
   // PUT
-  app.put('/api/comment/:commentId', auth.isAuthorized('comment'), comment.putComment)
+  app.put('/api/comment/:commentId', auth.isAuthenticated, comment.putComment)
 
   // DELETE
-  app.delete('/api/comment/:commentId', auth.isAuthorized('comment'), comment.deleteComment)
+  app.delete('/api/comment/:commentId', auth.isAuthenticated, comment.deleteComment)
 
   // PARAM
   app.param('commentId', comment.paramComment)
