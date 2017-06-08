@@ -39,3 +39,32 @@
 <div id="blogEntryContent">
   {{blogEntry.content}}
 </div>
+
+<br />
+
+<div
+  *ngIf="blogEntry.comments && blogEntry.comments.length"
+  id="blogEntryComments">
+  <app-comment-view
+    *ngFor="let comment of blogEntry.comments trackBy _id"
+    [comment]="comment"
+    class="blogEntryComment">
+  </app-comment-view>
+</div>
+
+<br />
+
+<button
+  *ngIf="!newCommentIsBeingEntered"
+  (click)="newCommentIsBeingEntered = true"
+  class="btn btn-primary">
+  New Comment
+</button>
+
+<app-comment-edit
+  *ngIf="newCommentIsBeingEntered"
+  [blogEntry]="blogEntry"
+  [isNew]="true"
+  (onCommentCancel)="onCommentCancel()"
+  (onCommentSaveSuccess)="onCommentSave($event)">
+</app-comment-edit>

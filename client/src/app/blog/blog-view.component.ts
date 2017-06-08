@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { BlogService } from './blog.service';
 import { BlogEntry } from './blog-entry';
+import { Comment } from './comment';
 import { AuthService } from '../user/auth.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { AuthService } from '../user/auth.service';
 })
 export class BlogViewComponent implements OnInit, OnDestroy {
   public blogEntry: BlogEntry;
+  public newCommentIsBeingEntered = false;
 
   constructor(
     public auth: AuthService,
@@ -24,6 +26,15 @@ export class BlogViewComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this._router.navigate(['/blog/list']);
       }, err => this.blogService.error = JSON.parse(err._body).msg || err.statusText);
+  }
+
+  public onCommentCancel(): void {
+    this.newCommentIsBeingEntered = false;
+  }
+
+  public onCommentSave(comment: Comment): void {
+    this.newCommentIsBeingEntered = false;
+    this.blogEntry.comments.push(comment);
   }
 
   ngOnInit() {

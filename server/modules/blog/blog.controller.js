@@ -22,7 +22,7 @@ exports.getBlog = function (req, res, next) {
         .select(req.queryParameters.select || '')
         .limit(req.queryParameters.limit || '')
         .skip(req.queryParameters.skip || '')
-        .populate(req.queryParameters.populateId || 'user', req.queryParameters.populateItems || '')
+        .populate(req.queryParameters.populateId || 'user comments.user', req.queryParameters.populateItems || '')
         .exec(cb)
     },
     count: function (cb) {

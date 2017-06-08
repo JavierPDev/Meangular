@@ -1,16 +1,10 @@
 var mongoose = require('mongoose')
 var urlSlugs = require('mongoose-url-slugs')
-var CommentSchema = require('../comments/comment.model')
 
-var blogSchema = mongoose.Schema({
+var CommentSchema = mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
-  },
-  title: {
-    type: String,
-    trim: true,
-    required: true
   },
   content: {
     type: String,
@@ -21,11 +15,7 @@ var blogSchema = mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'users',
     required: true
-  },
-  comments: [CommentSchema]
+  }
 })
 
-blogSchema.index({title: 'text'})
-blogSchema.plugin(urlSlugs('title'))
-
-module.exports = blogSchema
+module.exports = CommentSchema
