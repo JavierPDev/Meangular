@@ -1,5 +1,4 @@
 var mongoose = require('mongoose')
-var urlSlugs = require('mongoose-url-slugs')
 
 var CommentSchema = mongoose.Schema({
   created: {
@@ -15,6 +14,10 @@ var CommentSchema = mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'users',
     required: true
+  },
+  blog: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'blogs'
   }
 })
 

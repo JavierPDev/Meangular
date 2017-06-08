@@ -25,10 +25,9 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   ) {}
 
   public editBlogEntry(): void {
-    const editedEntry: BlogEntry = this.blogEditForm.value;
-    editedEntry._id = this.blogEntry._id;
+    Object.assign(this.blogEntry, this.blogEditForm.value);
     this._isBeingSaved = true;
-    this.blogService.updateBlogEntry(editedEntry);
+    this.blogService.updateBlogEntry(this.blogEntry);
   }
 
   canDeactivate() {

@@ -8,4 +8,6 @@ export class BlogEntry {
   public created?: Date;
   public _id?: string;
   public comments?: Array<Comment>;
+  public slug?: string;
 }
+

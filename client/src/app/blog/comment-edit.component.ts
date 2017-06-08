@@ -17,9 +17,9 @@ export class CommentEditComponent implements OnInit {
    * Whether comment is new and being created or old and being edited.
    */
   @Input() isNew: boolean;
-  @Output()onCommentSaveSuccess = new EventEmitter();
-  @Output()onCommentDeleteSuccess = new EventEmitter();
-  @Output() onCancel = new EventEmitter();
+  @Output() onCommentSaveSuccess = new EventEmitter();
+  @Output() onCommentDeleteSuccess = new EventEmitter();
+  @Output() onCommentCancel = new EventEmitter();
   public commentForm: FormGroup;
   public error: string;
 
@@ -30,7 +30,7 @@ export class CommentEditComponent implements OnInit {
   ) {}
 
   public cancel(): void {
-    this.onCancel.emit();
+    this.onCommentCancel.emit();
   }
 
   public saveComment(): void {
@@ -53,9 +53,8 @@ export class CommentEditComponent implements OnInit {
   private _updateComment(): void {
     const comment = this.commentForm.value;
     comment._id = this.comment._id;
-    console.log('updatecomment', comment);
 
-    this._blogService.updateComment(this.comment)
+    this._blogService.updateComment(comment)
       .subscribe(
         (updatedComment: Comment) => this.onCommentSaveSuccess.emit(updatedComment),
         err => this.error = JSON.parse(err._body).msg || err.statusText
@@ -64,7 +63,8 @@ export class CommentEditComponent implements OnInit {
 
   ngOnInit() {
     this.commentForm = this._fb.group({
-      content: [this.comment.content]
+      content: [this.comment.content],
+      user: [this.auth.user()._id]
     });
   }
 }

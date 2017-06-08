@@ -15,5 +15,4 @@ module.exports = function (app, auth, mail, settings, models) {
 
   // PARAM
   app.param('commentId', comment.paramComment)
-  app.param('blogId', comment.paramBlog)
 }

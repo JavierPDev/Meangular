@@ -32,6 +32,10 @@ export class BlogViewComponent implements OnInit, OnDestroy {
     this.newCommentIsBeingEntered = false;
   }
 
+  public onCommentDeleteSuccess(index: number): void {
+    this.blogEntry.comments.splice(index, 1);
+  }
+
   public onCommentSave(comment: Comment): void {
     this.newCommentIsBeingEntered = false;
     this.blogEntry.comments.push(comment);

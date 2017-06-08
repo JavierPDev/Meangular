@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var urlSlugs = require('mongoose-url-slugs')
-var CommentSchema = require('../comments/comment.model')
+var CommentSchema = require('../comment/comment.model')
 
 var blogSchema = mongoose.Schema({
   created: {

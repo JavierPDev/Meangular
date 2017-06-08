@@ -46,8 +46,10 @@
   *ngIf="blogEntry.comments && blogEntry.comments.length"
   id="blogEntryComments">
   <app-comment-view
-    *ngFor="let comment of blogEntry.comments trackBy _id"
+    *ngFor="let comment of blogEntry.comments trackBy _id; let index = index"
+    [blogEntry]="blogEntry"
     [comment]="comment"
+    (onDeleteSuccess)="onCommentDeleteSuccess(index)"
     class="blogEntryComment">
   </app-comment-view>
 </div>
@@ -55,7 +57,7 @@
 <br />
 
 <button
-  *ngIf="!newCommentIsBeingEntered"
+  *ngIf="!newCommentIsBeingEntered && auth.loggedIn"
   (click)="newCommentIsBeingEntered = true"
   class="btn btn-primary">
   New Comment

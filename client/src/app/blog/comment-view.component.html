@@ -1,9 +1,6 @@
-<div>{{comment.user.profile.name}} commented on {{comment.created}}</div>
+<small>{{comment.user.profile.name}} commented on {{comment.created}}</small>
 <div>{{comment.content}}</div>
-<div *ngIf="(auth.isAdmin
-    || auth.user().id == blogEntry.user.id
-    || auth.user().id == comment.user.id)
-    && !commentIsBeingEdited">
+<div *ngIf="canEditDelete()">
   <button
     (click)="commentIsBeingEdited = true"
     class="btn btn-info btn-xs">
@@ -14,6 +11,10 @@
     class="btn btn-danger btn-xs">
     Delete Comment
   </button>
+</div>
+
+<div *ngIf="error" class="alert alert-danger">
+  {{error}}
 </div>
 
 <app-comment-edit

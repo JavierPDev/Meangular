@@ -39,7 +39,7 @@ export class BlogService {
    * @param {BlogEntry} entry - Blog entry
    */
   public deleteBlogEntry(entry: BlogEntry): Observable<any> {
-    return this._authHttp.delete('/api/blog/' + entry._id)
+    return this._authHttp.delete('/api/blog/' + entry.slug)
       .map(res => res.json());
   }
 
@@ -49,12 +49,8 @@ export class BlogService {
    * @return {Promise<BlogEntry>} blogEntry - Promise resolving to blogEntry or []
    */
   public getBlogEntryBySlug(slug: string): Promise<BlogEntry> {
-    const search = new URLSearchParams();
-    search.set('slug', slug);
-    search.set('limit', '1');
-    return this._http.get('/api/blog', {search})
+    return this._http.get('/api/blog/' + slug)
       .map(res => res.json())
-      .map(res => res.blogs[0])
       .toPromise();
   }
 
@@ -102,7 +98,7 @@ export class BlogService {
   public updateBlogEntry(entry: BlogEntry): void {
     delete entry.comments;
 
-    this._authHttp.put('/api/blog/' + entry._id, entry)
+    this._authHttp.put('/api/blog/' + entry.slug, entry)
       .map(res => res.json())
       .subscribe(blogEntry => {
         this._router.navigate(['/blog', blogEntry.slug]);
@@ -116,6 +112,16 @@ export class BlogService {
    */
   public createComment(comment: Comment, blogEntry: BlogEntry): Observable<Comment> {
     return this._authHttp.post(`/api/blog/${blogEntry._id}/comment`, comment)
+      .map(res => res.json());
+  }
+
+  /**
+   * Delete comment.
+   * @param {Comment} comment - Comment
+   * @return {Observable<any>}
+   */
+  public deleteComment(comment: Comment): Observable<any> {
+    return this._authHttp.delete('/api/comment/' + comment._id)
       .map(res => res.json());
   }
 
@@ -136,16 +142,6 @@ export class BlogService {
    */
   public updateComment(comment: Comment): Observable<Comment> {
     return this._authHttp.put('/api/comment/' + comment._id, comment)
-      .map(res => res.json());
-  }
-
-  /**
-   * Delete comment.
-   * @param {Comment} comment - Comment
-   * @return {Observable<any>}
-   */
-  public deleteComment(comment: Comment): Observable<any> {
-    return this._authHttp.delete('/api/comment/' + comment._id)
       .map(res => res.json());
   }
 }

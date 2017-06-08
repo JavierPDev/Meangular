@@ -1,9 +1,7 @@
-var auto = require('run-auto')
 var mongoose = require('mongoose')
 var comments = mongoose.model('comment')
 var _ = require('lodash')
 var debug = require('debug')('meanstackjs:blog')
-
 
 exports.getCommentById = function (req, res, next) {
   debug('start getCommentById')
@@ -25,16 +23,17 @@ exports.postComment = function (req, res, next) {
   }
 
   req.body.user = req.user._id
-  req.blog.comments.push(req.body)
+  req.body.blog = req.params.blogId
 
-  req.blog.save(req.body, function (err, data) {
+  comments.create(req.body, function (err, data) {
     if (err) return next(err)
+    data.user = req.user
     return res.status(201).send(data)
   })
 }
 
 exports.putComment = function (req, res, next) {
-  console.log('put', req.comment)
+  delete req.body.user
   req.comment = _.merge(req.comment, req.body)
   req.comment.save(function (err) {
     if (err) return next(err)
@@ -69,12 +68,8 @@ exports.paramComment = function (req, res, next, id) {
     .populate('user')
     .exec(function (err, comment) {
       if (err) return next(err)
-      console.log('comment', comment)
       req.comment = comment
-      console.log('param', req.comment)
       debug('end paramComment')
       next()
     })
 }
-
-exports.paramBlog = require('../blog/blog.controller').paramBlog
