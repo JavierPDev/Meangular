@@ -15,7 +15,8 @@ const blogEntryStub: BlogEntry = {
   title: 'Test blog entry',
   content: 'Test content',
   created: new Date(),
-  _id: 'objectid'
+  _id: 'objectid',
+  slug: 'test-blog-entry'
 };
 const blogListStub = [blogEntryStub];
 const slug = 'test-blog-entry';
@@ -130,7 +131,7 @@ describe('BlogService', () => {
 
   describe('#deleteBlogEntry()', () => {
     it('calls the correct api url', fakeAsync(() => {
-      const expectedUrl = `/api/blog/${blogEntryStub._id}`;
+      const expectedUrl = `/api/blog/${blogEntryStub.slug}`;
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(expectedUrl);
       });
@@ -186,7 +187,7 @@ describe('BlogService', () => {
 
   describe('#getBlogEntryBySlug()', () => {
     it('calls the correct api url', fakeAsync(() => {
-      const expectedUrl = `/api/blog?slug=${slug}&limit=1`;
+      const expectedUrl = `/api/blog/${slug}`;
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(expectedUrl);
       });
@@ -205,7 +206,7 @@ describe('BlogService', () => {
     it('returns the correct blog entry', fakeAsync(() => {
       mockBackend.connections.subscribe(c => {
         const response = new ResponseOptions({
-          body: JSON.stringify({blogs: [blogEntryStub]})
+          body: JSON.stringify(blogEntryStub)
         });
         c.mockRespond(new Response(response));
       });
@@ -272,7 +273,7 @@ describe('BlogService', () => {
     const editedBlogEntry: BlogEntry = Object.assign({}, blogEntryStub, {title});
 
     it('calls the correct api url', fakeAsync(() => {
-      const expectedUrl = `/api/blog/${editedBlogEntry._id}`;
+      const expectedUrl = `/api/blog/${editedBlogEntry.slug}`;
       mockBackend.connections.subscribe(c => {
         expect(c.request.url).toBe(expectedUrl);
       });
