@@ -1,6 +1,6 @@
 var assert = require('chai').assert
 var request = require('supertest')
-var blogid = ''
+var blogSlug = ''
 
 describe('BLOG', function () {
   describe('GET /api/blog', function () {
@@ -10,13 +10,13 @@ describe('BLOG', function () {
         .expect(200, function (err, res) {
           if (err) return done(err)
           assert.isArray(res.body.blogs)
-          blogid = res.body.blogs[0]._id
+          blogSlug = res.body.blogs[0].slug
           done()
         })
     })
     it('should be returning object', function (done) {
       request('localhost:3000/')
-        .get('api/blog/' + blogid)
+        .get('api/blog/' + blogSlug)
         .expect(200, function (err, res) {
           if (err) return done(err)
           assert.isObject(res.body)

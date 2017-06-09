@@ -1,0 +1,27 @@
+<small>{{comment.user.profile.name}} commented on {{comment.created}}</small>
+<div>{{comment.content}}</div>
+<div *ngIf="canEditDelete()">
+  <button
+    (click)="commentIsBeingEdited = true"
+    class="btn btn-info btn-xs">
+    Edit Comment
+  </button>
+  <button
+    (click)="deleteComment()"
+    class="btn btn-danger btn-xs">
+    Delete Comment
+  </button>
+</div>
+
+<div *ngIf="error" class="alert alert-danger">
+  {{error}}
+</div>
+
+<app-comment-edit
+  *ngIf="commentIsBeingEdited"
+  [blogEntry]="blogEntry"
+  [comment]="comment"
+  [isNew]="false"
+  (onCommentCancel)="onCommentCancel()"
+  (onCommentSaveSuccess)="onCommentSave($event)">
+</app-comment-edit>

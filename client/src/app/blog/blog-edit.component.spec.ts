@@ -86,15 +86,14 @@ describe('BlogEditComponent', () => {
 
   it('calls BlogService editBlogEntry method for component method', () => {
     const blogService = TestBed.get(BlogService);
+    const editedBlogEntry = {title: 'edited title', content: 'edited content'};
+    const expectedBlogEntryArg = Object.assign({}, blogEntryStub, editedBlogEntry);
     component.ngOnInit();
+    component.blogEditForm.setValue(editedBlogEntry);
     spyOn(blogService, 'updateBlogEntry');
     component.editBlogEntry();
     expect(blogService.updateBlogEntry)
-      .toHaveBeenCalledWith({
-        title: blogEntryStub.title,
-        content: blogEntryStub.content,
-        _id: blogEntryStub._id
-      });
+      .toHaveBeenCalledWith(expectedBlogEntryArg);
   });
 
   describe('#canDeactivate', () => {

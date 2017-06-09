@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import { BlogEntry } from './blog-entry';
+import { Comment } from './comment';
 
 @Injectable()
 export class BlogService {
@@ -38,7 +39,7 @@ export class BlogService {
    * @param {BlogEntry} entry - Blog entry
    */
   public deleteBlogEntry(entry: BlogEntry): Observable<any> {
-    return this._authHttp.delete('/api/blog/' + entry._id)
+    return this._authHttp.delete('/api/blog/' + entry.slug)
       .map(res => res.json());
   }
 
@@ -48,12 +49,8 @@ export class BlogService {
    * @return {Promise<BlogEntry>} blogEntry - Promise resolving to blogEntry or []
    */
   public getBlogEntryBySlug(slug: string): Promise<BlogEntry> {
-    const search = new URLSearchParams();
-    search.set('slug', slug);
-    search.set('limit', '1');
-    return this._http.get('/api/blog', {search})
+    return this._http.get('/api/blog/' + slug)
       .map(res => res.json())
-      .map(res => res.blogs[0])
       .toPromise();
   }
 
@@ -96,12 +93,55 @@ export class BlogService {
   /**
    * Update blog entry
    * @param {BlogEntry} entry - Blog entry
+   * @return {Observable<BlogEntry>} blog entry
    */
   public updateBlogEntry(entry: BlogEntry): void {
-    this._authHttp.put('/api/blog/' + entry._id, entry)
+    delete entry.comments;
+
+    this._authHttp.put('/api/blog/' + entry.slug, entry)
       .map(res => res.json())
       .subscribe(blogEntry => {
         this._router.navigate(['/blog', blogEntry.slug]);
       }, err => this.error = JSON.parse(err._body).msg || err.statusText);
+  }
+
+  /**
+   * Create new comment for a blog entry.
+   * @param {BlogEntry} entry - Blog entry
+   * @return {Observable<BlogEntry>} blog entry
+   */
+  public createComment(comment: Comment, blogEntry: BlogEntry): Observable<Comment> {
+    return this._authHttp.post(`/api/blog/${blogEntry._id}/comment`, comment)
+      .map(res => res.json());
+  }
+
+  /**
+   * Delete comment.
+   * @param {Comment} comment - Comment
+   * @return {Observable<any>}
+   */
+  public deleteComment(comment: Comment): Observable<any> {
+    return this._authHttp.delete('/api/comment/' + comment._id)
+      .map(res => res.json());
+  }
+
+  /**
+   * Get comment by id.
+   * @param {String} id - Comment id
+   * @return {Observable<Comment>} comment
+   */
+  public getCommentById(id: string): Observable<Comment> {
+    return this._authHttp.get('/api/comment/' + id)
+      .map(res => res.json());
+  }
+
+  /**
+   * Update comment
+   * @param {Comment} comment - Comment
+   * @return {Observable<Comment>} comment
+   */
+  public updateComment(comment: Comment): Observable<Comment> {
+    return this._authHttp.put('/api/comment/' + comment._id, comment)
+      .map(res => res.json());
   }
 }

@@ -1,6 +1,7 @@
 var auto = require('run-auto')
 var mongoose = require('mongoose')
 var blogs = mongoose.model('blog')
+var comments = mongoose.model('comment')
 var _ = require('lodash')
 var debug = require('debug')('meanstackjs:blog')
 
@@ -22,7 +23,7 @@ exports.getBlog = function (req, res, next) {
         .select(req.queryParameters.select || '')
         .limit(req.queryParameters.limit || '')
         .skip(req.queryParameters.skip || '')
-        .populate(req.queryParameters.populateId || 'user', req.queryParameters.populateItems || '')
+        .populate(req.queryParameters.populateId || 'user comments.user', req.queryParameters.populateItems || '')
         .exec(cb)
     },
     count: function (cb) {
@@ -80,17 +81,25 @@ exports.putBlog = function (req, res, next) {
   })
 }
 
-exports.getBlogById = function (req, res, next) {
-  debug('start getBlogById')
-  res.send(req.blog)
-  debug('end getBlogById')
+exports.getBlogBySlug = function (req, res, next) {
+  debug('start getBlogBySlug')
+  comments
+    .find({blog: req.blog.id})
+    .populate('user')
+    .limit(100)
+    .exec(function (err, comments) {
+      if (err) return next(err)
+      req.blog.comments = comments
+      return res.send(req.blog)
+    })
+  debug('end getBlogBySlug')
 }
 
-exports.paramBlog = function (req, res, next, id) {
+exports.paramBlog = function (req, res, next, slug) {
   debug('start paramBlog')
 
-  req.assert('blogId', 'Your Blog ID cannot be blank').notEmpty()
-  req.assert('blogId', 'Your Blog ID has to be a real id').isMongoId()
+  req.assert('slug', 'Your Blog slug cannot be blank').notEmpty()
+  req.assert('slug', 'Your Blog slug has to be a real slug').isString()
 
   var errors = req.validationErrors()
   if (errors) {
@@ -104,7 +113,7 @@ exports.paramBlog = function (req, res, next, id) {
   auto({
     blog: function (cb) {
       blogs
-        .findOne({_id: id})
+        .findOne({slug: slug})
         .populate('user')
         .exec(cb)
     }

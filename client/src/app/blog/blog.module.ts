@@ -9,6 +9,8 @@ import { BlogCreateComponent } from './blog-create.component';
 import { BlogViewComponent } from './blog-view.component';
 import { BlogEditComponent } from './blog-edit.component';
 import { BlogListComponent } from './blog-list.component';
+import { CommentViewComponent } from './comment-view.component';
+import { CommentEditComponent } from './comment-edit.component';
 import { BlogEntryResolver } from './blog-entry.resolver';
 import { BlogService } from './blog.service';
 import { BlogRoutingModule } from './blog.routes';
@@ -18,7 +20,9 @@ import { BlogRoutingModule } from './blog.routes';
     BlogCreateComponent,
     BlogViewComponent,
     BlogEditComponent,
-    BlogListComponent
+    BlogListComponent,
+    CommentViewComponent,
+    CommentEditComponent,
   ],
   imports: [
     CommonModule,
