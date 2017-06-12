@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.26.1] - 2017-06-12
+### Changed
+- Demo web site changed from meangular.herokuapp.com to meangular.com
+- Serve css from `/client/dist` folder.
+- Prefix database names with 'meangular-'.
+- Set env variable for production npm script.
+
 ## [0.26.0] - 2017-06-09
 ### Added
 - Comments added to blog, frontend and backend.
