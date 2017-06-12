@@ -49,8 +49,8 @@ function routes (self) {
   self.app.get('/images/*', nothingFoundHandler('nothing found in images'))
   self.app.get('/uploads/*', nothingFoundHandler('nothing found in uploads'))
   self.app.get('/dist/*', nothingFoundHandler('nothing found in dist'))
-  // Angular-cli targets js files as being in root public so rewrite to dist
-  self.app.get('/*.js', function (req, res) {
+  // Angular-cli targets js and css files as being in root public so rewrite to dist
+  self.app.get(/(\.css)|(\.js)$/, function (req, res) {
     res.sendFile(path.join(__dirname, '../client/dist' + req.url))
   })
   if (process.env.NODE_ENV === 'development') {
