@@ -32,7 +32,7 @@ Out-of-the-box features:
   * Chrome debugging, [check here for more info](https://github.com/Microsoft/vscode-chrome-debug)
 
 ## Demo
-[Try it live](http://meangular.herokuapp.com)
+[Try it live](http://meangular.com)
 
 ## Notes
 Angular files found in `/client/src`.
