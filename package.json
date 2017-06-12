@@ -57,7 +57,7 @@
     "start": "concurrently -k \"npm run build:watch\" \"npm run start:server:watch\"",
     "start:debug": "node debug index.js",
     "start:inspect": "node --inspect  index.js",
-    "start:prod": "cross-env NODE_ENV=production npm run build:prod && node index.js",
+    "start:prod": "npm run build:prod && cross-env NODE_ENV=production node index.js",
     "start:server": "node index.js",
     "start:server:watch": "cross-env NODE_ENV=development nodemon index.js",
     "start:test": "cross-env NODE_ENV=test node index.js",
