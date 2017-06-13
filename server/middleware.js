@@ -29,10 +29,15 @@ exports.isAuthenticated = function (req, res, next) {
 }
 
 exports.isAuthorized = function (name, extra) {
-  return function (req, res, next) {
+  return async function (req, res, next) {
+    var User = mongoose.model('users')
     var user
     var reqName = req[name]
-    var isAdmin = req.user.roles.includes('admin')
+    var isAdmin = await User.findById(req.user._id)
+      .then(function (user) {
+        return user && _.includes(user.roles, 'admin')
+      })
+
     if (extra) {
       var reqExtra = reqName[extra]
       reqExtra && reqExtra.user && (user = reqExtra.user)

@@ -42,7 +42,6 @@ export class CommentEditComponent implements OnInit {
   }
 
   private _createComment(): void {
-    console.log('createcomment');
     this._blogService.createComment(this.commentForm.value, this.blogEntry)
       .subscribe(
         (comment: Comment) => this.onCommentSaveSuccess.emit(comment),

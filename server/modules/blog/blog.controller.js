@@ -47,9 +47,15 @@ exports.getBlog = function (req, res, next) {
 }
 
 exports.deleteBlog = function (req, res, next) {
+  var blogId = req.blog._id
+
   req.blog.remove(function (err) {
     if (err) return next(err)
-    res.status(204).send()
+
+    comments.deleteMany({blog: blogId}, function (err) {
+      if (err) return next(err)
+      res.status(204).send()
+    })
   })
 }
 

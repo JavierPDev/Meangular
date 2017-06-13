@@ -45,6 +45,7 @@
 <div
   *ngIf="blogEntry.comments && blogEntry.comments.length"
   id="blogEntryComments">
+  <h3>Comments</h3>
   <app-comment-view
     *ngFor="let comment of blogEntry.comments trackBy _id; let index = index"
     [blogEntry]="blogEntry"
