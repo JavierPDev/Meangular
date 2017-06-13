@@ -85,17 +85,29 @@ var baseLine = {
   html: {
     title: 'Meangular',
     keywords: 'Meangular',
-    description: 'Meangular',
+    description: 'Meangular is a full-stack Angular 4 solution based on Mean ' +
+      'Stack JS using the Angular-cli. The aim is to provide a comfortable ' +
+      'baseline for fully-featured, full-stack development. The front-end is ' +
+      'functional enough as a beginning for most use cases without the need ' +
+      'to remove custom styling or unneeded features.',
     ogUrl: 'https://meangular.com/',
     ogType: 'website',
     ogTitle: 'Meangular',
-    ogDescription: 'Meangular',
+    ogDescription: 'Meangular is a full-stack Angular 4 solution based on Mean ' +
+      'Stack JS using the Angular-cli. The aim is to provide a comfortable ' +
+      'baseline for fully-featured, full-stack development. The front-end is ' +
+      'functional enough as a beginning for most use cases without the need ' +
+      'to remove custom styling or unneeded features.',
     ogImage: '',
     fbAppId: '',
     twitterCreator: '',
     twitterCard: '',
     twitterTitle: 'Meangular',
-    twitterDescription: 'Meangular',
+    twitterDescription: 'Meangular is a full-stack Angular 4 solution based on Mean ' +
+      'Stack JS using the Angular-cli. The aim is to provide a comfortable ' +
+      'baseline for fully-featured, full-stack development. The front-end is ' +
+      'functional enough as a beginning for most use cases without the need ' +
+      'to remove custom styling or unneeded features.',
     twitterUrl: 'https://meangular.com/',
     twitterImage: '',
     twitterSite: '',
