@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.26.2] - 2017-06-13
+### Changed
+- Update meta description.
+- Comments are deleted when a blog entry is deleted.
+- Use authorization middleware for comment edit and delete
+
+### Added
+- Comment h3 added.
+
 ## [0.26.1] - 2017-06-12
 ### Changed
 - Demo web site changed from meangular.herokuapp.com to meangular.com
