@@ -1,6 +1,6 @@
 {
   "name": "meangular",
-  "version": "0.26.2",
+  "version": "0.27.0",
   "description": "Open-source MEAN stack solution based on Mean Stack JS and Angular-cli for Angular (2+).",
   "main": "index.js",
   "engines": {

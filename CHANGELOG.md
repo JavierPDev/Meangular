@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.27.0] - 2017-06-14
+### Added
+- Page structure is visible while Angular loads.
+
+### Changed
+- `PaginatedSearchListComponent` and components that use it no longer have set URLs. Instead the router navigates to the current page but with set query parameters.
+- Changed old protected members to private for `PaginatedSearchListComponent`.
+
 ## [0.26.2] - 2017-06-13
 ### Changed
 - Update meta description.
