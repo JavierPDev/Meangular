@@ -39,7 +39,26 @@
 </head>
 
 <body>    
-  <app-root>Loading</app-root>
+  <app-root>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">Home</a>
+        </div>
+        <ul class="nav navbar-nav pull-left">
+        </ul>
+      </div>
+    </nav>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <span>Loading...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </app-root>
 	<% if (environment == 'development') { %>
     <script src="http://localhost:35729/livereload.js?snipver=1"></script>
 	<%  } %>
