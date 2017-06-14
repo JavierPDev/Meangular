@@ -16,7 +16,6 @@ export class AdminUserListComponent {
     {displayName: 'Last Logged In', fieldName: 'lastLoggedIn'},
     {displayName: 'Name', fieldName: 'profile.name'},
   ];
-  public url = '/admin/user/list';
 
   constructor(
     public auth: AuthService,
@@ -31,7 +30,7 @@ export class AdminUserListComponent {
         const queryParams: any = Object.assign({}, this._route.snapshot.queryParams);
         queryParams.cache = new Date().valueOf();
         // Navigate to same url with cache buster to trigger results update
-        this._router.navigate([this.url], {queryParams, skipLocationChange: true});
+        this._router.navigate([], {queryParams, skipLocationChange: true});
       }, err => this.adminService.error = JSON.parse(err._body).msg || err.statusText);
   }
 }

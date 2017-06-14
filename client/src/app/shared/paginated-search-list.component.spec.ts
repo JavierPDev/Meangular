@@ -11,7 +11,6 @@ import { AuthService } from '../user/auth.service';
 
 let fixture;
 let component: PaginatedSearchListComponent;
-const url = '/test/list';
 
 describe('PaginatedSearchListComponent', () => {
   beforeEach(() => {
@@ -51,7 +50,6 @@ describe('PaginatedSearchListComponent', () => {
     beforeEach(() => {
       router = TestBed.get(Router);
       spyOn(router, 'navigate').and.callThrough();
-      component.url = url;
     });
 
     it('navigates using existing route\'s params by default', () => {
@@ -60,7 +58,7 @@ describe('PaginatedSearchListComponent', () => {
       delete queryParams.skip;
       component.changePage();
       expect(router.navigate)
-        .toHaveBeenCalledWith([component.url], {queryParams});
+        .toHaveBeenCalledWith([], {queryParams});
     });
 
     beforeEach(() => {
@@ -75,10 +73,9 @@ describe('PaginatedSearchListComponent', () => {
 
     it('navigates using queryParams and default page (1)', () => {
       expect(router.navigate).not.toHaveBeenCalled();
-      component.url = '/blog/list';
       component.changePage();
       expect(router.navigate)
-        .toHaveBeenCalledWith([component.url], {queryParams});
+        .toHaveBeenCalledWith([], {queryParams});
     });
 
     it('navigates using queryParams and input page', () => {
@@ -86,7 +83,7 @@ describe('PaginatedSearchListComponent', () => {
       component.changePage({page: 5});
       queryParams.page = 5;
       expect(router.navigate)
-        .toHaveBeenCalledWith([component.url], {queryParams});
+        .toHaveBeenCalledWith([], {queryParams});
     });
   });
 });

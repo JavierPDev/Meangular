@@ -14,7 +14,6 @@ export class AdminBlogListComponent {
     {displayName: 'Created', fieldName: 'created'},
     {displayName: 'Title', fieldName: 'title'}
   ];
-  public url = '/admin/blog/list';
 
   constructor(
     public auth: AuthService,
@@ -29,7 +28,7 @@ export class AdminBlogListComponent {
         const queryParams: any = Object.assign({}, this._route.snapshot.queryParams);
         queryParams.cache = new Date().valueOf();
         // Navigate to same url with cache buster to trigger results update
-        this._router.navigate([this.url], {queryParams, skipLocationChange: true});
+        this._router.navigate([], {queryParams, skipLocationChange: true});
       }, err => this.blogService.error = JSON.parse(err._body).msg || err.statusText);
   }
 }

@@ -14,7 +14,6 @@ export class BlogListComponent {
     {displayName: 'Created', fieldName: 'created'},
     {displayName: 'Title', fieldName: 'title'}
   ];
-  public url = '/blog/list';
 
   constructor(public auth: AuthService, public blogService: BlogService) {}
 }

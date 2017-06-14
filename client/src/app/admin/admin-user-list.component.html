@@ -9,7 +9,6 @@
 <app-paginated-search-list
   [listRetriever]="adminService.getUserList"
   [sortFields]="sortFields"
-  [url]="url"
   #list>
   <table class="table table-striped table-hover" *ngIf="list.items">
     <tr>

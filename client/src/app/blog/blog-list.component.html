@@ -13,7 +13,6 @@
 <app-paginated-search-list
   [listRetriever]="blogService.getList"
   [sortFields]="sortFields"
-  [url]="url"
   #list>
   <ul class="list-unstyled" *ngIf="list.items">
     <li *ngFor="let blogEntry of list.items trackBy _id" class="blog-list-item">

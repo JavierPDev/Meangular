@@ -5,10 +5,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { IListResponse } from './list-response';
 import { ISortField } from './sort-field';
 
-/**
- * Parent class and component for paginated lists. Assumes that the service
- * injected for ajax use has a getList method that takes in query parameters.
- */
 @Component({
   selector: 'app-paginated-search-list',
   templateUrl: './paginated-search-list.component.html'
@@ -25,10 +21,6 @@ export class PaginatedSearchListComponent implements OnInit, OnDestroy {
    * Fields by which to sort list items.
   */
   @Input() sortFields: Array<ISortField>;
-  /**
-   * Base url of this list route. Used to navigate during paging.
-  */
-  @Input() url: string;
   public error: string;
   public count: number;
   public currentStart: number;
@@ -43,11 +35,11 @@ export class PaginatedSearchListComponent implements OnInit, OnDestroy {
   public queryParams;
   public searchTerm: string;
   public sort = '-created';
-  protected _queryParams: Subscription;
+  private _queryParams: Subscription;
 
   constructor(
-    protected _route: ActivatedRoute,
-    protected _router: Router
+    private _route: ActivatedRoute,
+    private _router: Router
   ) {}
 
   /**
@@ -71,16 +63,15 @@ export class PaginatedSearchListComponent implements OnInit, OnDestroy {
 
     this.searchTerm = queryParams.search;
     this.currentPage = queryParams.page;
-    this._router.navigate([this.url], {queryParams});
+    this._router.navigate([], {queryParams});
   }
 
   /**
    * Set page data based on returned list items and query params used to
    * retrieve the items.
-   * @protected
    * @param {*} listData
    */
-  protected _setPageData(listData: any): void {
+  private _setPageData(listData: any): void {
     const {
       count,
       items,
@@ -106,11 +97,8 @@ export class PaginatedSearchListComponent implements OnInit, OnDestroy {
   /**
    * Subscribe to route query params and retrieve list items when route query
    * params change.
-   * @protected
-   *
-   * @memberof PaginatedListComponent
    */
-  protected _getListItemsOnQueryParamChange(): void {
+  private _getListItemsOnQueryParamChange(): void {
     this._queryParams = this._route.queryParams
       .subscribe(qp => {
         const queryParams: any = Object.assign({}, qp);
