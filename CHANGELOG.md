@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.27.1] - 2017-06-15
+### Changed
+- Comment is hidden while editing instead of acting as view of old comment.
+- Change permission for editing/deleting comment.
+
 ## [0.27.0] - 2017-06-14
 ### Added
 - Page structure is visible while Angular loads.
