@@ -27,13 +27,8 @@ export class CommentViewComponent {
     }
 
     const isCommentAuthor = this._auth.user()._id === this.comment.user._id;
-    const isBlogEntryAuthor = this._auth.user()._id === this.blogEntry.user._id;
 
-    if (this._auth.isAdmin || isCommentAuthor || isBlogEntryAuthor) {
-      return true;
-    }
-
-    return false;
+    return this._auth.isAdmin || isCommentAuthor;
   }
 
   public deleteComment(): void {
