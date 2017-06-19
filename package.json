@@ -80,9 +80,7 @@
     "Angular",
     "Node",
     "Nodejs",
-    "Meanstackjs",
-    "Greenpioneersolutions",
-    "Green Pioneer"
+    "Meanstackjs"
   ],
   "author": "Javier <javier@javierdev.com>",
   "license": "MIT",
@@ -90,15 +88,15 @@
     "url": "https://github.com/JavierPDev/Meangular/issues"
   },
   "dependencies": {
-    "@angular/cli": "^1.0.0",
-    "@angular/common": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/forms": "^4.0.0",
-    "@angular/http": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
-    "@angular/router": "^4.0.0",
+    "@angular/cli": "^1.1.2",
+    "@angular/common": "^4.2.3",
+    "@angular/compiler": "^4.2.3",
+    "@angular/core": "^4.2.3",
+    "@angular/forms": "^4.2.3",
+    "@angular/http": "^4.2.3",
+    "@angular/platform-browser": "^4.2.3",
+    "@angular/platform-browser-dynamic": "^4.2.3",
+    "@angular/router": "^4.2.3",
     "angular2-jwt": "^0.1.28",
     "auto-parse": "^1.2.0",
     "babel-core": "^6.7.6",
@@ -175,7 +173,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^4.0.0",
+    "@angular/compiler-cli": "^4.2.3",
     "@types/jasmine": "2.5.38",
     "@types/jasmine-matchers": "^0.2.30",
     "@types/node": "~6.0.60",
