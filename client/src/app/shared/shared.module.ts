@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PaginationModule  } from 'ng2-bootstrap/pagination';
+import { PaginationModule  } from 'ngx-bootstrap/pagination';
 
 import { PaginatedSearchListComponent } from './paginated-search-list.component';
 import { SearchBoxComponent } from './search-box.component';
