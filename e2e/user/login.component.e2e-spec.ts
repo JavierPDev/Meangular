@@ -35,8 +35,7 @@ describe('Login component', () => {
       emailInput.sendKeys(nonexistentEmail);
       passwordInput.sendKeys('truetrue1!');
       loginForm.submit();
-      expect(appPage.getErrorText())
-        .toBe(`Email ${nonexistentEmail} not found`);
+      appPage.waitForErrorTextToBe(`Email ${nonexistentEmail} not found`);
     });
 
     it('displays error for wrong password', () => {
@@ -44,7 +43,7 @@ describe('Login component', () => {
       emailInput.sendKeys(email);
       passwordInput.sendKeys('invalidpass');
       loginForm.submit();
-      expect(appPage.getErrorText()).toBe('Invalid email or password.');
+      appPage.waitForErrorTextToBe('Invalid email or password.');
     });
   });
 

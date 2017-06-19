@@ -31,14 +31,6 @@ export class AppPage {
     return element(by.css('h1')).getText();
   }
 
-  public getErrorText() {
-    return element(by.css('.alert.alert-danger')).getText();
-  }
-
-  public getSuccessText() {
-    return element(by.css('.alert.alert-success')).getText();
-  }
-
   public clickBlogNavLink(): void {
     element(by.cssContainingText('nav a', 'Blog')).click();
   }
@@ -46,5 +38,23 @@ export class AppPage {
   public expectConfirmDialogPresent(): void {
     browser.wait(ExpectedConditions.alertIsPresent(), 5000);
     browser.switchTo().alert().dismiss();
+  }
+
+  public waitForErrorTextToBe(text: string): void {
+    const alertEl = element(by.css('.alert-danger'));
+    browser.wait(
+      () => ExpectedConditions.textToBePresentInElement(alertEl, text),
+      5000,
+      `Error alert should contain "${text}" within 5 seconds`
+    );
+  }
+
+  public waitForSuccessTextToBe(text: string): void {
+    const alertEl = element(by.css('.alert-success'));
+    browser.wait(
+      () => ExpectedConditions.textToBePresentInElement(alertEl, text),
+      5000,
+      `Success alert should contain "${text}" within 5 seconds`
+    );
   }
 }

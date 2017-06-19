@@ -1,4 +1,4 @@
-import { browser, element, by, Key } from 'protractor';
+import { browser, element, by, Key, ExpectedConditions } from 'protractor';
 
 import { UserPage } from '../user/user.po';
 import { AppPage } from '../app.po';
@@ -67,8 +67,7 @@ describe('BlogEdit component', () => {
       browser.get('/blog/example/edit');
       submitBtn = element(by.css('[type="submit"]'));
       expect(submitBtn.isPresent()).toBe(false);
-      expect(appPage.getErrorText())
-        .toBe('You are not authorized to edit this post');
+      appPage.waitForErrorTextToBe('You are not authorized to edit this post');
     });
 
     it('successfully edits if using user that created entry', () => {
@@ -81,8 +80,12 @@ describe('BlogEdit component', () => {
       contentInput.sendKeys('user');
       submitBtn = element(by.css('[type="submit"]'));
       submitBtn.click();
-      browser.sleep(500);
-      expect(element(by.id('blogEntryContent')).getText()).toBe('user');
+      const blogEntryContent = element(by.id('blogEntryContent'));
+      browser.wait(
+        ExpectedConditions.textToBePresentInElement(blogEntryContent, 'user'),
+        5000
+      );
+      expect(blogEntryContent.getText()).toBe('user');
     });
 
     it('successfully edits if using admin user', () => {
@@ -94,8 +97,12 @@ describe('BlogEdit component', () => {
       contentInput.sendKeys('admin');
       submitBtn = element(by.css('[type="submit"]'));
       submitBtn.click();
-      browser.sleep(500);
-      expect(element(by.id('blogEntryContent')).getText()).toBe('admin');
+      const blogEntryContent = element(by.id('blogEntryContent'));
+      browser.wait(
+        ExpectedConditions.textToBePresentInElement(blogEntryContent, 'admin'),
+        5000
+      );
+      expect(blogEntryContent.getText()).toBe('admin');
     });
   });
 

@@ -1,4 +1,4 @@
-import { browser, element, by, Key} from 'protractor';
+import { browser, element, by, Key } from 'protractor';
 
 import { UserPage } from '../user/user.po';
 import { AppPage } from '../app.po';
@@ -181,7 +181,7 @@ describe('Profile component', () => {
     it('successfully updates profile', () => {
       const profileForm = element(by.id('profileForm'));
       profileForm.submit();
-      expect(appPage.getSuccessText()).toBe('Profile updated');
+      appPage.waitForSuccessTextToBe('Profile updated');
     });
   });
 
@@ -289,7 +289,7 @@ describe('Profile component', () => {
     it('successfully updates password', () => {
       const passwordForm = element(by.id('passwordForm'));
       passwordForm.submit();
-      expect(appPage.getSuccessText()).toBe('Password updated');
+      appPage.waitForSuccessTextToBe('Password updated');
     });
 
     it('clears password fields', () => {

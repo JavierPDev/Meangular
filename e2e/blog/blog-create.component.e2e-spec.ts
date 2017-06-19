@@ -1,4 +1,4 @@
-import { browser, element, by, Key } from 'protractor';
+import { browser, element, by, Key, ExpectedConditions } from 'protractor';
 
 import { UserPage } from '../user/user.po';
 import { AppPage } from '../app.po';
@@ -43,8 +43,12 @@ describe('BlogCreate component', () => {
       titleInput.sendKeys('example');
       contentInput.sendKeys('example');
       submitBtn.click();
-      browser.sleep(300);
-      expect(element(by.id('blogEntryContent')).getText()).toBe('example');
+      const blogEntryContent = element(by.id('blogEntryContent'));
+      browser.wait(
+        ExpectedConditions.textToBePresentInElement(blogEntryContent, 'example'),
+        5000
+      );
+      expect(blogEntryContent.getText()).toBe('example');
     });
   });
 

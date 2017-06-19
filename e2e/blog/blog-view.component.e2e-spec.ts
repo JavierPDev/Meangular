@@ -1,4 +1,4 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by, ExpectedConditions } from 'protractor';
 
 import { UserPage } from '../user/user.po';
 import { AppPage } from '../app.po';
@@ -82,8 +82,8 @@ describe('BlogView component', () => {
     it('delete button works', () => {
       browser.get('/blog/clara');
       const blogDeleteBtn = element(by.id('blogDeleteBtn'));
+      browser.wait(ExpectedConditions.elementToBeClickable(blogDeleteBtn), 5000);
       blogDeleteBtn.click();
-      browser.sleep(300);
       expect(appPage.getH1Text()).toBe('Blog List');
       const noEl = element(by.cssContainingText('li h2 a', 'clara'));
       expect(noEl.isPresent()).toBe(false);

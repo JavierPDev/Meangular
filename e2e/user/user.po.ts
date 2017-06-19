@@ -15,7 +15,11 @@ export class UserPage {
           element(by.name('email')).sendKeys(email);
           element(by.name('password')).sendKeys(password);
           element(by.css('form')).submit();
-          browser.sleep(300);
+          browser.wait(
+            element(by.cssContainingText('a', 'Logout')).isDisplayed(),
+            7500,
+            'User should be logged in with logout link visible within 7.5s'
+          );
         }
       });
   }

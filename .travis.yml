@@ -18,10 +18,10 @@ before_script:
   - until nc -z localhost 27017; do echo Waiting for MongoDB; sleep 1; done
   - sleep 3
 script:
-  - npm run mocha && npm run ng test -- --single-run && npm run lint && npm run ng lint
+  - npm test
 sudo: false
 env:
   global:
   - NODE_ENV=e2e
-# addons:
-#   sauce_connect: true
+addons:
+  sauce_connect: true

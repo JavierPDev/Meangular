@@ -1,4 +1,5 @@
-import { browser, element, by, ElementFinder } from 'protractor';
+import { browser, element, by,
+  ElementFinder, ExpectedConditions } from 'protractor';
 
 import { UserPage } from '../user/user.po';
 import { AppPage } from '../app.po';
@@ -80,12 +81,19 @@ describe('AdminBlogList component', () => {
     });
 
     it('has working blog delete', (done) => {
+      browser.wait(
+        ExpectedConditions.presenceOf(element(by.css('.fa-trash'))),
+        5000
+      );
       element.all(by.css('.fa-trash'))
         .then(items => {
           const deleteBtn: ElementFinder = items[6];
           expect(deleteBtn.isDisplayed()).toBe(true);
           deleteBtn.click();
-          browser.sleep(200);
+          browser.wait(
+            ExpectedConditions.invisibilityOf(deleteBtn),
+            5000
+          );
           expect(deleteBtn.isPresent()).toBe(false);
           done();
         });
