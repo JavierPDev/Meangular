@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.28.0] - 2017-06-19
+### Changed
+- Update angular packages.
+- Update ng2-bootstrap to ngx-bootstrap
+
 ## [0.27.1] - 2017-06-15
 ### Changed
 - Comment is hidden while editing instead of acting as view of old comment.
