@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.29.0] - 2017-06-20
+### Added
+- [#28](https://github.com/JavierPDev/Meangular/issues/28) Custom http service used so that slim loading bar is displayed during requests.
+
+### Removed
+- Slim loading bar is no longer activated by route changes.
+
 ## [0.28.1] - 2017-06-20
 ### Changed
 - Update `.travis.yml` to use all tests.
