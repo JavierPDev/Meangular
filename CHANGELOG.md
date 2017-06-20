@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.28.1] - 2017-06-20
+### Changed
+- Update `.travis.yml` to use all tests.
+- Improve e2e tests for use with CI server
+
 ## [0.28.0] - 2017-06-19
 ### Changed
 - Update angular packages.
