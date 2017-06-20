@@ -8,7 +8,6 @@ import {
   NavigationCancel,
   NavigationError
 } from '@angular/router';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
@@ -19,39 +18,19 @@ import 'rxjs/add/operator/filter';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private _DOMTitleChangeSub;
-  private _slimLoadingBarSub;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _slimLoadingBarService: SlimLoadingBarService,
     private _titleService: Title
   ) {}
 
   ngOnInit() {
-    this._setupSlimLoadingBar();
     this._setupDOMTitleChanges();
   }
 
   ngOnDestroy() {
-    this._slimLoadingBarSub.unsubscribe();
     this._DOMTitleChangeSub.unsubscribe();
-  }
-
-  /**
-   * Subscribe to route changes and display slim loading bar depending on
-   * navigation state.
-   */
-  private _setupSlimLoadingBar(): void {
-    this._slimLoadingBarSub = this._router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this._slimLoadingBarService.start();
-      } else if (event instanceof NavigationEnd
-        || event instanceof NavigationError
-        || event instanceof NavigationCancel) {
-        this._slimLoadingBarService.complete();
-      }
-    }, err => this._slimLoadingBarService.complete());
   }
 
   /**
