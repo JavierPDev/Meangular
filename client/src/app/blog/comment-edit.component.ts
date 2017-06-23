@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../user/auth.service';
 import { BlogService } from './blog.service';
@@ -62,7 +62,10 @@ export class CommentEditComponent implements OnInit {
 
   ngOnInit() {
     this.commentForm = this._fb.group({
-      content: [this.comment.content],
+      content: [this.comment.content, [
+        Validators.required,
+        Validators.maxLength(1000)
+      ]],
       user: [this.auth.user()._id]
     });
   }

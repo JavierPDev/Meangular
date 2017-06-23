@@ -1,11 +1,30 @@
 <form (submit)="saveComment()" [formGroup]="commentForm">
-  <textarea
-    class="form-control"
-    id="commentInput"
-    formControlName="content">
-  </textarea>
+  <div
+    class="form-group"
+    [class.has-error]="
+      !commentForm.get('content').valid
+        && commentForm.get('content').dirty">
+    <textarea
+      class="form-control"
+      id="commentInput"
+      formControlName="content">
+    </textarea>
+    <span
+      class="help-block"
+      *ngIf="commentForm.get('content').hasError('required')">
+      Comment is required
+    </span>
+    <span
+      class="help-block"
+      *ngIf="commentForm.get('content').hasError('maxlength')">
+      Must be under {{commentForm.controls.content.errors.maxlength.requiredLength}} characters.
+      You typed {{commentForm.controls.content.errors.maxlength.actualLength}} characters.
+    </span>
+  </div>
   <br />
-  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="submit" class="btn btn-primary" [disabled]="commentForm.invalid">
+    Save
+  </button>
   <button (click)="cancel()" type="button" class="btn btn-default">
     Cancel
   </button>
