@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
    */
   public timestamp = new Date().valueOf();
   public uploader: FileUploader = new FileUploader(uploadOptions);
+  public uploading = false;
   public user = this.authService.user();
   public profilePic = this.user.profile.picture;
 
@@ -49,6 +50,11 @@ export class ProfileComponent implements OnInit {
    */
   public detectChanges(): void {
     this._detector.detectChanges();
+  }
+
+  public startUpload(): void {
+    this.uploading = true;
+    this.uploader.queue[0].upload();
   }
 
   public updateUser(): void {
@@ -93,6 +99,7 @@ export class ProfileComponent implements OnInit {
       this.profilePic = `uploads/${this.user._id}${extension}`;
       this.timestamp = new Date().valueOf();
       this.uploader.queue.splice(0, 1);
+      this.uploading = false;
       this.detectChanges();
     };
   }
