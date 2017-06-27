@@ -104,6 +104,10 @@ export class PaginatedSearchListComponent implements OnInit, OnDestroy {
         const queryParams: any = Object.assign({}, qp);
         this.queryParams = queryParams;
 
+        if (queryParams.search) {
+          this.searchTerm = queryParams.search;
+        }
+
         // If navigating back to default blog list page 1 while already on blog
         // list, reset everything.
         if (!queryParams.search && !queryParams.page
