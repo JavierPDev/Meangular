@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.30.2] - 2017-07-03
+### Fixed
+- [#30](https://github.com/JavierPDev/Meangular/issues/30) Admin user search working again.
+
 ## [0.30.1] - 2017-06-27
 ### Fixed
 - Searchbox input gets filled with current searchterm when manually navigating to page (ie. entering url with query params into browser location bar and hitting enter or clicking an external link).
