@@ -178,6 +178,6 @@ userSchema.pre('validate', function (next) {
   if (typeof self.profile.name === 'string') self.profile.name = self.profile.name.trim()
   next()
 })
-userSchema.index({email: 'text', 'profile.name': 'text'});
+userSchema.index({email: 'text', 'profile.name': 'text'})
 userSchema.plugin(timestamps)
 module.exports = userSchema
