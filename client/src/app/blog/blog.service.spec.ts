@@ -6,10 +6,12 @@ import { Http, BaseRequestOptions, RequestMethod,
   Response, ResponseOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { Observable } from 'rxjs/Observable';
 
 import { BlogService } from './blog.service';
 import { BlogEntry } from './blog-entry';
 import { User } from '../user/user';
+import { Comment } from './comment';
 
 const blogEntryStub: BlogEntry = {
   title: 'Test blog entry',
@@ -17,6 +19,15 @@ const blogEntryStub: BlogEntry = {
   created: new Date(),
   _id: 'objectid',
   slug: 'test-blog-entry'
+};
+const comment: Comment = {
+  content: 'Comment content',
+  user: {
+    email: 'test@user.com',
+    _id: 'objectid',
+    roles: [],
+    profile: {name: 'Test User'}
+  }
 };
 const blogListStub = [blogEntryStub];
 const slug = 'test-blog-entry';
@@ -57,15 +68,6 @@ describe('BlogService', () => {
     service = b;
     mockBackend = m;
   }));
-
-  beforeAll(() => {
-    // Set token for auth requests
-    localStorage.setItem('id_token', jwt);
-  });
-
-  afterAll(() => {
-    localStorage.removeItem('id_token');
-  });
 
   it('loads correctly', () => {
     expect(service).toBeTruthy();
@@ -155,34 +157,10 @@ describe('BlogService', () => {
       tick();
     }));
 
-    // it('navigates to correct url upon delete success', fakeAsync(() => {
-    //   const responseStub = Object.assign({}, blogEntryStub, {slug});
-    //   const router = TestBed.get(Router);
-    //   spyOn(router, 'navigate');
-    //   mockBackend.connections.subscribe(c => {
-    //     const response = new ResponseOptions({body: 'null'});
-    //     c.mockRespond(new Response(response));
-    //   });
-    //   service.deleteBlogEntry(blogEntryStub);
-    //   tick();
-    //   expect(router.navigate).toHaveBeenCalledWith(['/blog/list']);
-    // }));
-    //
-    // it('failed deletion should cause error field to be filled with msg',
-    //    fakeAsync(() => {
-    //   const failResponse = {
-    //     msg: 'Deletion failed'
-    //   };
-    //   mockBackend.connections.subscribe(c => {
-    //     const response = new ResponseOptions({
-    //       body: JSON.stringify(failResponse)
-    //     });
-    //     c.mockError(new Response(response));
-    //   });
-    //   service.deleteBlogEntry(blogEntryStub);
-    //   expect(service.error).toBe(failResponse.msg);
-    //   tick();
-    // }));
+    it('returns an observable', () => {
+      const returned = service.deleteBlogEntry(blogEntryStub);
+      expect(returned instanceof Observable).toBe(true);
+    });
   });
 
   describe('#getBlogEntryBySlug()', () => {
@@ -268,7 +246,7 @@ describe('BlogService', () => {
     }));
   });
 
-  describe('updateBlogEntry()', () => {
+  describe('#updateBlogEntry()', () => {
     const title = 'Updated blog title';
     const editedBlogEntry: BlogEntry = Object.assign({}, blogEntryStub, {title});
 
@@ -328,5 +306,109 @@ describe('BlogService', () => {
       expect(service.error).toBe(failResponse.msg);
       tick();
     }));
+  });
+
+  describe('#createComment()', () => {
+    it('calls the correct api url', fakeAsync(() => {
+      const expectedUrl = `/api/blog/${blogEntryStub._id}/comment`;
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.url).toBe(expectedUrl);
+      });
+      service.createComment(comment, blogEntryStub);
+      tick();
+    }));
+
+    it('uses the POST request method', fakeAsync(() => {
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.method).toBe(RequestMethod.Post);
+      });
+      service.createComment(comment, blogEntryStub);
+      tick();
+    }));
+
+    it('returns an observable', () => {
+      const returned = service.createComment(comment, blogEntryStub);
+      expect(returned instanceof Observable).toBe(true);
+    });
+  });
+
+  describe('#deleteComment()', () => {
+    it('calls the correct api url', fakeAsync(() => {
+      const expectedUrl = `/api/comment/${comment._id}`;
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.url).toBe(expectedUrl);
+      });
+      service.deleteComment(comment);
+      tick();
+    }));
+
+    it('uses the DELETE request method', fakeAsync(() => {
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.method).toBe(RequestMethod.Delete);
+      });
+      service.deleteComment(comment);
+      tick();
+    }));
+
+    it('deletes the comment', fakeAsync(() => {
+      mockBackend.connections.subscribe(c => {
+        expect(c.request._body).toBeFalsy();
+      });
+      service.deleteComment(comment);
+      tick();
+    }));
+
+    it('returns an observable', () => {
+      const returned = service.deleteComment(comment);
+      expect(returned instanceof Observable).toBe(true);
+    });
+  });
+
+  describe('#getCommentById()', () => {
+    it('calls the correct api url', fakeAsync(() => {
+      const expectedUrl = `/api/comment/${comment._id}`;
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.url).toBe(expectedUrl);
+      });
+      service.getCommentById(comment._id);
+      tick();
+    }));
+
+    it('uses the GET request method', fakeAsync(() => {
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.method).toBe(RequestMethod.Get);
+      });
+      service.getCommentById(comment._id);
+      tick();
+    }));
+
+    it('returns an observable', () => {
+      const returned = service.getCommentById(comment._id);
+      expect(returned instanceof Observable).toBe(true);
+    });
+  });
+
+  describe('#updateComment()', () => {
+    it('calls the correct api url', fakeAsync(() => {
+      const expectedUrl = `/api/comment/${comment._id}`;
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.url).toBe(expectedUrl);
+      });
+      service.updateComment(comment);
+      tick();
+    }));
+
+    it('uses the PUT request method', fakeAsync(() => {
+      mockBackend.connections.subscribe(c => {
+        expect(c.request.method).toBe(RequestMethod.Put);
+      });
+      service.updateComment(comment);
+      tick();
+    }));
+
+    it('returns an observable', () => {
+      const returned = service.updateComment(comment);
+      expect(returned instanceof Observable).toBe(true);
+    });
   });
 });
