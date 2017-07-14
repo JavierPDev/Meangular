@@ -4,7 +4,7 @@
   "description": "Open-source MEAN stack solution based on Mean Stack JS and Angular-cli for Angular (2+).",
   "main": "index.js",
   "engines": {
-    "node": "7.6.0",
+    "node": "7.10.1",
     "npm": "3.10.9"
   },
   "standard": {
