@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.30.5] - 2017-07-24
+### Changed
+- User profile pictures now save to a user's uploads directory with unique filenames so photos can always be cached.
+
+## [0.30.4] - 2017-07-14
+### Fixed
+- Update node version in `package.json` for new security update.
+
 ## [0.30.3] - 2017-07-12
 ### Added
 - Added comment unit tests.
