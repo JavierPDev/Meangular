@@ -17,11 +17,6 @@ export class ProfileComponent implements OnInit {
   public message: String = '';
   public passwordForm: FormGroup;
   public profileForm: FormGroup;
-  /**
-   * Timestamp used for cachebusting profile image since filename is
-   * always based on user id.
-   */
-  public timestamp = new Date().valueOf();
   public uploader: FileUploader = new FileUploader(uploadOptions);
   public uploading = false;
   public user = this.authService.user();
@@ -94,10 +89,8 @@ export class ProfileComponent implements OnInit {
       'password': ['', Validators.minLength(6)],
       'confirmPassword': ['', Validators.minLength(6)]
     });
-    this.uploader.onSuccessItem = item => {
-      const extension = item.file.name.substring(item.file.name.length - 4);
-      this.profilePic = `uploads/${this.user._id}${extension}`;
-      this.timestamp = new Date().valueOf();
+    this.uploader.onSuccessItem = (item, fileUrl) => {
+      this.profilePic = fileUrl;
       this.uploader.queue.splice(0, 1);
       this.uploading = false;
       this.detectChanges();

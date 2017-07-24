@@ -484,43 +484,8 @@ exports.postPhoto = function (req, res, next) {
   debug('start postPhoto')
 
   if (req.file) {
-    var filePath = path.resolve(__dirname, '../../../client/uploads/')
-    fs.readFile(req.file.path, function (err, data) {
-      if (err) {
-        debug('end postPhoto')
-        return res.status(400).send(err)
-      }
-      var originalname = req.file.originalname
-      var extension = originalname.substring(originalname.length - 4)
-      var createDir = filePath + '/' + req.user._id + extension
-      var url = createDir.substring(createDir.indexOf('uploads/'))
-      fs.writeFile(createDir, data, {flag: 'w'}, function (err) {
-        if (err) {
-          debug('end postPhoto')
-          return res.status(400).send(err)
-        } else {
-          debug('end postPhoto')
-          User.findById(req.user.id, function (err, user) {
-            if (err) {
-              return next(err)
-            }
-            user = _.merge(user, req.body)
-            user.profile.picture = url
-            user.save(function (err) {
-              if (err) {
-                return next(err)
-              }
-              fs.unlink(req.file.path, function (err) {
-                if (err) {
-                  return next(err)
-                }
-                debug('end postPhoto')
-                return res.status(201).send()
-              })
-            })
-          })
-        }
-      })
+    ensureOldPhotoDeleted(req.user.profile.picture).then(function () {
+      return savePhotoToFileAndUser(req, res, next)
     })
   } else {
     debug('end postPhoto')
@@ -553,5 +518,59 @@ exports.oauthToken = function (req, res, next) {
       _id: user._id
     },
     token: 'JWT ' + token
+  })
+}
+
+function ensureOldPhotoDeleted (picture) {
+  return new Promise(function (resolve, reject) {
+    if (picture.length) {
+      var filepath = path.resolve(__dirname, '../../../client') + '/' + picture
+      fs.unlink(filepath, function () {
+        resolve()
+      })
+    } else {
+      resolve()
+    }
+  })
+}
+
+function savePhotoToFileAndUser (req, res, next) {
+  fs.readFile(req.file.path, function (err, data) {
+    if (err) {
+      debug('end postPhoto')
+      return res.status(400).send(err)
+    }
+    var baseUploadDir = path.resolve(__dirname, '../../../client/uploads/')
+    var originalFilename = req.file.originalname
+    var extension = originalFilename.substring(originalFilename.length - 4)
+    var fullPath = baseUploadDir + '/' + req.user._id + '/profile' + new Date().valueOf() + extension
+    var url = fullPath.substring(fullPath.indexOf('uploads/'))
+    fs.writeFile(fullPath, data, {flag: 'w'}, function (err) {
+      if (err) {
+        // Create user's uploads dir if it doesn't exist
+        var dir = fullPath.substring(0, fullPath.indexOf('/profile'))
+        fs.mkdirSync(dir)
+        return savePhotoToFileAndUser(req, res)
+      }
+      User.findById(req.user.id, function (err, user) {
+        if (err) {
+          return next(err)
+        }
+        user = _.merge(user, req.body)
+        user.profile.picture = url
+        user.save(function (err) {
+          if (err) {
+            return next(err)
+          }
+          fs.unlink(req.file.path, function (err) {
+            if (err) {
+              return next(err)
+            }
+            debug('end postPhoto')
+            return res.status(201).send(user.profile.picture)
+          })
+        })
+      })
+    })
   })
 }
